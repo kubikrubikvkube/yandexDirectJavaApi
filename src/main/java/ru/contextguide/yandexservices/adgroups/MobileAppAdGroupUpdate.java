@@ -16,7 +16,9 @@ public class MobileAppAdGroupUpdate {
     private String targetOperatingSystemVersion;
 
     public MobileAppAdGroupUpdate(@Nullable List<DeviceTypeEnum> targetDeviceType, @Nullable CarrierEnum targetCarrier, @Nullable String targetOperatingSystemVersion) {
-        this.targetDeviceType = ImmutableList.copyOf(targetDeviceType);
+        if (targetDeviceType != null) {
+            this.targetDeviceType = ImmutableList.copyOf(targetDeviceType);
+        }
         this.targetCarrier = targetCarrier;
         this.targetOperatingSystemVersion = targetOperatingSystemVersion;
     }

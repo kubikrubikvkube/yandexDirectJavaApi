@@ -3,8 +3,6 @@ package ru.contextguide.campaign.textCampaign;
 
 import com.google.common.base.Objects;
 
-import javax.annotation.Nullable;
-
 
 /**
  * Параметры стратегии Средняя рентабельность инвестиций.
@@ -19,13 +17,10 @@ public class StrategyAverageRoi {
 
     private long goalId;
 
-    @Nullable
     private long weeklySpendLimit;
 
-    @Nullable
     private long bidCeiling;
 
-    @Nullable
     private long profitability;
 
     /**

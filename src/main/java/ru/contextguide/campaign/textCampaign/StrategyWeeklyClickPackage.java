@@ -1,8 +1,6 @@
 package ru.contextguide.campaign.textCampaign;
 
 
-import javax.annotation.Nullable;
-
 /**
  * Параметры стратегии Недельный пакет кликов.
  */
@@ -10,9 +8,7 @@ import javax.annotation.Nullable;
 public class StrategyWeeklyClickPackage {
 
     private long clicksPerWeek;
-    @Nullable
     private long averageCpc;
-    @Nullable
     private long bidCeiling;
 
     /**

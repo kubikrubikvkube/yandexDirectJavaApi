@@ -1,8 +1,6 @@
 package ru.contextguide.campaign.textCampaign;
 
 
-import javax.annotation.Nullable;
-
 /**
  * Параметры стратегии Недельный бюджет (максимум кликов).
  */
@@ -10,7 +8,6 @@ import javax.annotation.Nullable;
 public class StrategyMaximumClicks {
 
     private long weeklySpendLimit;
-    @Nullable
     private long bidCeiling;
 
 
@@ -44,7 +41,7 @@ public class StrategyMaximumClicks {
      * Максимальная ставка в валюте рекламодателя, умноженная на 1 000 000.
      * Минимальное и максимальное значение ставки для каждой валюты представлены в справочнике валют.
      */
-    public void setBidCeiling(@Nullable long bidCeiling) {
+    public void setBidCeiling(long bidCeiling) {
         this.bidCeiling = bidCeiling;
     }
 

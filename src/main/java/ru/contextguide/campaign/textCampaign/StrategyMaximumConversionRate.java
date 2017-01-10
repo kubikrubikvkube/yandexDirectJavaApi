@@ -1,8 +1,6 @@
 package ru.contextguide.campaign.textCampaign;
 
 
-import javax.annotation.Nullable;
-
 /**
  * Параметры стратегии Недельный бюджет (максимальная конверсия).
  */
@@ -11,7 +9,6 @@ public class StrategyMaximumConversionRate {
 
     private long weeklySpendLimit;
     private long goalId;
-    @Nullable
     private long bidCeiling;
 
     /**
@@ -55,7 +52,7 @@ public class StrategyMaximumConversionRate {
     /**
      * Максимальная ставка в валюте рекламодателя, умноженная на 1 000 000.
      */
-    public void setBidCeiling(@Nullable long bidCeiling) {
+    public void setBidCeiling(long bidCeiling) {
         this.bidCeiling = bidCeiling;
     }
 }

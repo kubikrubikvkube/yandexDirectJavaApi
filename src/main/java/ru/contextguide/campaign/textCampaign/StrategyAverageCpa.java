@@ -1,8 +1,6 @@
 package ru.contextguide.campaign.textCampaign;
 
 
-import javax.annotation.Nullable;
-
 /**
  * Параметры стратегии Средняя цена конверсии.
  */
@@ -10,9 +8,7 @@ import javax.annotation.Nullable;
 public class StrategyAverageCpa {
     private long averageCpa;
     private long goalId;
-    @Nullable
     private long weeklySpendLimit;
-    @Nullable
     private long bidCeiling;
 
     /**

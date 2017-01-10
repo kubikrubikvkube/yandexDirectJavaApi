@@ -36,7 +36,7 @@ public class ChangesImpl implements Changes {
         };
 
         String result = sce.sendRequest("checkDictionaries", API_URL, emptyRequest);
-        ServerTimeResponse serverTimeResponse = null;
+        ServerTimeResponse serverTimeResponse;
 
         serverTimeResponse = defaultJsonParser.deserialize(result, ServerTimeResponse.class);
 

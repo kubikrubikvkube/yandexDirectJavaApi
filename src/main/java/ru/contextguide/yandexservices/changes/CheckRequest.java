@@ -1,7 +1,6 @@
 package ru.contextguide.yandexservices.changes;
 
 import com.google.common.collect.ImmutableList;
-import ru.contextguide.yandexservices.exceptions.ApiRequestException;
 import ru.contextguide.yandexservices.utils.ApiRequest;
 
 import javax.annotation.Nullable;
@@ -15,7 +14,7 @@ public class CheckRequest implements ApiRequest {
     @NotNull private final List<FieldNamesEnum> fieldNames;
     @NotNull private final String timestamp;
 
-    public CheckRequest(@Nullable List<Long> campaignIds, @Nullable List<Long> adGroupIds, @Nullable List<Long> adIds, @NotNull List<FieldNamesEnum> fieldNames, @NotNull String timestamp) throws ApiRequestException {
+    public CheckRequest(@Nullable List<Long> campaignIds, @Nullable List<Long> adGroupIds, @Nullable List<Long> adIds, @NotNull List<FieldNamesEnum> fieldNames, @NotNull String timestamp) {
         this.campaignIds = (campaignIds != null) ? ImmutableList.copyOf(campaignIds) : null;
         this.adGroupIds = (adGroupIds != null) ? ImmutableList.copyOf(adGroupIds) : null;
         this.adIds = (adIds != null) ? ImmutableList.copyOf(adIds) : null;
@@ -23,7 +22,7 @@ public class CheckRequest implements ApiRequest {
         this.timestamp = timestamp;
     }
 
-    public CheckRequest(@Nullable Long campaignId, @Nullable Long adGroupId, @Nullable Long adId, @NotNull List<FieldNamesEnum> fieldNames, @NotNull String timestamp) throws ApiRequestException {
+    public CheckRequest(@Nullable Long campaignId, @Nullable Long adGroupId, @Nullable Long adId, @NotNull List<FieldNamesEnum> fieldNames, @NotNull String timestamp) {
         this.campaignIds = (campaignId != null) ? ImmutableList.of(campaignId) : null;
         this.adGroupIds = (adGroupId != null) ? ImmutableList.of(adGroupId) : null;
         this.adIds = (adId != null) ? ImmutableList.of(adId) : null;

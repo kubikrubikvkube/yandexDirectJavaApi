@@ -6,12 +6,11 @@ import org.joda.time.format.ISODateTimeFormat;
 import ru.contextguide.yandexservices.exceptions.ApiRequestException;
 import ru.contextguide.yandexservices.utils.ApiRequest;
 
-import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 
 public class CheckCampaignsRequest implements ApiRequest {
     private final DateTimeFormatter dtf = ISODateTimeFormat.dateTimeNoMillis().withZoneUTC();
-    @Nullable private final long timestamp;
+    private final long timestamp;
 
 
     public CheckCampaignsRequest(@NotNull String dateTime) throws ApiRequestException {
