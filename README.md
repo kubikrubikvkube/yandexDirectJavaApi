@@ -1,7 +1,8 @@
 # yandexDirectJavaApi
 Java library to interact with Yandex Direct API
 If you want to get all your campaigns:
-Create selection criteria
+
+Create a selection criteria:
 
 **CampaignsSelectionCriteria campaignsSelectionCriteria = new CampaignsSelectionCriteria();**
 **campaignsSelectionCriteria.add(CampaignTypeGetEnum.TEXT_CAMPAIGN);**
