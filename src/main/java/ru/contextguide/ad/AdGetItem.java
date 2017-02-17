@@ -2,6 +2,7 @@ package ru.contextguide.ad;
 
 import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public class AdGetItem implements JsonSerializableObject {
@@ -28,7 +29,7 @@ public class AdGetItem implements JsonSerializableObject {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(@Nonnull Long id) {
         this.id = id;
     }
 
@@ -39,7 +40,7 @@ public class AdGetItem implements JsonSerializableObject {
         return campaignId;
     }
 
-    public void setCampaignId(Long campaignId) {
+    public void setCampaignId(@Nonnull Long campaignId) {
         this.campaignId = campaignId;
     }
 
@@ -50,7 +51,7 @@ public class AdGetItem implements JsonSerializableObject {
         return adGroupId;
     }
 
-    public void setAdGroupId(Long adGroupId) {
+    public void setAdGroupId(@Nonnull Long adGroupId) {
         this.adGroupId = adGroupId;
     }
 
@@ -61,7 +62,7 @@ public class AdGetItem implements JsonSerializableObject {
         return status;
     }
 
-    public void setStatus(StatusEnum status) {
+    public void setStatus(@Nonnull StatusEnum status) {
         this.status = status;
     }
 
@@ -72,7 +73,7 @@ public class AdGetItem implements JsonSerializableObject {
         return statusClarification;
     }
 
-    public void setStatusClarification(String statusClarification) {
+    public void setStatusClarification(@Nonnull String statusClarification) {
         this.statusClarification = statusClarification;
     }
 
@@ -83,7 +84,7 @@ public class AdGetItem implements JsonSerializableObject {
         return state;
     }
 
-    public void setState(StateEnum state) {
+    public void setState(@Nonnull StateEnum state) {
         this.state = state;
     }
 
@@ -94,7 +95,7 @@ public class AdGetItem implements JsonSerializableObject {
         return adCategories;
     }
 
-    public void setAdCategories(List<String> adCategories) {
+    public void setAdCategories(@Nonnull List<String> adCategories) {
         this.adCategories = adCategories;
     }
 
@@ -105,7 +106,7 @@ public class AdGetItem implements JsonSerializableObject {
         return ageLabel;
     }
 
-    public void setAgeLabel(AgeLabelEnum ageLabel) {
+    public void setAgeLabel(@Nonnull AgeLabelEnum ageLabel) {
         this.ageLabel = ageLabel;
     }
 
@@ -116,7 +117,7 @@ public class AdGetItem implements JsonSerializableObject {
         return type;
     }
 
-    public void setType(AdTypeEnum type) {
+    public void setType(@Nonnull AdTypeEnum type) {
         this.type = type;
     }
 
@@ -127,7 +128,7 @@ public class AdGetItem implements JsonSerializableObject {
         return subtype;
     }
 
-    public void setSubtype(AdSubtypeEnum subtype) {
+    public void setSubtype(@Nonnull AdSubtypeEnum subtype) {
         this.subtype = subtype;
     }
 
@@ -138,7 +139,7 @@ public class AdGetItem implements JsonSerializableObject {
         return textAd;
     }
 
-    public void setTextAd(TextAdGet textAd) {
+    public void setTextAd(@Nonnull TextAdGet textAd) {
         this.textAd = textAd;
     }
 
@@ -149,7 +150,7 @@ public class AdGetItem implements JsonSerializableObject {
         return mobileAppAd;
     }
 
-    public void setMobileAppAd(MobileAppAdGet mobileAppAd) {
+    public void setMobileAppAd(@Nonnull MobileAppAdGet mobileAppAd) {
         this.mobileAppAd = mobileAppAd;
     }
 
@@ -160,7 +161,7 @@ public class AdGetItem implements JsonSerializableObject {
         return dynamicTextAd;
     }
 
-    public void setDynamicTextAd(DynamicTextAdGet dynamicTextAd) {
+    public void setDynamicTextAd(@Nonnull DynamicTextAdGet dynamicTextAd) {
         this.dynamicTextAd = dynamicTextAd;
     }
 
@@ -171,7 +172,7 @@ public class AdGetItem implements JsonSerializableObject {
         return textImageAd;
     }
 
-    public void setTextImageAd(TextImageAdGet textImageAd) {
+    public void setTextImageAd(@Nonnull TextImageAdGet textImageAd) {
         this.textImageAd = textImageAd;
     }
 
@@ -182,7 +183,7 @@ public class AdGetItem implements JsonSerializableObject {
         return mobileAppImageAdGet;
     }
 
-    public void setMobileAppImageAdGet(MobileAppImageAdGet mobileAppImageAdGet) {
+    public void setMobileAppImageAdGet(@Nonnull MobileAppImageAdGet mobileAppImageAdGet) {
         this.mobileAppImageAdGet = mobileAppImageAdGet;
     }
 }

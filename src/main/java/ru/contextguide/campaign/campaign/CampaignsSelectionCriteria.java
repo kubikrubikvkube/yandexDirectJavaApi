@@ -3,6 +3,7 @@ package ru.contextguide.campaign.campaign;
 import com.google.common.collect.ImmutableList;
 import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class CampaignsSelectionCriteria implements JsonSerializableObject {
     /**
      * Отбирать кампании с указанными идентификаторами. Не более 1000 элементов в массиве.
      */
+    @Nullable
     public List<Long> getIds() {
         return ids;
     }
@@ -38,7 +40,7 @@ public class CampaignsSelectionCriteria implements JsonSerializableObject {
     /**
      * Отбирать кампании с указанным идентификатором.
      */
-    public void setIds(Long ids) {
+    public void setIds(@Nonnull Long ids) {
         this.ids = ImmutableList.of(ids);
     }
 
@@ -52,6 +54,7 @@ public class CampaignsSelectionCriteria implements JsonSerializableObject {
     /**
      * Отбирать кампании с указанными типами.
      */
+    @Nullable
     public List<CampaignTypeGetEnum> getTypes() {
         return types;
     }
@@ -59,13 +62,14 @@ public class CampaignsSelectionCriteria implements JsonSerializableObject {
     /**
      * Отбирать кампании с указанными типами.
      */
-    public void setTypes(List<CampaignTypeGetEnum> types) {
+    public void setTypes(@Nonnull List<CampaignTypeGetEnum> types) {
         this.types = ImmutableList.copyOf(types);
     }
 
     /**
      * Отбирать кампании с указанными состояниями.
      */
+    @Nullable
     public List<CampaignStateGetEnum> getStates() {
         return states;
     }
@@ -73,13 +77,14 @@ public class CampaignsSelectionCriteria implements JsonSerializableObject {
     /**
      * Отбирать кампании с указанными состояниями.
      */
-    public void setStates(List<CampaignStateGetEnum> states) {
+    public void setStates(@Nonnull List<CampaignStateGetEnum> states) {
         this.states = ImmutableList.copyOf(states);
     }
 
     /**
      * Отбирать кампании с указанными статусами.
      */
+    @Nullable
     public List<CampaignStatusSelectionEnum> getStatuses() {
         return statuses;
     }
@@ -87,13 +92,14 @@ public class CampaignsSelectionCriteria implements JsonSerializableObject {
     /**
      * Отбирать кампании с указанными статусами.
      */
-    public void setStatuses(List<CampaignStatusSelectionEnum> statuses) {
+    public void setStatuses(@Nonnull List<CampaignStatusSelectionEnum> statuses) {
         this.statuses = ImmutableList.copyOf(statuses);
     }
 
     /**
      * Отбирать кампании с указанными статусами оплаты.
      */
+    @Nullable
     public List<CampaignStatusPaymentEnum> getStatusesPayment() {
         return statusesPayment;
     }
@@ -101,7 +107,7 @@ public class CampaignsSelectionCriteria implements JsonSerializableObject {
     /**
      * Отбирать кампании с указанными статусами оплаты.
      */
-    public void setStatusesPayment(List<CampaignStatusPaymentEnum> statusesPayment) {
+    public void setStatusesPayment(@Nonnull List<CampaignStatusPaymentEnum> statusesPayment) {
         this.statusesPayment = ImmutableList.copyOf(statusesPayment);
     }
 

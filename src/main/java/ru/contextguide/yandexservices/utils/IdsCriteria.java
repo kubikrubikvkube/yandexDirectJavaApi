@@ -12,21 +12,21 @@ public class IdsCriteria implements ApiRequest {
     /**
      * Идентификаторы
      */
-    private final List<Number> ids;
+    private final List<Long> ids;
 
-    public IdsCriteria(Number id) {
+    public IdsCriteria(Long id) {
         this.ids = ImmutableList.of(id);
     }
 
-    public IdsCriteria(Number[] ids) {
+    public IdsCriteria(Long... ids) {
         this.ids = ImmutableList.copyOf(ids);
     }
 
-    public <T extends Number> IdsCriteria(List<T> ids) {
+    public <T extends Long> IdsCriteria(List<T> ids) {
         this.ids = ImmutableList.copyOf(ids);
     }
 
-    public List<Number> getIds() {
+    public List<Long> getIds() {
         return ids;
     }
 

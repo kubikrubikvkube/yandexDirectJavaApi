@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import ru.contextguide.adgroup.CarrierEnum;
 import ru.contextguide.adgroup.DeviceTypeEnum;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
@@ -26,33 +27,36 @@ public class MobileAppAdGroupUpdate {
     /**
      * На каких устройствах показывать объявления:
      */
+    @Nullable
     public List<DeviceTypeEnum> getTargetDeviceType() {
         return targetDeviceType;
     }
 
-    public void setTargetDeviceType(List<DeviceTypeEnum> targetDeviceType) {
+    public void setTargetDeviceType(@Nonnull List<DeviceTypeEnum> targetDeviceType) {
         this.targetDeviceType = ImmutableList.copyOf(targetDeviceType);
     }
 
     /**
      * По каким типам подключения к интернету показывать объявления
      */
+    @Nullable
     public CarrierEnum getTargetCarrier() {
         return targetCarrier;
     }
 
-    public void setTargetCarrier(CarrierEnum targetCarrier) {
+    public void setTargetCarrier(@Nullable CarrierEnum targetCarrier) {
         this.targetCarrier = targetCarrier;
     }
 
     /**
      * Минимальная версия операционной системы, на которой может быть показано объявление.
      */
+    @Nullable
     public String getTargetOperatingSystemVersion() {
         return targetOperatingSystemVersion;
     }
 
-    public void setTargetOperatingSystemVersion(String targetOperatingSystemVersion) {
+    public void setTargetOperatingSystemVersion(@Nullable String targetOperatingSystemVersion) {
         this.targetOperatingSystemVersion = targetOperatingSystemVersion;
     }
 }

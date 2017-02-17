@@ -34,6 +34,7 @@ public class CheckRequest implements ApiRequest {
     /**
      * Идентификаторы кампаний, для которых требуется проверить наличие изменений. От 1 до 3000 элементов в массиве.
      */
+    @Nullable
     public List<Long> getCampaignIds() {
         return campaignIds;
     }
@@ -41,6 +42,7 @@ public class CheckRequest implements ApiRequest {
     /**
      * Идентификаторы групп, для которых требуется проверить наличие изменений. От 1 до 10 000 элементов в массиве.
      */
+    @Nullable
     public List<Long> getAdGroupIds() {
         return adGroupIds;
     }
@@ -48,6 +50,7 @@ public class CheckRequest implements ApiRequest {
     /**
      * Идентификаторы объявлений, для которых требуется проверить наличие изменений. От 1 до 50 000 элементов в массиве.
      */
+    @Nullable
     public List<Long> getAdIds() {
         return adIds;
     }

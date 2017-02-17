@@ -34,6 +34,7 @@ public class GetResponse implements ApiResponse {
     /**
      * Порядковый номер последнего возвращенного объекта. Передается в случае, если количество объектов в ответе было ограничено лимитом.
      */
+    @Nullable
     public Long getLimitedBy() {
         return limitedBy;
     }
@@ -41,7 +42,7 @@ public class GetResponse implements ApiResponse {
     /**
      * Порядковый номер последнего возвращенного объекта. Передается в случае, если количество объектов в ответе было ограничено лимитом.
      */
-    public void setLimitedBy(Long limitedBy) {
+    public void setLimitedBy(@Nullable Long limitedBy) {
         this.limitedBy = limitedBy;
     }
 }

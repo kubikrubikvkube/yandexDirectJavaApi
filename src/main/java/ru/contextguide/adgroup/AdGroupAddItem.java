@@ -5,6 +5,7 @@ import ru.contextguide.adgroup.dynamicTextAdGroup.DynamicTextAdGroup;
 import ru.contextguide.adgroup.mobileAppAdGroup.MobileAppAdGroupAdd;
 import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -57,11 +58,12 @@ public final class AdGroupAddItem implements JsonSerializableObject {
      * Длина каждого минус-слова — не более 35 символов. Суммарная длина минус-слов в массиве — не более 4096 символов. Оператор «!» или «+» перед минус-словом не учитывается в суммарной длине.
      * Примечание. Общие для всех групп кампании минус-слова предпочтительно задавать в одноименном параметре кампании.
      */
+    @Nullable
     public List<String> getNegativeKeywords() {
         return negativeKeywords;
     }
 
-    public void setNegativeKeywords(List<String> negativeKeywords) {
+    public void setNegativeKeywords(@Nonnull List<String> negativeKeywords) {
         this.negativeKeywords = ImmutableList.copyOf(negativeKeywords);
     }
 
@@ -70,33 +72,36 @@ public final class AdGroupAddItem implements JsonSerializableObject {
      * Например: from=direct&ad={ad_id}
      * Параметр можно указать для группы любого типа, однако в настоящее время он используется только для групп динамических объявлений. Для других типов групп указанные GET-параметры в ссылку не добавляются.
      */
+    @Nullable
     public String getTrackingParams() {
         return trackingParams;
     }
 
-    public void setTrackingParams(String trackingParams) {
+    public void setTrackingParams(@Nullable String trackingParams) {
         this.trackingParams = trackingParams;
     }
 
     /**
      * Параметры группы объявлений для рекламы мобильных приложений.
      */
+    @Nullable
     public MobileAppAdGroupAdd getMobileAppAdGroup() {
         return mobileAppAdGroup;
     }
 
-    public void setMobileAppAdGroup(MobileAppAdGroupAdd mobileAppAdGroup) {
+    public void setMobileAppAdGroup(@Nullable MobileAppAdGroupAdd mobileAppAdGroup) {
         this.mobileAppAdGroup = mobileAppAdGroup;
     }
 
     /**
      * Параметры группы динамических объявлений.
      */
+    @Nullable
     public DynamicTextAdGroup getDynamicTextAdGroup() {
         return dynamicTextAdGroup;
     }
 
-    public void setDynamicTextAdGroup(DynamicTextAdGroup dynamicTextAdGroup) {
+    public void setDynamicTextAdGroup(@Nullable DynamicTextAdGroup dynamicTextAdGroup) {
         this.dynamicTextAdGroup = dynamicTextAdGroup;
     }
 

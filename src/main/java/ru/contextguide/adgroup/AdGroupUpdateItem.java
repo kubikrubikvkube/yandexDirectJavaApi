@@ -37,11 +37,12 @@ public class AdGroupUpdateItem {
     /**
      * Название группы объявлений (от 1 до 255 символов).
      */
+    @Nullable
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(@Nullable String name) {
         this.name = name;
     }
 
@@ -52,11 +53,12 @@ public class AdGroupUpdateItem {
      * Минус перед идентификатором региона — выключить показы в данном регионе. Например [1,-219] — показывать для Москвы и Московской области, кроме Черноголовки. Минус-регионы нельзя использовать, если указан 0. Массив не должен состоять только из минус-регионов.
      * Справочник регионов можно получить с помощью метода Dictionaries.get.
      */
+    @Nullable
     public RegionIds getRegionIds() {
         return regionIds;
     }
 
-    public void setRegionIds(RegionIds regionIds) {
+    public void setRegionIds(@Nullable RegionIds regionIds) {
         this.regionIds = regionIds;
     }
 
@@ -66,11 +68,12 @@ public class AdGroupUpdateItem {
      * Слово следует указывать без минуса перед словом. Пробел в середине слова не допускается.
      * Длина каждого минус-слова — не более 35 символов. Суммарная длина минус-слов в массиве — не более 4096 символов. Оператор «!» или «+» перед минус-словом не учитывается в суммарной длине.
      */
+    @Nullable
     public NegativeKeywords getNegativeKeywords() {
         return negativeKeywords;
     }
 
-    public void setNegativeKeywords(NegativeKeywords negativeKeywords) {
+    public void setNegativeKeywords(@Nullable NegativeKeywords negativeKeywords) {
         this.negativeKeywords = negativeKeywords;
     }
 
@@ -81,33 +84,36 @@ public class AdGroupUpdateItem {
      * Например: from=direct&ad={ad_id}
      * Параметр можно указать для группы любого типа, однако в настоящее время он используется только для групп динамических объявлений. Для других типов групп указанные GET-параметры в ссылку не добавляются.
      */
+    @Nullable
     public String getTrackingParams() {
         return trackingParams;
     }
 
-    public void setTrackingParams(String trackingParams) {
+    public void setTrackingParams(@Nullable String trackingParams) {
         this.trackingParams = trackingParams;
     }
 
     /**
      * Параметры группы объявлений для рекламы мобильных приложений.
      */
+    @Nullable
     public MobileAppAdGroupUpdate getMobileAppAdGroup() {
         return mobileAppAdGroup;
     }
 
-    public void setMobileAppAdGroup(MobileAppAdGroupUpdate mobileAppAdGroup) {
+    public void setMobileAppAdGroup(@Nullable MobileAppAdGroupUpdate mobileAppAdGroup) {
         this.mobileAppAdGroup = mobileAppAdGroup;
     }
 
     /**
      * Параметры группы динамических объявлений.
      */
+    @Nullable
     public DynamicTextAdGroup getDynamicTextAdGroup() {
         return dynamicTextAdGroup;
     }
 
-    public void setDynamicTextAdGroup(DynamicTextAdGroup dynamicTextAdGroup) {
+    public void setDynamicTextAdGroup(@Nullable DynamicTextAdGroup dynamicTextAdGroup) {
         this.dynamicTextAdGroup = dynamicTextAdGroup;
     }
 }

@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import ru.contextguide.yandexservices.exceptions.ApiResponseException;
 import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
@@ -54,22 +55,24 @@ public class AdGroupsSelectionCriteria implements JsonSerializableObject {
     /**
      * Отбирать группы с указанными типами.
      */
+    @Nullable
     public List<AdGroupTypesEnum> getTypes() {
         return types;
     }
 
-    public void setTypes(List<AdGroupTypesEnum> types) {
+    public void setTypes(@Nonnull List<AdGroupTypesEnum> types) {
         this.types = ImmutableList.copyOf(types);
     }
 
     /**
      * Отбирать группы с указанными статусами.
      */
+    @Nullable
     public List<AdGroupStatusSelectionEnum> getStatuses() {
         return statuses;
     }
 
-    public void setStatuses(List<AdGroupStatusSelectionEnum> statuses) {
+    public void setStatuses(@Nonnull List<AdGroupStatusSelectionEnum> statuses) {
         this.statuses = ImmutableList.copyOf(statuses);
     }
 
@@ -78,11 +81,12 @@ public class AdGroupsSelectionCriteria implements JsonSerializableObject {
      * <p>
      * Если параметр задан, будут получены только группы для рекламы мобильных приложений. Не следует задавать его, если требуется получить группы других типов.
      */
+    @Nullable
     public List<AdGroupAppIconStatusSelectionEnum> getAppIconStatuses() {
         return appIconStatuses;
     }
 
-    public void setAppIconStatuses(List<AdGroupAppIconStatusSelectionEnum> appIconStatuses) {
+    public void setAppIconStatuses(@Nonnull List<AdGroupAppIconStatusSelectionEnum> appIconStatuses) {
         this.appIconStatuses = ImmutableList.copyOf(appIconStatuses);
     }
 }

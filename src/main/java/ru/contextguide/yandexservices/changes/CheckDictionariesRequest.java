@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 public class CheckDictionariesRequest implements ApiRequest {
     @Nullable private final String timestamp;
 
-    public CheckDictionariesRequest(@NotNull String timestamp) {
+    public CheckDictionariesRequest(@Nullable @NotNull String timestamp) {
         if (timestamp == null) {
             this.timestamp = ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT);
         } else {
@@ -24,6 +24,7 @@ public class CheckDictionariesRequest implements ApiRequest {
     }
 
 
+    @Nullable
     public String getTimestamp() {
         return timestamp;
     }

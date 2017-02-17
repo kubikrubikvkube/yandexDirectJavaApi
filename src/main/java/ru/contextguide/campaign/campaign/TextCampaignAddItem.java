@@ -32,22 +32,24 @@ public class TextCampaignAddItem {
     /**
      * Идентификаторы счетчиков Яндекс.Метрики, установленных на сайте рекламодателя (см. раздел Метрика. Оценка эффективности рекламной кампании помощи Директа). Не более 5 элементов в массиве.
      */
+    @Nullable
     public List<Integer> getCounterIds() {
         return counterIds;
     }
 
-    public void setCounterIds(List<Integer> counterIds) {
+    public void setCounterIds(@Nullable List<Integer> counterIds) {
         this.counterIds = counterIds;
     }
 
     /**
      * Настройки показов по дополнительным релевантным фразам (см. раздел Показы по дополнительным релевантным фразам помощи Директа). Если не задано, показы по дополнительным релевантным фразам отключены.
      */
+    @Nullable
     public RelevantKeywordsSetting getRelevantKeywords() {
         return relevantKeywords;
     }
 
-    public void setRelevantKeywords(RelevantKeywordsSetting relevantKeywords) {
+    public void setRelevantKeywords(@Nullable RelevantKeywordsSetting relevantKeywords) {
         this.relevantKeywords = relevantKeywords;
     }
 

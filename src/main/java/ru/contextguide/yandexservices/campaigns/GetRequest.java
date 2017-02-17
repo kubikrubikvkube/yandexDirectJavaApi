@@ -9,6 +9,7 @@ import ru.contextguide.campaign.textCampaign.TextCampaignFieldEnum;
 import ru.contextguide.yandexservices.utils.ApiRequest;
 import ru.contextguide.yandexservices.utils.LimitOffset;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -53,6 +54,7 @@ public class GetRequest implements ApiRequest {
     /**
      * Имена параметров кампании с типом «Текстово-графические объявления», которые требуется получить.
      */
+    @Nullable
     public List<TextCampaignFieldEnum> getTextCampaignFieldNames() {
         return textCampaignFieldNames;
     }
@@ -60,13 +62,14 @@ public class GetRequest implements ApiRequest {
     /**
      * Имена параметров кампании с типом «Текстово-графические объявления», которые требуется получить.
      */
-    public void setTextCampaignFieldNames(List<TextCampaignFieldEnum> textCampaignFieldNames) {
+    public void setTextCampaignFieldNames(@Nullable List<TextCampaignFieldEnum> textCampaignFieldNames) {
         this.textCampaignFieldNames = textCampaignFieldNames;
     }
 
     /**
      * Имена параметров кампании с типом «Реклама мобильных приложений», которые требуется получить.
      */
+    @Nullable
     public List<MobileAppCampaignFieldEnum> getMobileAppCampaignFieldNames() {
         return mobileAppCampaignFieldNames;
     }
@@ -74,13 +77,14 @@ public class GetRequest implements ApiRequest {
     /**
      * Имена параметров кампании с типом «Реклама мобильных приложений», которые требуется получить.
      */
-    public void setMobileAppCampaignFieldNames(List<MobileAppCampaignFieldEnum> mobileAppCampaignFieldNames) {
+    public void setMobileAppCampaignFieldNames(@Nonnull List<MobileAppCampaignFieldEnum> mobileAppCampaignFieldNames) {
         this.mobileAppCampaignFieldNames = ImmutableList.copyOf(mobileAppCampaignFieldNames);
     }
 
     /**
      * Имена параметров кампании с типом «Динамические объявления», которые требуется получить.
      */
+    @Nullable
     public List<DynamicTextCampaignFieldEnum> getDynamicTextCampaignFieldNames() {
         return dynamicTextCampaignFieldNames;
     }
@@ -88,13 +92,14 @@ public class GetRequest implements ApiRequest {
     /**
      * Имена параметров кампании с типом «Динамические объявления», которые требуется получить.
      */
-    public void setDynamicTextCampaignFieldNames(List<DynamicTextCampaignFieldEnum> dynamicTextCampaignFieldNames) {
+    public void setDynamicTextCampaignFieldNames(@Nonnull List<DynamicTextCampaignFieldEnum> dynamicTextCampaignFieldNames) {
         this.dynamicTextCampaignFieldNames = ImmutableList.copyOf(dynamicTextCampaignFieldNames);
     }
 
     /**
      * Структура, задающая страницу при постраничной выборке данных.
      */
+    @Nullable
     public LimitOffset getPage() {
         return page;
     }
@@ -102,7 +107,7 @@ public class GetRequest implements ApiRequest {
     /**
      * Структура, задающая страницу при постраничной выборке данных.
      */
-    public void setPage(LimitOffset page) {
+    public void setPage(@Nullable LimitOffset page) {
         this.page = page;
     }
 }

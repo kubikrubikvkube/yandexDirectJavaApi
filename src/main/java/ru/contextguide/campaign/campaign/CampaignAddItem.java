@@ -125,22 +125,24 @@ public class CampaignAddItem implements JsonSerializableObject {
      * Слово следует указывать без минуса перед словом. Пробел в середине слова не допускается.
      * Длина каждого минус-слова — не более 35 символов. Суммарная длина минус-слов в массиве — не более 20000 символов. Оператор «!» или «+» перед минус-словом не учитывается в суммарной длине.
      */
+    @Nullable
     public NegativeKeywords getNegativeKeywords() {
         return negativeKeywords;
     }
 
-    public void setNegativeKeywords(NegativeKeywords negativeKeywords) {
+    public void setNegativeKeywords(@Nullable NegativeKeywords negativeKeywords) {
         this.negativeKeywords = negativeKeywords;
     }
 
     /**
      * Массив IP-адресов, которым не нужно показывать объявления. Не более 25 элементов в массиве.
      */
+    @Nullable
     public BlockedIps getBlockedIps() {
         return blockedIps;
     }
 
-    public void setBlockedIps(BlockedIps blockedIps) {
+    public void setBlockedIps(@Nullable BlockedIps blockedIps) {
         this.blockedIps = blockedIps;
     }
 
@@ -149,11 +151,12 @@ public class CampaignAddItem implements JsonSerializableObject {
      * Список наименований можно получить с помощью метода Dictionaries.get.
      * Не более 1000 элементов в массиве. Не более 255 символов в каждом элементе массива.
      */
+    @Nullable
     public ExcludedSites getExcludedSites() {
         return excludedSites;
     }
 
-    public void setExcludedSites(ExcludedSites excludedSites) {
+    public void setExcludedSites(@Nullable ExcludedSites excludedSites) {
         this.excludedSites = excludedSites;
     }
 
@@ -161,11 +164,12 @@ public class CampaignAddItem implements JsonSerializableObject {
      * Настройки дневного бюджета кампании.
      * Управление дневным бюджетом доступно, если в кампании выбрана ручная стратегия показа, а также в параметре Settings, возвращаемом методом get, присутствует настройка DAILY_BUDGET_ALLOWED со значением YES. В противном случае при попытке задать дневной бюджет возвращается ошибка.
      */
+    @Nullable
     public DailyBudget getDailyBudget() {
         return dailyBudget;
     }
 
-    public void setDailyBudget(DailyBudget dailyBudget) {
+    public void setDailyBudget(@Nullable DailyBudget dailyBudget) {
         this.dailyBudget = dailyBudget;
     }
 

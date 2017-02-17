@@ -2,40 +2,41 @@ package ru.contextguide.ad;
 
 import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
+import javax.annotation.Nonnull;
 import javax.validation.constraints.NotNull;
 
 /**
  * Объявления, которые требуется добавить.
  */
 public class AdAddItem implements JsonSerializableObject {
-    private final Number adGroupId;
+    private final Long adGroupId;
     private TextAdAdd textAd;
     private MobileAppAdAdd mobileAppAdAdd;
     private DynamicTextAdAdd dynamicTextAd;
     private TextImageAdAdd textImageAd;
     private MobileAppImageAdAdd mobileAppImageAd;
 
-    public AdAddItem(Number adGroupId, @NotNull TextAdAdd textAd) {
+    public AdAddItem(@Nonnull Long adGroupId, @NotNull TextAdAdd textAd) {
         this.adGroupId = adGroupId;
         this.textAd = textAd;
     }
 
-    public AdAddItem(Number adGroupId, @NotNull MobileAppAdAdd mobileAppAdAdd) {
+    public AdAddItem(@Nonnull Long adGroupId, @NotNull MobileAppAdAdd mobileAppAdAdd) {
         this.adGroupId = adGroupId;
         this.mobileAppAdAdd = mobileAppAdAdd;
     }
 
-    public AdAddItem(Number adGroupId, @NotNull DynamicTextAdAdd dynamicTextAd) {
+    public AdAddItem(@Nonnull Long adGroupId, @NotNull DynamicTextAdAdd dynamicTextAd) {
         this.adGroupId = adGroupId;
         this.dynamicTextAd = dynamicTextAd;
     }
 
-    public AdAddItem(Number adGroupId, @NotNull TextImageAdAdd textImageAd) {
+    public AdAddItem(@Nonnull Long adGroupId, @NotNull TextImageAdAdd textImageAd) {
         this.adGroupId = adGroupId;
         this.textImageAd = textImageAd;
     }
 
-    public AdAddItem(Number adGroupId, @NotNull MobileAppImageAdAdd mobileAppImageAd) {
+    public AdAddItem(@Nonnull Long adGroupId, @NotNull MobileAppImageAdAdd mobileAppImageAd) {
         this.adGroupId = adGroupId;
         this.mobileAppImageAd = mobileAppImageAd;
     }
@@ -43,7 +44,7 @@ public class AdAddItem implements JsonSerializableObject {
     /**
      * Идентификатор группы, в которую добавляется объявление.
      */
-    public Number getAdGroupId() {
+    public Long getAdGroupId() {
         return adGroupId;
     }
 

@@ -17,5 +17,4 @@ import ru.contextguide.yandexservices.changes.ChangesImplTest;
         AdsImplTest.class})
 public class ContextguideApplicationTests extends TestCase {
 
-
 }

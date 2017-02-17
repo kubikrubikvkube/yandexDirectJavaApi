@@ -202,35 +202,39 @@ public class CampaignGetItem implements JsonSerializableObject {
         this.timeZone = timeZone;
     }
 
+    @Nullable
     public NegativeKeywords getNegativeKeywords() {
         return negativeKeywords;
     }
 
-    public void setNegativeKeywords(NegativeKeywords negativeKeywords) {
+    public void setNegativeKeywords(@Nullable NegativeKeywords negativeKeywords) {
         this.negativeKeywords = negativeKeywords;
     }
 
+    @Nullable
     public BlockedIps getBlockedIps() {
         return blockedIps;
     }
 
-    public void setBlockedIps(BlockedIps blockedIps) {
+    public void setBlockedIps(@Nullable BlockedIps blockedIps) {
         this.blockedIps = blockedIps;
     }
 
+    @Nullable
     public ExcludedSites getExcludedSites() {
         return excludedSites;
     }
 
-    public void setExcludedSites(ExcludedSites excludedSites) {
+    public void setExcludedSites(@Nullable ExcludedSites excludedSites) {
         this.excludedSites = excludedSites;
     }
 
+    @Nullable
     public DailyBudget getDailyBudget() {
         return dailyBudget;
     }
 
-    public void setDailyBudget(DailyBudget dailyBudget) {
+    public void setDailyBudget(@Nullable DailyBudget dailyBudget) {
         this.dailyBudget = dailyBudget;
     }
 

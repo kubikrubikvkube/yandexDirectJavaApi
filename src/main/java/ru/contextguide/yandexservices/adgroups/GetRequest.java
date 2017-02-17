@@ -9,6 +9,7 @@ import ru.contextguide.adgroup.mobileAppAdGroup.MobileAppAdGroupFieldEnum;
 import ru.contextguide.yandexservices.utils.ApiRequest;
 import ru.contextguide.yandexservices.utils.LimitOffset;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -56,11 +57,12 @@ public class GetRequest implements ApiRequest {
      * Имена параметров группы для рекламы мобильных приложений, которые требуется получить.
      * Если согласно SelectionCriteria отобрана группа другого типа, параметры из MobileAppAdGroupFieldNames не возвращаются.
      */
+    @Nullable
     public List<MobileAppAdGroupFieldEnum> getMobileAppAdGroupFieldNames() {
         return mobileAppAdGroupFieldNames;
     }
 
-    public void setMobileAppAdGroupFieldNames(List<MobileAppAdGroupFieldEnum> mobileAppAdGroupFieldNames) {
+    public void setMobileAppAdGroupFieldNames(@Nonnull List<MobileAppAdGroupFieldEnum> mobileAppAdGroupFieldNames) {
         this.mobileAppAdGroupFieldNames = ImmutableList.copyOf(mobileAppAdGroupFieldNames);
     }
 
@@ -68,11 +70,12 @@ public class GetRequest implements ApiRequest {
      * Имена параметров группы динамических объявлений, для которых источником данных является сайт.
      * Примечание. Если согласно SelectionCriteria отобрана группа другого типа, параметры из DynamicTextAdGroupFieldNames не возвращаются.
      */
+    @Nullable
     public List<DynamicTextAdGroupFieldEnum> getDynamicTextAdGroupFieldNames() {
         return dynamicTextAdGroupFieldNames;
     }
 
-    public void setDynamicTextAdGroupFieldNames(List<DynamicTextAdGroupFieldEnum> dynamicTextAdGroupFieldNames) {
+    public void setDynamicTextAdGroupFieldNames(@Nonnull List<DynamicTextAdGroupFieldEnum> dynamicTextAdGroupFieldNames) {
         this.dynamicTextAdGroupFieldNames = ImmutableList.copyOf(dynamicTextAdGroupFieldNames);
     }
 
@@ -81,22 +84,24 @@ public class GetRequest implements ApiRequest {
      * <p>
      * Примечание. Если согласно SelectionCriteria отобрана группа другого типа, параметры из DynamicTextFeedAdGroupFieldNames не возвращаются.
      */
+    @Nullable
     public List<DynamicTextFeedAdGroupFieldEnum> getDynamicTextFeedAdGroupFieldNames() {
         return dynamicTextFeedAdGroupFieldNames;
     }
 
-    public void setDynamicTextFeedAdGroupFieldNames(List<DynamicTextFeedAdGroupFieldEnum> dynamicTextFeedAdGroupFieldNames) {
+    public void setDynamicTextFeedAdGroupFieldNames(@Nonnull List<DynamicTextFeedAdGroupFieldEnum> dynamicTextFeedAdGroupFieldNames) {
         this.dynamicTextFeedAdGroupFieldNames = ImmutableList.copyOf(dynamicTextFeedAdGroupFieldNames);
     }
 
     /**
      * Структура, задающая страницу при постраничной выборке данных.
      */
+    @Nullable
     public LimitOffset getPage() {
         return page;
     }
 
-    public void setPage(LimitOffset page) {
+    public void setPage(@Nullable LimitOffset page) {
         this.page = page;
     }
 }
