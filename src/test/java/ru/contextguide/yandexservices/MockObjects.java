@@ -9,6 +9,8 @@ import ru.contextguide.campaign.campaign.TextCampaignAddItem;
 import ru.contextguide.campaign.textCampaign.*;
 import ru.contextguide.yandexservices.adgroups.AdGroups;
 import ru.contextguide.yandexservices.campaigns.*;
+import ru.contextguide.yandexservices.exceptions.DeserializationException;
+import ru.contextguide.yandexservices.exceptions.SerializationException;
 import ru.contextguide.yandexservices.utils.IdsCriteria;
 
 import java.util.ArrayList;
@@ -28,14 +30,14 @@ public class MockObjects {
         this.campaigns = campaigns;
     }
 
-    public long createCampaignAddItem() {
+    public long createCampaignAddItem() throws DeserializationException {
         CampaignAddItem mockCampaign = this.campaignAddItem();
         AddRequest addRequest = new AddRequest(mockCampaign);
         AddResponse addResponse = campaigns.add(addRequest);
         return addResponse.getAddResults().get(0).getId();
     }
 
-    public void deleteCampaign(long mockCampaignId) {
+    public void deleteCampaign(long mockCampaignId) throws DeserializationException {
         IdsCriteria idsCriteria = new IdsCriteria(mockCampaignId);
         DeleteRequest deleteRequest = new DeleteRequest(idsCriteria);
         DeleteResponse deleteResponse = campaigns.delete(deleteRequest);
@@ -43,7 +45,7 @@ public class MockObjects {
         assertThat("1 campaign should be deleted", deleteResponse.getDeleteResults(), hasSize(1));
     }
 
-    public long createAdGroupAddItem(long campaignId) {
+    public long createAdGroupAddItem(long campaignId) throws DeserializationException, SerializationException {
         ru.contextguide.yandexservices.adgroups.AddRequest addRequest = new ru.contextguide.yandexservices.adgroups.AddRequest(this.adgroupAddItem(campaignId));
         ru.contextguide.yandexservices.adgroups.AddResponse addResponse = adGroups.add(addRequest);
         return addResponse.getAddResults().get(0).getId();

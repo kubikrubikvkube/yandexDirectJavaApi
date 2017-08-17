@@ -1,5 +1,7 @@
 package ru.contextguide.yandexservices.changes;
 
+import ru.contextguide.yandexservices.exceptions.DeserializationException;
+
 /**
  * Сервис предназначен для проверки наличия изменений.
  */
@@ -10,12 +12,12 @@ public interface Changes {
      * <p>
      * Также используется для получения текущего серверного времени.
      */
-    CheckDictionariesResponse checkDictionaries(CheckDictionariesRequest checkDictionariesRequest);
+    CheckDictionariesResponse checkDictionaries(CheckDictionariesRequest checkDictionariesRequest) throws DeserializationException;
 
     /**
      * Сообщает о наличии изменений в кампаниях клиента начиная с указанной даты.
      */
-    CheckCampaignsResponse checkCampaigns(CheckCampaignsRequest checkCampaignsRequest);
+    CheckCampaignsResponse checkCampaigns(CheckCampaignsRequest checkCampaignsRequest) throws DeserializationException;
 
     /*
      * Сообщает о наличии последних изменений в кампаниях клиента.
@@ -29,5 +31,5 @@ public interface Changes {
     /**
      * Сообщает о наличии изменений в кампаниях, группах и объявлениях клиента начиная с указанной даты.
      */
-    CheckResponse check(CheckRequest checkRequest);
+    CheckResponse check(CheckRequest checkRequest) throws DeserializationException;
 }

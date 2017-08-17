@@ -10,6 +10,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.contextguide.yandexservices.exceptions.DeserializationException;
+import ru.contextguide.yandexservices.exceptions.SerializationException;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -33,11 +35,11 @@ public class DefaultJsonParser implements JsonParser {
 
     @Override
     @SuppressWarnings("unchecked")
-    public <T> T deserialize(String content, Class<? extends JsonSerializableObject> valueType) {
+    public <T> T deserialize(String content, Class<? extends JsonSerializableObject> valueType) throws DeserializationException {
         try {
             return objectMapper.readValue(content, (Class<T>) valueType);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new DeserializationException(e);
         }
     }
 
@@ -52,15 +54,12 @@ public class DefaultJsonParser implements JsonParser {
     }
 
     @Override
-    public String serialize(Object object) {
-
+    public String serialize(Object object) throws SerializationException {
         try {
             return objectMapper.writeValueAsString(object);
         } catch (JsonProcessingException e) {
-            log.error(String.format("DefaultWrapper can't serialize object %s to JSON string", object.toString()));
-            log.error(e.toString());
+            throw new SerializationException(e);
         }
-        return null;
     }
 
 

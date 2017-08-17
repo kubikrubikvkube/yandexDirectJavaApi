@@ -1,9 +1,12 @@
 package ru.contextguide.yandexservices.utils;
 
-public interface JsonParser {
-    <T> T deserialize(String content, Class<? extends JsonSerializableObject> valueType);
+import ru.contextguide.yandexservices.exceptions.DeserializationException;
+import ru.contextguide.yandexservices.exceptions.SerializationException;
 
-    <T> String serialize(Object object);
+public interface JsonParser {
+    <T> T deserialize(String content, Class<? extends JsonSerializableObject> valueType) throws DeserializationException;
+
+    <T> String serialize(Object object) throws SerializationException;
 
     boolean canUnwrap(String content, Class<?> valueType);
 }

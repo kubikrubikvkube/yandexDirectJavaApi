@@ -2,6 +2,8 @@ package ru.contextguide.yandexservices.adgroups;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.contextguide.yandexservices.exceptions.DeserializationException;
+import ru.contextguide.yandexservices.exceptions.SerializationException;
 import ru.contextguide.yandexservices.utils.DeleteResponse;
 import ru.contextguide.yandexservices.utils.IdsCriteria;
 import ru.contextguide.yandexservices.utils.JsonParser;
@@ -14,34 +16,34 @@ public class AdGroupsImpl implements AdGroups {
     private final JsonParser jsonParser;
     private final ServiceConnectionManager sce;
 
-    public AdGroupsImpl(JsonParser defaultJsonParser, JsonParser jsonParser, ServiceConnectionManager sce) {
+    public AdGroupsImpl(JsonParser jsonParser, ServiceConnectionManager sce) {
         this.jsonParser = jsonParser;
         this.sce = sce;
     }
 
     @Override
-    public AddResponse add(AddRequest addRequest) {
+    public AddResponse add(AddRequest addRequest) throws SerializationException, DeserializationException {
         log.info("Requesting from API: " + addRequest.toJson());
         String rawResponse = sce.sendRequest("add", API_URL, addRequest);
         return jsonParser.deserialize(rawResponse, AddResponse.class);
     }
 
     @Override
-    public DeleteResponse delete(IdsCriteria criteria) {
+    public DeleteResponse delete(IdsCriteria criteria) throws SerializationException, DeserializationException {
         log.info("Requesting from API: " + criteria.toJson());
         String rawResponse = sce.sendRequest("delete", API_URL, criteria);
         return jsonParser.deserialize(rawResponse, DeleteResponse.class);
     }
 
     @Override
-    public GetResponse get(GetRequest request) {
+    public GetResponse get(GetRequest request) throws SerializationException, DeserializationException {
         log.info("Requesting from API: " + request.toJson());
         String rawResponse = sce.sendRequest("get", API_URL, request);
         return jsonParser.deserialize(rawResponse, GetResponse.class);
     }
 
     @Override
-    public UpdateResponse update(UpdateRequest request) {
+    public UpdateResponse update(UpdateRequest request) throws SerializationException, DeserializationException {
         log.info("Requesting from API: " + request.toJson());
         String rawResponse = sce.sendRequest("update", API_URL, request);
         return jsonParser.deserialize(rawResponse, UpdateResponse.class);

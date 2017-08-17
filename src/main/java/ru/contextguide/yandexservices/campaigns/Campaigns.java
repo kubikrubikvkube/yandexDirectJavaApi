@@ -1,22 +1,24 @@
 package ru.contextguide.yandexservices.campaigns;
 
+import ru.contextguide.yandexservices.exceptions.DeserializationException;
+
 /**
  * Сервис предназначен для выполнения операций с кампаниями.
  */
 public interface Campaigns {
-    UpdateResponse update(UpdateRequest request);
+    UpdateResponse update(UpdateRequest request) throws DeserializationException;
 
-    DeleteResponse delete(DeleteRequest request);
+    DeleteResponse delete(DeleteRequest request) throws DeserializationException;
 
-    SuspendResponse suspend(SuspendRequest request);
+    SuspendResponse suspend(SuspendRequest request) throws DeserializationException;
 
-    ResumeResponse resume(ResumeRequest request);
+    ResumeResponse resume(ResumeRequest request) throws DeserializationException;
 
-    AddResponse add(AddRequest request);
+    AddResponse add(AddRequest request) throws DeserializationException;
 
-    ArchiveResponse archive(ArchiveRequest request);
+    ArchiveResponse archive(ArchiveRequest request) throws DeserializationException;
 
-    UnarchiveResponse unarchive(UnarchiveRequest request);
+    UnarchiveResponse unarchive(UnarchiveRequest request) throws DeserializationException;
 
-    GetResponse get(GetRequest request);
+    GetResponse get(GetRequest request) throws DeserializationException;
 }
