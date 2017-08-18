@@ -1,6 +1,7 @@
 package ru.contextguide.yandexservices.utils;
 
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.validator.UrlValidator;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -13,7 +14,9 @@ import ru.contextguide.yandexservices.ServiceMethod;
 import ru.contextguide.yandexservices.exceptions.SerializationException;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.nio.charset.StandardCharsets;
 
 import static org.apache.commons.lang3.StringUtils.wrap;
 
@@ -46,7 +49,8 @@ public class ServiceConnectionManagerDefaultImpl implements ServiceConnectionMan
         StringEntity entity = new StringEntity(finalJson);
         request.setEntity(entity);
         HttpResponse response = client.execute(request);
-        return response.getEntity().getContent().toString();
+        InputStream responseContent = response.getEntity().getContent();
+        return IOUtils.toString(responseContent, StandardCharsets.UTF_8.name());
     }
 
 

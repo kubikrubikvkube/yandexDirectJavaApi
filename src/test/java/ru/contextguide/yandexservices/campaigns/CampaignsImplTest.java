@@ -8,7 +8,8 @@ import ru.contextguide.campaign.campaign.CampaignGetItem;
 import ru.contextguide.campaign.campaign.CampaignsSelectionCriteria;
 import ru.contextguide.yandexservices.MockObjects;
 import ru.contextguide.yandexservices.adgroups.AdGroups;
-import ru.contextguide.yandexservices.utils.IdsCriteria;
+import ru.contextguide.yandexservices.adgroups.AdGroupsImpl;
+import ru.contextguide.yandexservices.utils.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +22,10 @@ import static ru.contextguide.campaign.campaign.CampaignTypeGetEnum.TEXT_CAMPAIG
 
 
 public class CampaignsImplTest {
-    Campaigns campaigns;
-    AdGroups adGroups;
+    private JsonParser jsonParser = new DefaultJsonParser();
+    private ServiceConnectionManager sce = new ServiceConnectionManagerDefaultImpl(jsonParser);
+    private Campaigns campaigns = new CampaignsDefaultImpl(jsonParser, sce);
+    private AdGroups adGroups = new AdGroupsImpl(jsonParser, sce);
     private MockObjects mockObjects;
     private long mockCampaignId;
 
