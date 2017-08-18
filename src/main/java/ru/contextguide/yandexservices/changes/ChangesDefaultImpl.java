@@ -3,11 +3,13 @@ package ru.contextguide.yandexservices.changes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.contextguide.yandexservices.exceptions.DeserializationException;
+import ru.contextguide.yandexservices.exceptions.SerializationException;
 import ru.contextguide.yandexservices.utils.ApiRequest;
 import ru.contextguide.yandexservices.utils.JsonParser;
 import ru.contextguide.yandexservices.utils.ServiceConnectionManager;
 
 import javax.validation.constraints.NotNull;
+import java.io.IOException;
 
 public class ChangesDefaultImpl implements Changes {
     private static final Logger log = LoggerFactory.getLogger(ChangesDefaultImpl.class);
@@ -23,12 +25,12 @@ public class ChangesDefaultImpl implements Changes {
     }
 
     @Override
-    public CheckDictionariesResponse checkDictionaries(@NotNull CheckDictionariesRequest request) throws DeserializationException {
-        String result = sce.sendRequest("checkDictionaries", API_URL, request);
+    public CheckDictionariesResponse checkDictionaries(@NotNull CheckDictionariesRequest request) throws DeserializationException, IOException, SerializationException {
+        String result = sce.sendRequest(ChangesMethod.CHECKDICTIONARIES, API_URL, request);
         return defaultJsonParser.deserialize(result, CheckDictionariesResponse.class);
     }
 
-    private long getServerTime() throws DeserializationException {
+    private long getServerTime() throws DeserializationException, IOException, SerializationException {
         ApiRequest emptyRequest = new ApiRequest() {
             @Override
             public String toJson() {
@@ -36,7 +38,7 @@ public class ChangesDefaultImpl implements Changes {
             }
         };
 
-        String result = sce.sendRequest("checkDictionaries", API_URL, emptyRequest);
+        String result = sce.sendRequest(ChangesMethod.CHECKDICTIONARIES, API_URL, emptyRequest);
         ServerTimeResponse serverTimeResponse;
 
         serverTimeResponse = defaultJsonParser.deserialize(result, ServerTimeResponse.class);
@@ -45,8 +47,8 @@ public class ChangesDefaultImpl implements Changes {
     }
 
     @Override
-    public CheckCampaignsResponse checkCampaigns(@NotNull CheckCampaignsRequest request) throws DeserializationException {
-        String result = sce.sendRequest("checkCampaigns", API_URL, request);
+    public CheckCampaignsResponse checkCampaigns(@NotNull CheckCampaignsRequest request) throws DeserializationException, IOException, SerializationException {
+        String result = sce.sendRequest(ChangesMethod.CHECKCAMPAIGNS, API_URL, request);
 
         return defaultJsonParser.deserialize(result, CheckCampaignsResponse.class);
 
@@ -79,11 +81,9 @@ public class ChangesDefaultImpl implements Changes {
  */
 
     @Override
-    public CheckResponse check(@NotNull CheckRequest checkRequest) throws DeserializationException {
-        String result = sce.sendRequest("check", API_URL, checkRequest);
-
+    public CheckResponse check(@NotNull CheckRequest checkRequest) throws DeserializationException, IOException, SerializationException {
+        String result = sce.sendRequest(ChangesMethod.CHECK, API_URL, checkRequest);
         return defaultJsonParser.deserialize(result, CheckResponse.class);
-
     }
 
 

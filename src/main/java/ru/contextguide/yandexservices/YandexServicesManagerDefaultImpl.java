@@ -18,7 +18,7 @@ import ru.contextguide.yandexservices.utils.ServiceConnectionManagerDefaultImpl;
  */
 public class YandexServicesManagerDefaultImpl implements YandexServicesManager {
     private final JsonParser jsonParser = new DefaultJsonParser();
-    private final ServiceConnectionManager serviceConnectionManager = new ServiceConnectionManagerDefaultImpl();
+    private final ServiceConnectionManager serviceConnectionManager = new ServiceConnectionManagerDefaultImpl(jsonParser);
 
     @Override
     public AdGroups getAdGroupsService() {

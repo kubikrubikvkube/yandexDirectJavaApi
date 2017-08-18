@@ -5,6 +5,8 @@ import ru.contextguide.yandexservices.exceptions.SerializationException;
 import ru.contextguide.yandexservices.utils.DeleteResponse;
 import ru.contextguide.yandexservices.utils.IdsCriteria;
 
+import java.io.IOException;
+
 /**
  * Сервис предназначен для выполнения операций с группами объявлений.
  */
@@ -17,7 +19,7 @@ public interface AdGroups {
      * Не более 1000 групп в одном вызове метода.
      * Не допускается добавление группы в архивную кампанию.
      */
-    AddResponse add(AddRequest request) throws SerializationException, DeserializationException;
+    AddResponse add(AddRequest request) throws SerializationException, DeserializationException, IOException;
 
     /**
      * Удаляет группы объявлений.
@@ -26,14 +28,14 @@ public interface AdGroups {
      * Удалить можно только пустую группу, не содержащую объявлений, фраз и ретаргетингов.
      * Не допускается удаление группы из архивной кампании.
      */
-    DeleteResponse delete(IdsCriteria criteria) throws SerializationException, DeserializationException;
+    DeleteResponse delete(IdsCriteria criteria) throws SerializationException, DeserializationException, IOException;
 
     /**
      * Возвращает параметры групп, отвечающих заданным критериям.
      * <p>
      * Метод возвращает не более 10 000 объектов.
      */
-    GetResponse get(GetRequest request) throws SerializationException, DeserializationException;
+    GetResponse get(GetRequest request) throws SerializationException, DeserializationException, IOException;
 
     /**
      * Изменяет параметры групп объявлений.
@@ -41,5 +43,5 @@ public interface AdGroups {
      * Не более 1000 групп в одном вызове метода.
      * Не допускается изменение групп в архивных кампаниях.
      */
-    UpdateResponse update(UpdateRequest request) throws SerializationException, DeserializationException;
+    UpdateResponse update(UpdateRequest request) throws SerializationException, DeserializationException, IOException;
 }
