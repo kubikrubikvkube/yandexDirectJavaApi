@@ -31,14 +31,14 @@ public class MockObjects {
         this.campaigns = campaigns;
     }
 
-    public long createCampaignAddItem() throws DeserializationException, IOException, SerializationException {
+    public Long createCampaignAddItem() throws DeserializationException, IOException, SerializationException {
         CampaignAddItem mockCampaign = this.campaignAddItem();
         AddRequest addRequest = new AddRequest(mockCampaign);
         AddResponse addResponse = campaigns.add(addRequest);
         return addResponse.getAddResults().get(0).getId();
     }
 
-    public void deleteCampaign(long mockCampaignId) throws DeserializationException, IOException, SerializationException {
+    public void deleteCampaign(Long mockCampaignId) throws DeserializationException, IOException, SerializationException {
         IdsCriteria idsCriteria = new IdsCriteria(mockCampaignId);
         DeleteRequest deleteRequest = new DeleteRequest(idsCriteria);
         DeleteResponse deleteResponse = campaigns.delete(deleteRequest);
@@ -46,7 +46,7 @@ public class MockObjects {
         assertThat("1 campaign should be deleted", deleteResponse.getDeleteResults(), hasSize(1));
     }
 
-    public long createAdGroupAddItem(long campaignId) throws DeserializationException, SerializationException, IOException {
+    public long createAdGroupAddItem(Long campaignId) throws DeserializationException, SerializationException, IOException {
         ru.contextguide.yandexservices.adgroups.AddRequest addRequest = new ru.contextguide.yandexservices.adgroups.AddRequest(this.adgroupAddItem(campaignId));
         ru.contextguide.yandexservices.adgroups.AddResponse addResponse = adGroups.add(addRequest);
         return addResponse.getAddResults().get(0).getId();
@@ -63,7 +63,7 @@ public class MockObjects {
         return new CampaignAddItem("SomeCampaign", tomorrowString, textCampaignItem, null, null);
     }
 
-    public AdGroupAddItem adgroupAddItem(long campaignId) {
+    public AdGroupAddItem adgroupAddItem(Long campaignId) {
         List<Long> regionIds = new ArrayList<>(1);
         regionIds.add(0L); // All regions
         return new AdGroupAddItem("SomeAdGroup", campaignId, regionIds);

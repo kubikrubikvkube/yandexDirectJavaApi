@@ -10,7 +10,7 @@ import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 public class TextCampaignNetworkStrategyAdd implements JsonSerializableObject {
 
     private final TextCampaignNetworkStrategyTypeEnum biddingStrategyType;
-    private long id;
+    private Long id;
     private StrategyNetworkDefault networkDefault;
     private StrategyMaximumClicks wbMaximumClicks;
     /**
@@ -39,11 +39,11 @@ public class TextCampaignNetworkStrategyAdd implements JsonSerializableObject {
     }
 
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

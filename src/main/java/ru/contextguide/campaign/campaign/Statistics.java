@@ -5,29 +5,29 @@ public class Statistics {
     /**
      * Количество кликов за время существования кампании.
      */
-    private long clicks;
+    private Long clicks;
     /**
      * Количество показов за время существования кампании.
      */
-    private long impressions;
+    private Long impressions;
 
 
-    public long getClicks() {
+    public Long getClicks() {
         return clicks;
     }
 
 
-    public void setClicks(long clicks) {
+    public void setClicks(Long clicks) {
         this.clicks = clicks;
     }
 
 
-    public long getImpressions() {
+    public Long getImpressions() {
         return impressions;
     }
 
 
-    public void setImpressions(long impressions) {
+    public void setImpressions(Long impressions) {
         this.impressions = impressions;
     }
 

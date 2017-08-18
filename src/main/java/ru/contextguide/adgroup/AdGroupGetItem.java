@@ -8,9 +8,9 @@ import java.util.List;
 
 
 public class AdGroupGetItem {
-    private long id;
+    private Long id;
     private String name;
-    private long campaignId;
+    private Long campaignId;
     private List<Long> regionIds;
     private NegativeKeywords negativeKeywords;
     private String trackingParams;
@@ -25,11 +25,11 @@ public class AdGroupGetItem {
      * Идентификатор группы объявлений.
      */
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -47,11 +47,11 @@ public class AdGroupGetItem {
     /**
      * Идентификатор кампании.
      */
-    public long getCampaignId() {
+    public Long getCampaignId() {
         return campaignId;
     }
 
-    public void setCampaignId(long campaignId) {
+    public void setCampaignId(Long campaignId) {
         this.campaignId = campaignId;
     }
 

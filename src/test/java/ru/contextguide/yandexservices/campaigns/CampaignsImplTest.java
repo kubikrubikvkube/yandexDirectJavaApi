@@ -27,7 +27,7 @@ public class CampaignsImplTest {
     private Campaigns campaigns = new CampaignsDefaultImpl(jsonParser, sce);
     private AdGroups adGroups = new AdGroupsDefaultImpl(jsonParser, sce);
     private MockObjects mockObjects;
-    private long mockCampaignId;
+    private Long mockCampaignId;
 
     @Before
     public void setUp() throws Exception {

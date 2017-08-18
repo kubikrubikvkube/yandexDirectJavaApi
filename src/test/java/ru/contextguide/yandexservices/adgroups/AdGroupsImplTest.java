@@ -21,8 +21,8 @@ public class AdGroupsImplTest {
     Campaigns campaigns;
 
     private MockObjects mockObjects;
-    private long mockCampaignId;
-    private long mockAdgroupId;
+    private Long mockCampaignId;
+    private Long mockAdgroupId;
 
     @Before
     public void setUp() throws Exception {

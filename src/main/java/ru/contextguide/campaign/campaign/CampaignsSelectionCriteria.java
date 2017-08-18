@@ -114,7 +114,7 @@ public class CampaignsSelectionCriteria implements JsonSerializableObject {
     /**
      * Отбирать кампании с указанными ID
      */
-    public void add(@NotNull long id) {
+    public void add(@NotNull Long id) {
         if (ids == null) ids = new ArrayList<>();
         if (!ids.contains(id)) ids.add(id);
     }

@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 
 public class AdGroupUpdateItem {
     @NotNull
-    private final long id;
+    private final Long id;
     @Nullable
     private String name;
     @Nullable
@@ -30,7 +30,7 @@ public class AdGroupUpdateItem {
     /**
      * Идентификатор группы, параметры которой требуется изменить.
      */
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

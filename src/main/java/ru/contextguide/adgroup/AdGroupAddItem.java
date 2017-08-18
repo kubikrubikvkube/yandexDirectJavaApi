@@ -13,7 +13,7 @@ import java.util.List;
 public final class AdGroupAddItem implements JsonSerializableObject {
 
     private final String name;
-    private final long campaignId;
+    private final Long campaignId;
     private final List<Long> regionIds;
     @Nullable private List<String> negativeKeywords;
     @Nullable private String trackingParams;
@@ -36,7 +36,7 @@ public final class AdGroupAddItem implements JsonSerializableObject {
     /**
      * Идентификатор кампании, в которую добавляется группа.
      */
-    public long getCampaignId() {
+    public Long getCampaignId() {
         return campaignId;
     }
 

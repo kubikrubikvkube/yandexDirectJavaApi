@@ -2,26 +2,26 @@ package ru.contextguide.campaign.campaign;
 
 
 public class SharedAccountFunds {
-    private long refund;
-    private long spend;
+    private Long refund;
+    private Long spend;
 
 
-    public long getRefund() {
+    public Long getRefund() {
         return refund;
     }
 
 
-    public void setRefund(long refund) {
+    public void setRefund(Long refund) {
         this.refund = refund;
     }
 
 
-    public long getSpend() {
+    public Long getSpend() {
         return spend;
     }
 
 
-    public void setSpend(long spend) {
+    public void setSpend(Long spend) {
         this.spend = spend;
     }
 

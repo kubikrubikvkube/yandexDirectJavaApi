@@ -4,18 +4,18 @@ package ru.contextguide.yandexservices.utils;
  * Результат
  */
 public class ActionResult implements ApiResponse {
-    private int id;
+    private Long id;
     private ExceptionNotification warnings;
     private ExceptionNotification errors;
 
     /**
      * Идентификатор группы. Возвращается в случае отсутствия ошибок
      */
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

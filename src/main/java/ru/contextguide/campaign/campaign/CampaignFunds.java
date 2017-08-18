@@ -1,40 +1,40 @@
 package ru.contextguide.campaign.campaign;
 
 public class CampaignFunds {
-    private long balance;
-    private long sumAvailableForTransfer;
-    private long balanceBonus;
-    private long sum;
+    private Long balance;
+    private Long sumAvailableForTransfer;
+    private Long balanceBonus;
+    private Long sum;
 
-    public long getBalance() {
+    public Long getBalance() {
         return balance;
     }
 
-    public void setBalance(long balance) {
+    public void setBalance(Long balance) {
         this.balance = balance;
     }
 
-    public long getSumAvailableForTransfer() {
+    public Long getSumAvailableForTransfer() {
         return sumAvailableForTransfer;
     }
 
-    public void setSumAvailableForTransfer(long sumAvailableForTransfer) {
+    public void setSumAvailableForTransfer(Long sumAvailableForTransfer) {
         this.sumAvailableForTransfer = sumAvailableForTransfer;
     }
 
-    public long getBalanceBonus() {
+    public Long getBalanceBonus() {
         return balanceBonus;
     }
 
-    public void setBalanceBonus(long balanceBonus) {
+    public void setBalanceBonus(Long balanceBonus) {
         this.balanceBonus = balanceBonus;
     }
 
-    public long getSum() {
+    public Long getSum() {
         return sum;
     }
 
-    public void setSum(long sum) {
+    public void setSum(Long sum) {
         this.sum = sum;
     }
 

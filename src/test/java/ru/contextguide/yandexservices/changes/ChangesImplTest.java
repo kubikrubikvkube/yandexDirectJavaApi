@@ -19,14 +19,14 @@ import static org.junit.Assert.*;
 
 public class ChangesImplTest {
     private final String exampleTimestampString = "2015-05-24T23:59:59Z";
-    private final long exampleTimestampMillis = 1432511999000L;
+    private final Long exampleTimestampMillis = 1432511999000L;
 
     AdGroups adGroups;
     Campaigns campaigns;
     Changes changes;
     JsonParser jsonParser;
     private MockObjects mockObjects;
-    private long mockCampaignId;
+    private Long mockCampaignId;
 
     @Before
     public void setUp() throws Exception {

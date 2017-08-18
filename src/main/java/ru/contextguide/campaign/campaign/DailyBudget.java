@@ -12,15 +12,15 @@ public class DailyBudget {
      * Минимальный дневной бюджет для каждой валюты представлен в справочнике валют. Справочник валют можно получить с помощью метода Dictionaries.get.
      * Значение 0 — сброс дневного бюджета.
      */
-    private long amount;
+    private Long amount;
     private DailyBudgetModeEnum dailyBudgetModeEnum;
 
 
-    public long getAmount() {
+    public Long getAmount() {
         return amount;
     }
 
-    public void setAmount(long amount) {
+    public void setAmount(Long amount) {
         this.amount = amount;
     }
 

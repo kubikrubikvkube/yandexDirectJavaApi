@@ -7,7 +7,7 @@ package ru.contextguide.campaign.textCampaign;
 public class TextCampaignSearchStrategyAdd {
 
     private final TextCampaignSearchStrategyTypeEnum biddingStrategyType;
-    private long id;
+    private Long id;
     private StrategyMaximumClicks wbMaximumClicks;
     private StrategyMaximumConversionRate wbMaximumConversionRate;
     private StrategyAverageCpc averageCpc;
@@ -19,11 +19,11 @@ public class TextCampaignSearchStrategyAdd {
         this.biddingStrategyType = biddingStrategyType;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -26,9 +26,9 @@ public class AdsImplTest {
     Campaigns campaigns;
     Ads ads;
     private MockObjects mockObjects;
-    private long mockCampaignId;
-    private long mockAdGroupId;
-    private long mockAdId;
+    private Long mockCampaignId;
+    private Long mockAdGroupId;
+    private Long mockAdId;
 
 
     @Before
