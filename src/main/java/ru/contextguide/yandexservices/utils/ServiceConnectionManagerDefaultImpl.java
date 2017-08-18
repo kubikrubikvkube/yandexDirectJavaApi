@@ -4,8 +4,8 @@ package ru.contextguide.yandexservices.utils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.validator.UrlValidator;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,14 +22,12 @@ import static org.apache.commons.lang3.StringUtils.wrap;
 public class ServiceConnectionManagerDefaultImpl implements ServiceConnectionManager {
     private static final Logger log = LoggerFactory.getLogger(ServiceConnectionManagerDefaultImpl.class);
     private final String API_URL;
-    private final HttpClient client;
     private final UrlValidator validator;
     private final String oauthToken;
     private final JsonParser jsonParser;
 
 
     public ServiceConnectionManagerDefaultImpl() {
-        client = HttpClientBuilder.create().build();
         API_URL = "https://api-sandbox.direct.yandex.com/json/v5/changes";
         validator = new UrlValidator(new String[]{"http", "https"});
         oauthToken = System.getProperty("token");
@@ -46,9 +44,16 @@ public class ServiceConnectionManagerDefaultImpl implements ServiceConnectionMan
         sb.append("}");
         String finalJson = sb.toString();
         HttpPost request = new PostApiRequest(method, apiUrl, oauthToken, finalJson).getHttpPost();
-        HttpResponse response = client.execute(request);
-        InputStream responseContent = response.getEntity().getContent();
-        return IOUtils.toString(responseContent, StandardCharsets.UTF_8.name());
+
+        //TODO to different class with concurrency
+        String finalResponse;
+        try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
+            HttpResponse response = client.execute(request);
+            try (InputStream responseContent = response.getEntity().getContent()) {
+                finalResponse = IOUtils.toString(responseContent, StandardCharsets.UTF_8.name());
+            }
+        }
+        return finalResponse;
     }
 
 

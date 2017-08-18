@@ -2,6 +2,7 @@ package ru.contextguide.yandexservices.utils;
 
 import com.google.common.collect.ImmutableList;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ public class IdsCriteria implements JsonSerializableObject {
     private final List<Long> ids;
 
     public IdsCriteria(Long id) {
-        this.ids = ImmutableList.of(id);
+        this.ids = Collections.singletonList(id);
     }
 
     public IdsCriteria(Long... ids) {
