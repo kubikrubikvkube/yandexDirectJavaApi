@@ -1,7 +1,7 @@
 package ru.contextguide.yandexservices;
 
 import ru.contextguide.yandexservices.adgroups.AdGroups;
-import ru.contextguide.yandexservices.adgroups.AdGroupsImpl;
+import ru.contextguide.yandexservices.adgroups.AdGroupsDefaultImpl;
 import ru.contextguide.yandexservices.ads.Ads;
 import ru.contextguide.yandexservices.ads.AdsDefaultImpl;
 import ru.contextguide.yandexservices.campaigns.Campaigns;
@@ -17,12 +17,13 @@ import ru.contextguide.yandexservices.utils.ServiceConnectionManagerDefaultImpl;
  * Менеджер сервисов яндекса по умолчанию
  */
 public class YandexServicesManagerDefaultImpl implements YandexServicesManager {
+
     private final JsonParser jsonParser = new DefaultJsonParser();
-    private final ServiceConnectionManager serviceConnectionManager = new ServiceConnectionManagerDefaultImpl(jsonParser);
+    private final ServiceConnectionManager serviceConnectionManager = new ServiceConnectionManagerDefaultImpl();
 
     @Override
     public AdGroups getAdGroupsService() {
-        return new AdGroupsImpl(jsonParser, serviceConnectionManager);
+        return new AdGroupsDefaultImpl(jsonParser, serviceConnectionManager);
     }
 
     @Override

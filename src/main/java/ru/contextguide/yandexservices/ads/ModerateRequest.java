@@ -1,9 +1,9 @@
 package ru.contextguide.yandexservices.ads;
 
-import ru.contextguide.yandexservices.utils.ApiRequest;
 import ru.contextguide.yandexservices.utils.IdsCriteria;
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
-public class ModerateRequest implements ApiRequest {
+public class ModerateRequest implements JsonSerializableObject {
     private final IdsCriteria selectionCriteria;
 
     public ModerateRequest(IdsCriteria selectionCriteria) {

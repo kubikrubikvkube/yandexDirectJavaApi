@@ -1,12 +1,12 @@
 package ru.contextguide.yandexservices.ads;
 
 import ru.contextguide.ad.*;
-import ru.contextguide.yandexservices.utils.ApiRequest;
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 import ru.contextguide.yandexservices.utils.LimitOffset;
 
 import java.util.List;
 
-public class GetRequest implements ApiRequest {
+public class GetRequest implements JsonSerializableObject {
     private final AdsSelectionCriteria selectionCriteria;
     private final List<AdFieldEnum> fieldNames;
     private List<TextAdFieldEnum> textAdFieldNames;

@@ -6,5 +6,14 @@ public enum AdGroupsMethod implements ServiceMethod {
     ADD,
     DELETE,
     GET,
-    UPDATE
+    UPDATE;
+
+    AdGroupsMethod() {
+
+    }
+
+    @Override
+    public String toString() {
+        return super.toString().toLowerCase();
+    }
 }

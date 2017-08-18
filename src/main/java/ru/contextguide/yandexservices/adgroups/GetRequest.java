@@ -6,7 +6,7 @@ import ru.contextguide.adgroup.AdGroupsSelectionCriteria;
 import ru.contextguide.adgroup.dynamicTextAdGroup.DynamicTextAdGroupFieldEnum;
 import ru.contextguide.adgroup.dynamicTextAdGroup.DynamicTextFeedAdGroupFieldEnum;
 import ru.contextguide.adgroup.mobileAppAdGroup.MobileAppAdGroupFieldEnum;
-import ru.contextguide.yandexservices.utils.ApiRequest;
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 import ru.contextguide.yandexservices.utils.LimitOffset;
 
 import javax.annotation.Nonnull;
@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-public class GetRequest implements ApiRequest {
+public class GetRequest implements JsonSerializableObject {
 
     @NotNull
     private final AdGroupsSelectionCriteria selectionCriteria;

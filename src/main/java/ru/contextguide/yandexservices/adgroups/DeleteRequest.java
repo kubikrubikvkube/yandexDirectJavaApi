@@ -1,11 +1,11 @@
 package ru.contextguide.yandexservices.adgroups;
 
 import com.google.common.collect.ImmutableList;
-import ru.contextguide.yandexservices.utils.ApiRequest;
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
 import java.util.List;
 
-public class DeleteRequest implements ApiRequest {
+public class DeleteRequest implements JsonSerializableObject {
     private final List<Long> ids;
 
     public DeleteRequest(List<Long> ids) {

@@ -25,5 +25,5 @@ public enum CampaignFieldEnum {
     SourceId,
     TimeTargeting,
     TimeZone,
-    Type
+    Type;
 }

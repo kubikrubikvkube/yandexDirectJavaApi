@@ -10,5 +10,14 @@ public enum AdsMethod implements ServiceMethod {
     MODERATE,
     RESUME,
     SUSPEND,
-    UNARCHIVE
+    UNARCHIVE;
+
+    AdsMethod() {
+
+    }
+
+    @Override
+    public String toString() {
+        return super.toString().toLowerCase();
+    }
 }

@@ -8,7 +8,7 @@ import java.util.List;
  * Критерий отбора групп по ID
  */
 
-public class IdsCriteria implements ApiRequest {
+public class IdsCriteria implements JsonSerializableObject {
     /**
      * Идентификаторы
      */

@@ -1,9 +1,9 @@
 package ru.contextguide.yandexservices.campaigns;
 
-import ru.contextguide.yandexservices.utils.ApiRequest;
 import ru.contextguide.yandexservices.utils.IdsCriteria;
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
-public class UnarchiveRequest implements ApiRequest {
+public class UnarchiveRequest implements JsonSerializableObject {
     private final IdsCriteria selectionCriteria;
 
     public UnarchiveRequest(IdsCriteria selectionCriteria) {

@@ -2,11 +2,11 @@ package ru.contextguide.yandexservices.adgroups;
 
 import com.google.common.collect.ImmutableList;
 import ru.contextguide.adgroup.AdGroupAddItem;
-import ru.contextguide.yandexservices.utils.ApiRequest;
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
 import java.util.List;
 
-public class AddRequest implements ApiRequest {
+public class AddRequest implements JsonSerializableObject {
 
     private final List<AdGroupAddItem> adGroups;
 

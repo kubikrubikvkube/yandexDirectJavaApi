@@ -12,13 +12,13 @@ import ru.contextguide.yandexservices.utils.ServiceConnectionManager;
 import java.io.IOException;
 
 
-public class AdGroupsImpl implements AdGroups {
-    private static final Logger log = LoggerFactory.getLogger(AdGroupsImpl.class);
+public class AdGroupsDefaultImpl implements AdGroups {
+    private static final Logger log = LoggerFactory.getLogger(AdGroupsDefaultImpl.class);
     private final static String API_URL = "https://api-sandbox.direct.yandex.com/json/v5/adgroups";
     private final JsonParser jsonParser;
     private final ServiceConnectionManager sce;
 
-    public AdGroupsImpl(JsonParser jsonParser, ServiceConnectionManager sce) {
+    public AdGroupsDefaultImpl(JsonParser jsonParser, ServiceConnectionManager sce) {
         this.jsonParser = jsonParser;
         this.sce = sce;
     }

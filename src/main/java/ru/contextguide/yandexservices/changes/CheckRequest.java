@@ -1,13 +1,13 @@
 package ru.contextguide.yandexservices.changes;
 
 import com.google.common.collect.ImmutableList;
-import ru.contextguide.yandexservices.utils.ApiRequest;
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-public class CheckRequest implements ApiRequest {
+public class CheckRequest implements JsonSerializableObject {
     @Nullable private final List<Long> campaignIds;
     @Nullable private final List<Long> adGroupIds;
     @Nullable private final List<Long> adIds;

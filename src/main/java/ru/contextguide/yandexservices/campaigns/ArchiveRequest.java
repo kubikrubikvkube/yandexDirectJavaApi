@@ -1,12 +1,12 @@
 package ru.contextguide.yandexservices.campaigns;
 
-import ru.contextguide.yandexservices.utils.ApiRequest;
 import ru.contextguide.yandexservices.utils.IdsCriteria;
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
 import javax.validation.constraints.NotNull;
 
 
-public class ArchiveRequest implements ApiRequest {
+public class ArchiveRequest implements JsonSerializableObject {
 
     @NotNull
     private final IdsCriteria selectionCriteria;

@@ -1,9 +1,9 @@
 package ru.contextguide.yandexservices.ads;
 
-import ru.contextguide.yandexservices.utils.ApiRequest;
 import ru.contextguide.yandexservices.utils.IdsCriteria;
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
-public class DeleteRequest implements ApiRequest {
+public class DeleteRequest implements JsonSerializableObject {
     private final IdsCriteria selectionCriteria;
 
     public DeleteRequest(IdsCriteria selectionCriteria) {

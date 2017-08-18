@@ -2,12 +2,12 @@ package ru.contextguide.yandexservices.campaigns;
 
 import com.google.common.collect.ImmutableList;
 import ru.contextguide.campaign.campaign.CampaignGetItem;
-import ru.contextguide.yandexservices.utils.ApiRequest;
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-public class UpdateRequest implements ApiRequest {
+public class UpdateRequest implements JsonSerializableObject {
     private final List<CampaignGetItem> campaigns;
 
     public UpdateRequest(@NotNull List<CampaignGetItem> campaigns) {

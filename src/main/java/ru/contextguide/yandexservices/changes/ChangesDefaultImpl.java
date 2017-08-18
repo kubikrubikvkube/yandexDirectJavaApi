@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.contextguide.yandexservices.exceptions.DeserializationException;
 import ru.contextguide.yandexservices.exceptions.SerializationException;
-import ru.contextguide.yandexservices.utils.ApiRequest;
 import ru.contextguide.yandexservices.utils.JsonParser;
 import ru.contextguide.yandexservices.utils.ServiceConnectionManager;
 
@@ -30,21 +29,21 @@ public class ChangesDefaultImpl implements Changes {
         return defaultJsonParser.deserialize(result, CheckDictionariesResponse.class);
     }
 
-    private long getServerTime() throws DeserializationException, IOException, SerializationException {
-        ApiRequest emptyRequest = new ApiRequest() {
-            @Override
-            public String toJson() {
-                return "{}";
-            }
-        };
-
-        String result = sce.sendRequest(ChangesMethod.CHECKDICTIONARIES, API_URL, emptyRequest);
-        ServerTimeResponse serverTimeResponse;
-
-        serverTimeResponse = defaultJsonParser.deserialize(result, ServerTimeResponse.class);
-
-        return serverTimeResponse != null ? serverTimeResponse.getTimestamp() : 0;
-    }
+//    private long getServerTime() throws DeserializationException, IOException, SerializationException {
+//        ApiRequest emptyRequest = new ApiRequest() {
+//            @Override
+//            public String toJson() {
+//                return "{}";
+//            }
+//        };
+//
+//        String result = sce.sendRequest(ChangesMethod.CHECKDICTIONARIES, API_URL, emptyRequest);
+//        ServerTimeResponse serverTimeResponse;
+//
+//        serverTimeResponse = defaultJsonParser.deserialize(result, ServerTimeResponse.class);
+//
+//        return serverTimeResponse != null ? serverTimeResponse.getTimestamp() : 0;
+//    }
 
     @Override
     public CheckCampaignsResponse checkCampaigns(@NotNull CheckCampaignsRequest request) throws DeserializationException, IOException, SerializationException {

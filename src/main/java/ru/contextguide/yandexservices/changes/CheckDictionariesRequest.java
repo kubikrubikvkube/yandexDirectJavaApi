@@ -1,14 +1,14 @@
 package ru.contextguide.yandexservices.changes;
 
 
-import ru.contextguide.yandexservices.utils.ApiRequest;
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class CheckDictionariesRequest implements ApiRequest {
+public class CheckDictionariesRequest implements JsonSerializableObject {
     @Nullable private final String timestamp;
 
     public CheckDictionariesRequest(@Nullable @NotNull String timestamp) {

@@ -1,14 +1,14 @@
 package ru.contextguide.yandexservices.campaigns;
 
 import ru.contextguide.campaign.campaign.CampaignAddItem;
-import ru.contextguide.yandexservices.utils.ApiRequest;
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class AddRequest implements ApiRequest {
+public class AddRequest implements JsonSerializableObject {
     @NotNull private final List<CampaignAddItem> campaigns;
 
     public AddRequest(List<CampaignAddItem> campaigns) {

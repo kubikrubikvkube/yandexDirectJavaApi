@@ -6,7 +6,7 @@ import ru.contextguide.campaign.campaign.CampaignsSelectionCriteria;
 import ru.contextguide.campaign.dynamicTextCampaign.DynamicTextCampaignFieldEnum;
 import ru.contextguide.campaign.mobileAppCampaign.MobileAppCampaignFieldEnum;
 import ru.contextguide.campaign.textCampaign.TextCampaignFieldEnum;
-import ru.contextguide.yandexservices.utils.ApiRequest;
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 import ru.contextguide.yandexservices.utils.LimitOffset;
 
 import javax.annotation.Nonnull;
@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Запрос на получения кампаний
  */
-public class GetRequest implements ApiRequest {
+public class GetRequest implements JsonSerializableObject {
     @NotNull
     private final CampaignsSelectionCriteria selectionCriteria;
     @NotNull

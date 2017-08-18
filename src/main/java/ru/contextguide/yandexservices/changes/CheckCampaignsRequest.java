@@ -4,11 +4,11 @@ package ru.contextguide.yandexservices.changes;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
 import ru.contextguide.yandexservices.exceptions.ApiRequestException;
-import ru.contextguide.yandexservices.utils.ApiRequest;
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
 import javax.validation.constraints.NotNull;
 
-public class CheckCampaignsRequest implements ApiRequest {
+public class CheckCampaignsRequest implements JsonSerializableObject {
     private final DateTimeFormatter dtf = ISODateTimeFormat.dateTimeNoMillis().withZoneUTC();
     private final long timestamp;
 

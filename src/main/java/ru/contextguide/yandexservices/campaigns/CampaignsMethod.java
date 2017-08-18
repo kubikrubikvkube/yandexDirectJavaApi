@@ -10,5 +10,14 @@ public enum CampaignsMethod implements ServiceMethod {
     RESUME,
     SUSPEND,
     UNARCHIVE,
-    UPDATE
+    UPDATE;
+
+    CampaignsMethod() {
+
+    }
+
+    @Override
+    public String toString() {
+        return super.toString().toLowerCase();
+    }
 }

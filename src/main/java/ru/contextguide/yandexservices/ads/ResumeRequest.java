@@ -1,9 +1,9 @@
 package ru.contextguide.yandexservices.ads;
 
-import ru.contextguide.yandexservices.utils.ApiRequest;
 import ru.contextguide.yandexservices.utils.IdsCriteria;
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
-public class ResumeRequest implements ApiRequest {
+public class ResumeRequest implements JsonSerializableObject {
     private final IdsCriteria selectionCriteria;
 
     public ResumeRequest(IdsCriteria selectionCriteria) {

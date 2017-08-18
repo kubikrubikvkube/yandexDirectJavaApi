@@ -1,9 +1,9 @@
 package ru.contextguide.yandexservices.ads;
 
-import ru.contextguide.yandexservices.utils.ApiRequest;
 import ru.contextguide.yandexservices.utils.IdsCriteria;
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
-public class ArchiveRequest implements ApiRequest {
+public class ArchiveRequest implements JsonSerializableObject {
     private final IdsCriteria selectionCriteria;
 
     public ArchiveRequest(IdsCriteria selectionCriteria) {
