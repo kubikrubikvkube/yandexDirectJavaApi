@@ -6,22 +6,22 @@ package ru.contextguide.campaign.textCampaign;
  */
 
 public class StrategyAverageCpa {
-    private long averageCpa;
-    private long goalId;
-    private long weeklySpendLimit;
-    private long bidCeiling;
+    private Long averageCpa;
+    private Long goalId;
+    private Long weeklySpendLimit;
+    private Long bidCeiling;
 
     /**
      * Средняя цена достижения цели в валюте рекламодателя, умноженная на 1 000 000.
      */
-    public long getAverageCpa() {
+    public Long getAverageCpa() {
         return averageCpa;
     }
 
     /**
      * Средняя цена достижения цели в валюте рекламодателя, умноженная на 1 000 000.
      */
-    public void setAverageCpa(long averageCpa) {
+    public void setAverageCpa(Long averageCpa) {
         this.averageCpa = averageCpa;
     }
 
@@ -29,14 +29,14 @@ public class StrategyAverageCpa {
      * Идентификатор цели Яндекс.Метрики (подходят только несоставные цели)
      */
 
-    public long getGoalId() {
+    public Long getGoalId() {
         return goalId;
     }
 
     /**
      * Идентификатор цели Яндекс.Метрики (подходят только несоставные цели)
      */
-    public void setGoalId(long goalId) {
+    public void setGoalId(Long goalId) {
         this.goalId = goalId;
     }
 
@@ -44,14 +44,14 @@ public class StrategyAverageCpa {
      * Недельный бюджет в валюте рекламодателя, умноженный на 1 000 000.
      */
 
-    public long getWeeklySpendLimit() {
+    public Long getWeeklySpendLimit() {
         return weeklySpendLimit;
     }
 
     /**
      * Недельный бюджет в валюте рекламодателя, умноженный на 1 000 000.
      */
-    public void setWeeklySpendLimit(long weeklySpendLimit) {
+    public void setWeeklySpendLimit(Long weeklySpendLimit) {
         this.weeklySpendLimit = weeklySpendLimit;
     }
 
@@ -59,14 +59,14 @@ public class StrategyAverageCpa {
      * Максимальная ставка в валюте рекламодателя, умноженная на 1 000 000.
      */
 
-    public long getBidCeiling() {
+    public Long getBidCeiling() {
         return bidCeiling;
     }
 
     /**
      * Максимальная ставка в валюте рекламодателя, умноженная на 1 000 000.
      */
-    public void setBidCeiling(long bidCeiling) {
+    public void setBidCeiling(Long bidCeiling) {
         this.bidCeiling = bidCeiling;
     }
 }

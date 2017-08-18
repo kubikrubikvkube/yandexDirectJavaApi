@@ -20,7 +20,7 @@ public final class AdGroupAddItem implements JsonSerializableObject {
     @Nullable private MobileAppAdGroupAdd mobileAppAdGroup;
     @Nullable private DynamicTextAdGroup dynamicTextAdGroup;
 
-    public AdGroupAddItem(@NotNull String name, @NotNull long campaignId, @NotNull List<Long> regionIds) {
+    public AdGroupAddItem(@NotNull String name, @NotNull Long campaignId, @NotNull List<Long> regionIds) {
         this.name = name;
         this.campaignId = campaignId;
         this.regionIds = ImmutableList.copyOf(regionIds);

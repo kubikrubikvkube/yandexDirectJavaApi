@@ -11,7 +11,7 @@ import java.util.List;
 public class GetResponse implements ApiResponse {
 
     private List<AdGroupGetItem> adGroups;
-    private long limitedBy;
+    private Long limitedBy;
 
     /**
      * Группы объявлений.
@@ -27,11 +27,11 @@ public class GetResponse implements ApiResponse {
     /**
      * Порядковый номер последнего возвращенного объекта. Передается в случае, если количество объектов в ответе было ограничено лимитом.
      */
-    public long getLimitedBy() {
+    public Long getLimitedBy() {
         return limitedBy;
     }
 
-    public void setLimitedBy(long limitedBy) {
+    public void setLimitedBy(Long limitedBy) {
         this.limitedBy = limitedBy;
     }
 }

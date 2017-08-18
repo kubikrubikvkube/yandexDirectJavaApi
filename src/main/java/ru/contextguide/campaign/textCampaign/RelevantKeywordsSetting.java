@@ -9,7 +9,7 @@ public class RelevantKeywordsSetting {
 
     private int budgetPercent;
     private RelevantKeywordsModeEnum relevantKeywordsModeEnum;
-    private long optimizeGoalId;
+    private Long optimizeGoalId;
 
     /**
      * Максимальный процент бюджета, расходуемый на клики по дополнительным релевантным фразам.
@@ -50,12 +50,12 @@ public class RelevantKeywordsSetting {
      * @return 0 — оптимизация дополнительных релевантных фраз осуществляется по всем целям, доступным для кампании,null - оптимизация не осуществляется
      */
 
-    public long getOptimizeGoalId() {
+    public Long getOptimizeGoalId() {
         return optimizeGoalId;
     }
 
 
-    public void setOptimizeGoalId(long optimizeGoalId) {
+    public void setOptimizeGoalId(Long optimizeGoalId) {
         this.optimizeGoalId = optimizeGoalId;
     }
 

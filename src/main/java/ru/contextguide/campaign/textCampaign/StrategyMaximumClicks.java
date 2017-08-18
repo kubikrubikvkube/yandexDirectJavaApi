@@ -7,8 +7,8 @@ package ru.contextguide.campaign.textCampaign;
 
 public class StrategyMaximumClicks {
 
-    private long weeklySpendLimit;
-    private long bidCeiling;
+    private Long weeklySpendLimit;
+    private Long bidCeiling;
 
 
     /**
@@ -16,7 +16,7 @@ public class StrategyMaximumClicks {
      * Минимальный недельный бюджет для каждой валюты представлен в справочнике валют.
      */
 
-    public long getWeeklySpendLimit() {
+    public Long getWeeklySpendLimit() {
         return weeklySpendLimit;
     }
 
@@ -24,7 +24,7 @@ public class StrategyMaximumClicks {
      * Недельный бюджет в валюте рекламодателя, умноженный на 1 000 000.
      * Минимальный недельный бюджет для каждой валюты представлен в справочнике валют.
      */
-    public void setWeeklySpendLimit(long weeklySpendLimit) {
+    public void setWeeklySpendLimit(Long weeklySpendLimit) {
         this.weeklySpendLimit = weeklySpendLimit;
     }
 
@@ -33,7 +33,7 @@ public class StrategyMaximumClicks {
      * Минимальное и максимальное значение ставки для каждой валюты представлены в справочнике валют.
      */
 
-    public long getBidCeiling() {
+    public Long getBidCeiling() {
         return bidCeiling;
     }
 
@@ -41,7 +41,7 @@ public class StrategyMaximumClicks {
      * Максимальная ставка в валюте рекламодателя, умноженная на 1 000 000.
      * Минимальное и максимальное значение ставки для каждой валюты представлены в справочнике валют.
      */
-    public void setBidCeiling(long bidCeiling) {
+    public void setBidCeiling(Long bidCeiling) {
         this.bidCeiling = bidCeiling;
     }
 

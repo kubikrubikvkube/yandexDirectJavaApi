@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 
 public class CheckCampaignsRequest implements JsonSerializableObject {
     private final DateTimeFormatter dtf = ISODateTimeFormat.dateTimeNoMillis().withZoneUTC();
-    private final long timestamp;
+    private final Long timestamp;
 
 
     public CheckCampaignsRequest(@NotNull String dateTime) throws ApiRequestException {
@@ -21,7 +21,7 @@ public class CheckCampaignsRequest implements JsonSerializableObject {
         }
     }
 
-    public CheckCampaignsRequest(long millis) {
+    public CheckCampaignsRequest(Long millis) {
         timestamp = millis;
     }
 

@@ -23,7 +23,7 @@ public class GetResponse implements ApiResponse {
         return limitedBy;
     }
 
-    public void setLimitedBy(long limitedBy) {
+    public void setLimitedBy(Long limitedBy) {
         this.limitedBy = limitedBy;
     }
 }

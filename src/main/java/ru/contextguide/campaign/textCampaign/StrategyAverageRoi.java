@@ -13,15 +13,15 @@ public class StrategyAverageRoi {
 
     private int reserveReturn;
 
-    private long roiCoef;
+    private Long roiCoef;
 
-    private long goalId;
+    private Long goalId;
 
-    private long weeklySpendLimit;
+    private Long weeklySpendLimit;
 
-    private long bidCeiling;
+    private Long bidCeiling;
 
-    private long profitability;
+    private Long profitability;
 
     /**
      * Максимальный процент сэкономленных средств, который можно возвращать в рекламу (расходовать) в случае, если прогнозируемое значение рентабельности превышает значение параметра RoiCoef.
@@ -46,7 +46,7 @@ public class StrategyAverageRoi {
      * <p>
      * Значение представляет собой отношение прибыли от продаж к расходам на рекламу, умноженное на 1 000 000. Значение должно быть целым числом. Если значение не кратно 10 000, последние 4 цифры обнуляются (что соответствует отбрасыванию лишних знаков после запятой).
      */
-    public long getRoiCoef() {
+    public Long getRoiCoef() {
         return roiCoef;
     }
 
@@ -55,7 +55,7 @@ public class StrategyAverageRoi {
      * <p>
      * Значение представляет собой отношение прибыли от продаж к расходам на рекламу, умноженное на 1 000 000. Значение должно быть целым числом. Если значение не кратно 10 000, последние 4 цифры обнуляются (что соответствует отбрасыванию лишних знаков после запятой).
      */
-    public void setRoiCoef(long roiCoef) {
+    public void setRoiCoef(Long roiCoef) {
         this.roiCoef = roiCoef;
     }
 
@@ -63,14 +63,14 @@ public class StrategyAverageRoi {
      * Идентификатор цели Яндекс.Метрики (подходят только несоставные цели).
      */
 
-    public long getGoalId() {
+    public Long getGoalId() {
         return goalId;
     }
 
     /**
      * Идентификатор цели Яндекс.Метрики (подходят только несоставные цели).
      */
-    public void setGoalId(long goalId) {
+    public void setGoalId(Long goalId) {
         this.goalId = goalId;
     }
 
@@ -78,14 +78,14 @@ public class StrategyAverageRoi {
      * Недельный бюджет в валюте рекламодателя, умноженный на 1 000 000.
      */
 
-    public long getWeeklySpendLimit() {
+    public Long getWeeklySpendLimit() {
         return weeklySpendLimit;
     }
 
     /**
      * Недельный бюджет в валюте рекламодателя, умноженный на 1 000 000.
      */
-    public void setWeeklySpendLimit(long weeklySpendLimit) {
+    public void setWeeklySpendLimit(Long weeklySpendLimit) {
         this.weeklySpendLimit = weeklySpendLimit;
     }
 
@@ -95,7 +95,7 @@ public class StrategyAverageRoi {
      * Указывать максимальную ставку не рекомендуется — это может снизить эффективность работы стратегии.
      */
 
-    public long getBidCeiling() {
+    public Long getBidCeiling() {
         return bidCeiling;
     }
 
@@ -104,7 +104,7 @@ public class StrategyAverageRoi {
      * <p>
      * Указывать максимальную ставку не рекомендуется — это может снизить эффективность работы стратегии.
      */
-    public void setBidCeiling(long bidCeiling) {
+    public void setBidCeiling(Long bidCeiling) {
         this.bidCeiling = bidCeiling;
     }
 
@@ -114,7 +114,7 @@ public class StrategyAverageRoi {
      * <p>
      * Если значение не кратно 10 000, последние 4 цифры обнуляются (что соответствует отбрасыванию лишних знаков после запятой).
      */
-    public long getProfitability() {
+    public Long getProfitability() {
         return profitability;
     }
 
@@ -124,7 +124,7 @@ public class StrategyAverageRoi {
      * <p>
      * Если значение не кратно 10 000, последние 4 цифры обнуляются (что соответствует отбрасыванию лишних знаков после запятой).
      */
-    public void setProfitability(long profitability) {
+    public void setProfitability(Long profitability) {
         this.profitability = profitability;
     }
 

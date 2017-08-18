@@ -7,21 +7,21 @@ package ru.contextguide.campaign.textCampaign;
 
 public class StrategyWeeklyClickPackage {
 
-    private long clicksPerWeek;
-    private long averageCpc;
-    private long bidCeiling;
+    private Long clicksPerWeek;
+    private Long averageCpc;
+    private Long bidCeiling;
 
     /**
      * Требуемое количество кликов в неделю.
      */
-    public long getClicksPerWeek() {
+    public Long getClicksPerWeek() {
         return clicksPerWeek;
     }
 
     /**
      * Требуемое количество кликов в неделю.
      */
-    public void setClicksPerWeek(long clicksPerWeek) {
+    public void setClicksPerWeek(Long clicksPerWeek) {
         this.clicksPerWeek = clicksPerWeek;
     }
 
@@ -31,7 +31,7 @@ public class StrategyWeeklyClickPackage {
      * Параметры AverageCpc и BidCeiling являются взаимоисключающими: нельзя указывать оба.
      */
 
-    public long getAverageCpc() {
+    public Long getAverageCpc() {
         return averageCpc;
     }
 
@@ -40,7 +40,7 @@ public class StrategyWeeklyClickPackage {
      * <p>
      * Параметры AverageCpc и BidCeiling являются взаимоисключающими: нельзя указывать оба.
      */
-    public void setAverageCpc(long averageCpc) {
+    public void setAverageCpc(Long averageCpc) {
         this.averageCpc = averageCpc;
     }
 
@@ -50,7 +50,7 @@ public class StrategyWeeklyClickPackage {
      * Параметры AverageCpc и BidCeiling являются взаимоисключающими: нельзя указывать оба.
      */
 
-    public long getBidCeiling() {
+    public Long getBidCeiling() {
         return bidCeiling;
     }
 
@@ -59,7 +59,7 @@ public class StrategyWeeklyClickPackage {
      * <p>
      * Параметры AverageCpc и BidCeiling являются взаимоисключающими: нельзя указывать оба.
      */
-    public void setBidCeiling(long bidCeiling) {
+    public void setBidCeiling(Long bidCeiling) {
         this.bidCeiling = bidCeiling;
     }
 }

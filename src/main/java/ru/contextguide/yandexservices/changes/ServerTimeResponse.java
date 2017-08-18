@@ -10,7 +10,7 @@ class ServerTimeResponse implements ApiResponse {
     private final DateTimeFormatter dtf = ISODateTimeFormat.dateTimeNoMillis().withZoneUTC();
     String timestamp;
 
-    public long getTimestamp() {
+    public Long getTimestamp() {
         return dtf.parseMillis(timestamp);
     }
 

@@ -7,23 +7,23 @@ package ru.contextguide.campaign.textCampaign;
 
 public class StrategyAverageCpc {
 
-    private long averageCpc;
+    private Long averageCpc;
 
-    private long weeklySpendLimit;
+    private Long weeklySpendLimit;
 
 
     /**
      * Средняя цена клика в валюте рекламодателя, умноженная на 1 000 000.
      */
 
-    public long getAverageCpc() {
+    public Long getAverageCpc() {
         return averageCpc;
     }
 
     /**
      * Средняя цена клика в валюте рекламодателя, умноженная на 1 000 000.
      */
-    public void setAverageCpc(long averageCpc) {
+    public void setAverageCpc(Long averageCpc) {
         this.averageCpc = averageCpc;
     }
 
@@ -32,14 +32,14 @@ public class StrategyAverageCpc {
      * Недельный бюджет в валюте рекламодателя, умноженный на 1 000 000.
      */
 
-    public long getWeeklySpendLimit() {
+    public Long getWeeklySpendLimit() {
         return weeklySpendLimit;
     }
 
     /**
      * Недельный бюджет в валюте рекламодателя, умноженный на 1 000 000.
      */
-    public void setWeeklySpendLimit(long weeklySpendLimit) {
+    public void setWeeklySpendLimit(Long weeklySpendLimit) {
         this.weeklySpendLimit = weeklySpendLimit;
     }
 

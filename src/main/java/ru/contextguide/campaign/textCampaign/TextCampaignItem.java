@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 public class TextCampaignItem {
 
     @NotNull private final TextCampaignStrategyAdd biddingStrategy;
-    private long id;
+    private Long id;
     private Long limitedBy;
     private CounterIds counterIds;
     private RelevantKeywordsSetting relevantKeywordsSetting;
@@ -16,11 +16,11 @@ public class TextCampaignItem {
     }
 
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
