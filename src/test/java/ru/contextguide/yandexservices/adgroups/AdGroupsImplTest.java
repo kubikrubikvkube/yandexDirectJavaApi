@@ -1,8 +1,10 @@
 package ru.contextguide.yandexservices.adgroups;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.slf4j.LoggerFactory;
 import ru.contextguide.adgroup.AdGroupFieldEnum;
 import ru.contextguide.adgroup.AdGroupUpdateItem;
 import ru.contextguide.adgroup.AdGroupsSelectionCriteria;
@@ -13,25 +15,26 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AdGroupsImplTest {
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(AdGroupsImplTest.class);
     AdGroups adGroups;
     Campaigns campaigns;
-
     private MockObjects mockObjects;
     private Long mockCampaignId;
     private Long mockAdgroupId;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         mockObjects = new MockObjects(adGroups, campaigns);
         mockCampaignId = mockObjects.createCampaignAddItem();
         mockAdgroupId = mockObjects.createAdGroupAddItem(mockCampaignId);
     }
 
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
         mockObjects.deleteCampaign(mockCampaignId);
     }
@@ -45,7 +48,7 @@ public class AdGroupsImplTest {
         GetResponse getResponse = adGroups.get(getRequest);
         assertNotNull(getResponse);
         assertThat("Should be 1 adgroup", getResponse.getAdGroups(), hasSize(1));
-        assertEquals("AdGroup id is not expected one", getResponse.getAdGroups().get(0).getId(), mockAdgroupId);
+        assertEquals(getResponse.getAdGroups().get(0).getId(), mockAdgroupId, "AdGroup id is not expected one");
     }
 
 

@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class AdsDefaultImpl implements Ads {
     private static final Logger log = LoggerFactory.getLogger(AdsDefaultImpl.class);
-    private final static String API_URL = "https://api-sandbox.direct.yandex.com/json/v5/ads";
+    private static final String API_URL = "https://api-sandbox.direct.yandex.com/json/v5/ads";
     private final JsonParser jsonParser;
     private final ServiceConnectionManager sce;
 

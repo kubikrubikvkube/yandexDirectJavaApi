@@ -1,8 +1,10 @@
 package ru.contextguide.yandexservices.campaigns;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.slf4j.LoggerFactory;
 import ru.contextguide.campaign.campaign.CampaignFieldEnum;
 import ru.contextguide.campaign.campaign.CampaignGetItem;
 import ru.contextguide.campaign.campaign.CampaignsSelectionCriteria;
@@ -14,28 +16,30 @@ import ru.contextguide.yandexservices.utils.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.hasSize;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static ru.contextguide.campaign.campaign.CampaignFieldEnum.Id;
 import static ru.contextguide.campaign.campaign.CampaignTypeGetEnum.TEXT_CAMPAIGN;
 
 
 public class CampaignsImplTest {
-    private JsonParser jsonParser = new DefaultJsonParser();
-    private ServiceConnectionManager sce = new ServiceConnectionManagerDefaultImpl();
-    private Campaigns campaigns = new CampaignsDefaultImpl(jsonParser, sce);
-    private AdGroups adGroups = new AdGroupsDefaultImpl(jsonParser, sce);
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(CampaignsImplTest.class);
+    private final JsonParser jsonParser = new DefaultJsonParser();
+    private final ServiceConnectionManager sce = new ServiceConnectionManagerDefaultImpl();
+    private final Campaigns campaigns = new CampaignsDefaultImpl(jsonParser, sce);
+    private final AdGroups adGroups = new AdGroupsDefaultImpl(jsonParser, sce);
     private MockObjects mockObjects;
     private Long mockCampaignId;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         mockObjects = new MockObjects(adGroups, campaigns);
         mockCampaignId = mockObjects.createCampaignAddItem();
     }
 
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
         mockObjects.deleteCampaign(mockCampaignId);
     }
@@ -72,9 +76,9 @@ public class CampaignsImplTest {
         IdsCriteria idsCriteria = new IdsCriteria(mockCampaignId);
         SuspendRequest suspendRequest = new SuspendRequest(idsCriteria);
         SuspendResponse suspendResponse = campaigns.suspend(suspendRequest);
-        assertNotNull("Suspended response should not be null", suspendResponse);
+        assertNotNull(suspendResponse, "Suspended response should not be null");
         assertThat("Just 1 campaign should be suspended", suspendResponse.getSuspendResults(), hasSize(1));
-        assertEquals("Suspended campaign id is not expected", mockCampaignId, suspendResponse.getSuspendResults().get(0).getId());
+        assertEquals(mockCampaignId, suspendResponse.getSuspendResults().get(0).getId(), "Suspended campaign id is not expected");
     }
 
     @Test
@@ -83,9 +87,9 @@ public class CampaignsImplTest {
         IdsCriteria idsCriteria = new IdsCriteria(mockCampaignId);
         ResumeRequest resumeRequest = new ResumeRequest(idsCriteria);
         ResumeResponse resumeResponse = campaigns.resume(resumeRequest);
-        assertNotNull("Resume response shouldn't be null", resumeResponse);
+        assertNotNull(resumeResponse, "Resume response shouldn't be null");
         assertThat("Just 1 campaign should be resumed", resumeResponse.getResumeResults(), hasSize(1));
-        assertEquals("Resumed campaign id is not expected", mockCampaignId, resumeResponse.getResumeResults().get(0).getId());
+        assertEquals(mockCampaignId, resumeResponse.getResumeResults().get(0).getId(), "Resumed campaign id is not expected");
     }
 
 
@@ -95,14 +99,14 @@ public class CampaignsImplTest {
         IdsCriteria idsCriteria = new IdsCriteria(mockCampaignId);
         ArchiveRequest archiveRequest = new ArchiveRequest(idsCriteria);
         ArchiveResponse archiveResponse = campaigns.archive(archiveRequest);
-        assertNotNull("Archive response shouldn't be null", archiveResponse);
+        assertNotNull(archiveResponse, "Archive response shouldn't be null");
         assertThat("Just 1 campaign should be archived", archiveResponse.getArchiveResults(), hasSize(1));
-        assertEquals("Archived campaign id is not expected", mockCampaignId, archiveResponse.getArchiveResults().get(0).getId());
+        assertEquals(mockCampaignId, archiveResponse.getArchiveResults().get(0).getId(), "Archived campaign id is not expected");
         UnarchiveRequest unarchiveRequest = new UnarchiveRequest(idsCriteria);
         UnarchiveResponse unarchiveResponse = campaigns.unarchive(unarchiveRequest);
-        assertNotNull("Unarchive response shouldn't be null", unarchiveResponse);
+        assertNotNull(unarchiveResponse, "Unarchive response shouldn't be null");
         assertThat("Just 1 campaign should be unarchived", unarchiveResponse.getUnarchiveResults(), hasSize(1));
-        assertEquals("Unarchived campaign id is not expected", mockCampaignId, unarchiveResponse.getUnarchiveResults().get(0).getId());
+        assertEquals(mockCampaignId, unarchiveResponse.getUnarchiveResults().get(0).getId(), "Unarchived campaign id is not expected");
     }
 
 
@@ -114,10 +118,10 @@ public class CampaignsImplTest {
         fieldEnums.add(Id);
         GetRequest getRequest = new GetRequest(campaignsSelectionCriteria, fieldEnums);
         GetResponse response = campaigns.get(getRequest);
-        assertNotNull("GetResponse should not be null", response);
-        assertNotNull("GetResponse campaigns should not be null", response.getCampaigns());
+        assertNotNull(response, "GetResponse should not be null");
+        assertNotNull(response.getCampaigns(), "GetResponse campaigns should not be null");
         assertThat("Campaign list is empty", response.getCampaigns().size(), greaterThan(0));
-        assertNotNull("GetResponse first element ID can't be null - deserialized incorrectly", response.getCampaigns().get(0));
+        assertNotNull(response.getCampaigns().get(0), "GetResponse first element ID can't be null - deserialized incorrectly");
         System.out.println("GetResponse list size is " + response.getCampaigns().size());
     }
 

@@ -12,10 +12,6 @@ public enum AdsMethod implements ServiceMethod {
     SUSPEND,
     UNARCHIVE;
 
-    AdsMethod() {
-
-    }
-
     @Override
     public String toString() {
         return super.toString().toLowerCase();

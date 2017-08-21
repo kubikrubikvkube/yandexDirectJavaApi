@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Критерий выбора для кампаний
@@ -38,17 +39,17 @@ public class CampaignsSelectionCriteria implements JsonSerializableObject {
     }
 
     /**
-     * Отбирать кампании с указанным идентификатором.
-     */
-    public void setIds(@Nonnull Long ids) {
-        this.ids = ImmutableList.of(ids);
-    }
-
-    /**
      * Отбирать кампании с указанными идентификаторами. Не более 1000 элементов в массиве.
      */
     public void setIds(List<Long> ids) {
         this.ids = ImmutableList.copyOf(ids);
+    }
+
+    /**
+     * Отбирать кампании с указанным идентификатором.
+     */
+    public void setIds(@Nonnull Long ids) {
+        this.ids = ImmutableList.of(ids);
     }
 
     /**
@@ -150,5 +151,27 @@ public class CampaignsSelectionCriteria implements JsonSerializableObject {
     public void add(@NotNull CampaignStatusPaymentEnum campaignStatusPaymentEnum) {
         if (statusesPayment == null) statusesPayment = new ArrayList<>();
         if (!statusesPayment.contains(campaignStatusPaymentEnum)) statusesPayment.add(campaignStatusPaymentEnum);
+    }
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CampaignsSelectionCriteria that = (CampaignsSelectionCriteria) o;
+        return Objects.equals(ids, that.ids) &&
+                Objects.equals(types, that.types) &&
+                Objects.equals(states, that.states) &&
+                Objects.equals(statuses, that.statuses) &&
+                Objects.equals(statusesPayment, that.statusesPayment);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ids, types, states, statuses, statusesPayment);
     }
 }

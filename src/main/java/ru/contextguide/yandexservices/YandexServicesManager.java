@@ -7,11 +7,11 @@ import ru.contextguide.yandexservices.campaigns.Campaigns;
 import ru.contextguide.yandexservices.changes.Changes;
 
 public interface YandexServicesManager {
-    public AdGroups getAdGroupsService();
+    AdGroups getAdGroupsService();
 
-    public Ads getAdsService();
+    Ads getAdsService();
 
-    public Campaigns getCampaignsService();
+    Campaigns getCampaignsService();
 
-    public Changes getChangesService();
+    Changes getChangesService();
 }

@@ -1,5 +1,7 @@
 package ru.contextguide.yandexservices;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.contextguide.yandexservices.adgroups.AdGroups;
 import ru.contextguide.yandexservices.adgroups.AdGroupsDefaultImpl;
 import ru.contextguide.yandexservices.ads.Ads;
@@ -13,11 +15,12 @@ import ru.contextguide.yandexservices.utils.JsonParser;
 import ru.contextguide.yandexservices.utils.ServiceConnectionManager;
 import ru.contextguide.yandexservices.utils.ServiceConnectionManagerDefaultImpl;
 
+
 /**
  * Менеджер сервисов яндекса по умолчанию
  */
 public class YandexServicesManagerDefaultImpl implements YandexServicesManager {
-
+    private static final Logger log = LoggerFactory.getLogger(YandexServicesManagerDefaultImpl.class);
     private final JsonParser jsonParser = new DefaultJsonParser();
     private final ServiceConnectionManager serviceConnectionManager = new ServiceConnectionManagerDefaultImpl();
 

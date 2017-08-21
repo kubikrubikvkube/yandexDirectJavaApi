@@ -7,10 +7,6 @@ public enum ChangesMethod implements ServiceMethod {
     CHECKCAMPAIGNS,
     CHECKDICTIONARIES;
 
-    ChangesMethod() {
-
-    }
-
     @Override
     public String toString() {
         String rawName = super.toString();

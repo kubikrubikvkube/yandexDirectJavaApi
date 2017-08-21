@@ -375,4 +375,9 @@ public class CampaignAddItem implements JsonSerializableObject {
     public int hashCode() {
         return Objects.hashCode(id, name, clientInfo, startDate, endDate, timeTargeting, timeZone, negativeKeywords, blockedIps, excludedSites, dailyBudget, notification, type, status, state, statusPayment, statusClarification, sourceId, statistics, currency, funds, representedBy, sharedAccountFunds, textCampaign, dynamicTextCampaign, mobileAppCampaign);
     }
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
 }

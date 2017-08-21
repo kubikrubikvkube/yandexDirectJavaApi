@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class AdGroupsDefaultImpl implements AdGroups {
     private static final Logger log = LoggerFactory.getLogger(AdGroupsDefaultImpl.class);
-    private final static String API_URL = "https://api-sandbox.direct.yandex.com/json/v5/adgroups";
+    private static final String API_URL = "https://api-sandbox.direct.yandex.com/json/v5/adgroups";
     private final JsonParser jsonParser;
     private final ServiceConnectionManager sce;
 

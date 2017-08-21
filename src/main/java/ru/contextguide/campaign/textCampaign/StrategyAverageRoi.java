@@ -134,11 +134,11 @@ public class StrategyAverageRoi {
         if (!(o instanceof StrategyAverageRoi)) return false;
         StrategyAverageRoi that = (StrategyAverageRoi) o;
         return reserveReturn == that.reserveReturn &&
-                roiCoef == that.roiCoef &&
-                goalId == that.goalId &&
-                weeklySpendLimit == that.weeklySpendLimit &&
-                bidCeiling == that.bidCeiling &&
-                profitability == that.profitability;
+                java.util.Objects.equals(roiCoef, that.roiCoef) &&
+                java.util.Objects.equals(goalId, that.goalId) &&
+                java.util.Objects.equals(weeklySpendLimit, that.weeklySpendLimit) &&
+                java.util.Objects.equals(bidCeiling, that.bidCeiling) &&
+                java.util.Objects.equals(profitability, that.profitability);
     }
 
     @Override

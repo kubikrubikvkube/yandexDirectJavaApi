@@ -1,8 +1,11 @@
 package ru.contextguide.yandexservices.ads;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.contextguide.ad.AdAddItem;
 import ru.contextguide.ad.AdFieldEnum;
 import ru.contextguide.ad.TextAdAdd;
@@ -17,11 +20,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class AdsImplTest {
+    private static final Logger log = LoggerFactory.getLogger(AdsImplTest.class);
     AdGroups adGroups;
     Campaigns campaigns;
     Ads ads;
@@ -30,15 +36,14 @@ public class AdsImplTest {
     private Long mockAdGroupId;
     private Long mockAdId;
 
-
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         mockObjects = new MockObjects(adGroups, campaigns);
         mockCampaignId = mockObjects.createCampaignAddItem();
         mockAdGroupId = mockObjects.createAdGroupAddItem(mockCampaignId);
     }
 
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
         mockObjects.deleteCampaign(mockCampaignId);
     }

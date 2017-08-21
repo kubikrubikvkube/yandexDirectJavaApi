@@ -12,10 +12,6 @@ public enum CampaignsMethod implements ServiceMethod {
     UNARCHIVE,
     UPDATE;
 
-    CampaignsMethod() {
-
-    }
-
     @Override
     public String toString() {
         return super.toString().toLowerCase();

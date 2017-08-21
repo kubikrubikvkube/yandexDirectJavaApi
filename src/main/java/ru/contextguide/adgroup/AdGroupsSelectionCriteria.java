@@ -13,8 +13,8 @@ import java.util.List;
  */
 public class AdGroupsSelectionCriteria implements JsonSerializableObject {
 
-    private List<Long> campaignIds;
-    private List<Long> ids;
+    private final List<Long> campaignIds;
+    private final List<Long> ids;
     @Nullable
     private List<AdGroupTypesEnum> types;
     @Nullable

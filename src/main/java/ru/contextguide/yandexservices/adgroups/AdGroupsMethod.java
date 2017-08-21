@@ -8,10 +8,6 @@ public enum AdGroupsMethod implements ServiceMethod {
     GET,
     UPDATE;
 
-    AdGroupsMethod() {
-
-    }
-
     @Override
     public String toString() {
         return super.toString().toLowerCase();

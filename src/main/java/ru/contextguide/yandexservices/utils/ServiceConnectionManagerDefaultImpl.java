@@ -3,7 +3,7 @@ package ru.contextguide.yandexservices.utils;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.validator.UrlValidator;
-import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -41,16 +41,17 @@ public class ServiceConnectionManagerDefaultImpl implements ServiceConnectionMan
         sb.append(String.format("{\"method\": %s,\"params\":", wrap(String.valueOf(method), '"')));
         String addRequestJson = jsonRequest.toJson();
         sb.append(addRequestJson);
-        sb.append("}");
+        sb.append('}');
         String finalJson = sb.toString();
         HttpPost request = new PostApiRequest(method, apiUrl, oauthToken, finalJson).getHttpPost();
 
         //TODO to different class with concurrency
         String finalResponse;
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
-            HttpResponse response = client.execute(request);
-            try (InputStream responseContent = response.getEntity().getContent()) {
-                finalResponse = IOUtils.toString(responseContent, StandardCharsets.UTF_8.name());
+            try (CloseableHttpResponse response = client.execute(request)) {
+                try (InputStream responseContent = response.getEntity().getContent()) {
+                    finalResponse = IOUtils.toString(responseContent, StandardCharsets.UTF_8.name());
+                }
             }
         }
         return finalResponse;

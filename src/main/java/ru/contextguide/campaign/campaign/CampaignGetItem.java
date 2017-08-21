@@ -359,6 +359,11 @@ public class CampaignGetItem implements JsonSerializableObject {
     }
 
     @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof CampaignGetItem)) return false;
