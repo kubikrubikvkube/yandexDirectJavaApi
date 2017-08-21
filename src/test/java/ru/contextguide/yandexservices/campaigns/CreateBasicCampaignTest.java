@@ -27,25 +27,33 @@ public class CreateBasicCampaignTest {
     private final ServiceConnectionManager sce = new ServiceConnectionManagerDefaultImpl();
     private final Campaigns campaigns = new CampaignsDefaultImpl(jsonParser, sce);
     private final AdGroups adGroups = new AdGroupsDefaultImpl(jsonParser, sce);
+    private final DateTime tomorrowDate = DateTime.now().plusDays(1);
+    private final DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("YYYY-MM-dd");
+    private final String tomorrowDateAsString = dateTimeFormatter.print(tomorrowDate);
+    private CampaignAddItem simpleCampaignAddItem;
 
 
     @Test
-    public void createAndDeleteTextCampaign() throws Exception {
-        DateTime tomorrowDate = DateTime.now().plusDays(1);
-        DateTimeFormatter dtf = DateTimeFormat.forPattern("YYYY-MM-dd");
-        String tomorrowString = dtf.print(tomorrowDate);
+    public void createSimpleTextCampaign() throws Exception {
+        //We are using simplest setting for this text campaign.
         TextCampaignSearchStrategyAdd searchStrategy = new TextCampaignSearchStrategyAdd(TextCampaignSearchStrategyTypeEnum.HIGHEST_POSITION);
         TextCampaignNetworkStrategyAdd networkStrategy = new TextCampaignNetworkStrategyAdd(TextCampaignNetworkStrategyTypeEnum.MAXIMUM_COVERAGE);
         TextCampaignStrategyAdd textCampaignStrategy = new TextCampaignStrategyAdd(searchStrategy, networkStrategy);
         TextCampaignAddItem textCampaignItem = new TextCampaignAddItem(textCampaignStrategy);
-        CampaignAddItem mockCampaign = new CampaignAddItem("SomeCampaign", tomorrowString, textCampaignItem, null, null);
+        simpleCampaignAddItem = new CampaignAddItem("simpleCampaign", tomorrowDateAsString, textCampaignItem, null, null);
+        log.info("Simple campaign add item: " + simpleCampaignAddItem);
 
-        AddRequest addRequest = new AddRequest(mockCampaign);
+        AddRequest addRequest = new AddRequest(simpleCampaignAddItem);
+        log.info("Add request: " + addRequest);
         AddResponse addResponse = campaigns.add(addRequest);
+        log.info("Add response: " + addResponse);
+        assertNotNull(addResponse, "Response should be received");
         assertThat("Should be 1 add result", addResponse.getAddResults(), hasSize(1));
-        assertNotNull(addResponse.getAddResults().get(0), "Our campaign should not be null");
+        assertNotNull(addResponse.getAddResults().get(0), "New campaign should not be null");
         CampaignGetItem newTextCampaign = addResponse.getAddResults().get(0);
+        log.info("CampaignGetItem: " + newTextCampaign);
         assertNotNull(newTextCampaign.getId(), "New text campaign should have id");
-        int debug = 0;
+        long newCampaignId = newTextCampaign.getId();
+        log.info("New campaign id: " + newCampaignId);
     }
 }

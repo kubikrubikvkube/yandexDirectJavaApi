@@ -110,19 +110,39 @@
             <artifactId>commons-io</artifactId>
             <version>2.5</version>
         </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>5.0.0-RC2</version>
+            <scope>test</scope>
         </dependency>
-
-
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Only required to run tests in an IDE that bundles an older version -->
         <dependency>
             <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-runner</artifactId>
+            <artifactId>junit-platform-launcher</artifactId>
             <version>1.0.0-RC2</version>
             <scope>test</scope>
         </dependency>
+        <!-- Only required to run tests in an IDE that bundles an older version -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.0.0-RC2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>5.0.0-RC2</version>
+        </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all -->
         <dependency>

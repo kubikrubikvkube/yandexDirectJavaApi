@@ -14,7 +14,6 @@ import ru.contextguide.yandexservices.exceptions.SerializationException;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.nio.charset.StandardCharsets;
 
 import static org.apache.commons.lang3.StringUtils.wrap;
@@ -36,7 +35,6 @@ public class ServiceConnectionManagerDefaultImpl implements ServiceConnectionMan
 
     @Override
     public String sendRequest(ServiceMethod method, String apiUrl, JsonSerializableObject jsonRequest) throws IOException, SerializationException {
-        if (!validator.isValid(apiUrl)) throw new MalformedURLException(String.format("%s url is malformed", apiUrl));
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("{\"method\": %s,\"params\":", wrap(String.valueOf(method), '"')));
         String addRequestJson = jsonRequest.toJson();
