@@ -1,8 +1,11 @@
 package ru.contextguide.yandexservices.changes;
 
-import java.util.List;
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
-public class CheckResponseIds {
+import java.util.List;
+import java.util.Objects;
+
+public class CheckResponseIds implements JsonSerializableObject {
     private List<Long> campaignIds;
     private List<Long> adGroupIds;
     private List<Long> adIds;
@@ -38,5 +41,25 @@ public class CheckResponseIds {
 
     public void setAdIds(List<Long> adIds) {
         this.adIds = adIds;
+    }
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CheckResponseIds that = (CheckResponseIds) o;
+        return Objects.equals(campaignIds, that.campaignIds) &&
+                Objects.equals(adGroupIds, that.adGroupIds) &&
+                Objects.equals(adIds, that.adIds);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(campaignIds, adGroupIds, adIds);
     }
 }

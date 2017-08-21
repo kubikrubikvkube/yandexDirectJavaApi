@@ -13,6 +13,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Objects;
 
 public class GetRequest implements JsonSerializableObject {
 
@@ -103,5 +104,28 @@ public class GetRequest implements JsonSerializableObject {
 
     public void setPage(@Nullable LimitOffset page) {
         this.page = page;
+    }
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GetRequest that = (GetRequest) o;
+        return Objects.equals(selectionCriteria, that.selectionCriteria) &&
+                Objects.equals(fieldNames, that.fieldNames) &&
+                Objects.equals(mobileAppAdGroupFieldNames, that.mobileAppAdGroupFieldNames) &&
+                Objects.equals(dynamicTextAdGroupFieldNames, that.dynamicTextAdGroupFieldNames) &&
+                Objects.equals(dynamicTextFeedAdGroupFieldNames, that.dynamicTextFeedAdGroupFieldNames) &&
+                Objects.equals(page, that.page);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(selectionCriteria, fieldNames, mobileAppAdGroupFieldNames, dynamicTextAdGroupFieldNames, dynamicTextFeedAdGroupFieldNames, page);
     }
 }

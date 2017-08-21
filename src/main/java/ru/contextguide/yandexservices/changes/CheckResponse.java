@@ -3,6 +3,8 @@ package ru.contextguide.yandexservices.changes;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import ru.contextguide.yandexservices.utils.ApiResponse;
 
+import java.util.Objects;
+
 @JsonRootName("result")
 public class CheckResponse implements ApiResponse {
     private CheckResponseModified modified;
@@ -54,5 +56,26 @@ public class CheckResponse implements ApiResponse {
 
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CheckResponse that = (CheckResponse) o;
+        return Objects.equals(modified, that.modified) &&
+                Objects.equals(notFound, that.notFound) &&
+                Objects.equals(unprocessed, that.unprocessed) &&
+                Objects.equals(timestamp, that.timestamp);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(modified, notFound, unprocessed, timestamp);
     }
 }

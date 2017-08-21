@@ -11,6 +11,7 @@ import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Objects;
 
 public class AdsSelectionCriteria implements JsonSerializableObject {
     private List<Long> ids;
@@ -208,5 +209,36 @@ public class AdsSelectionCriteria implements JsonSerializableObject {
 
     public void setAdExtensionIds(List<Long> adExtensionIds) {
         this.adExtensionIds = adExtensionIds;
+    }
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AdsSelectionCriteria that = (AdsSelectionCriteria) o;
+        return Objects.equals(ids, that.ids) &&
+                Objects.equals(adGroupIds, that.adGroupIds) &&
+                Objects.equals(campaignIds, that.campaignIds) &&
+                Objects.equals(states, that.states) &&
+                Objects.equals(statuses, that.statuses) &&
+                Objects.equals(types, that.types) &&
+                mobile == that.mobile &&
+                Objects.equals(vCardIds, that.vCardIds) &&
+                Objects.equals(sitelinkSetIds, that.sitelinkSetIds) &&
+                Objects.equals(adImageHashes, that.adImageHashes) &&
+                Objects.equals(vCardModerationStatuses, that.vCardModerationStatuses) &&
+                Objects.equals(sitelinksModerationStatuses, that.sitelinksModerationStatuses) &&
+                Objects.equals(adImageModerationStatuses, that.adImageModerationStatuses) &&
+                Objects.equals(adExtensionIds, that.adExtensionIds);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ids, adGroupIds, campaignIds, states, statuses, types, mobile, vCardIds, sitelinkSetIds, adImageHashes, vCardModerationStatuses, sitelinksModerationStatuses, adImageModerationStatuses, adExtensionIds);
     }
 }

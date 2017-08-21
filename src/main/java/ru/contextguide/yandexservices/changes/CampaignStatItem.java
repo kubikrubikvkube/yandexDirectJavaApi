@@ -28,4 +28,6 @@ public class CampaignStatItem {
     public void setBorderDate(String borderDate) {
         this.borderDate = borderDate;
     }
+
+
 }

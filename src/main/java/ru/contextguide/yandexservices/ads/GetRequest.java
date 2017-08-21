@@ -5,6 +5,7 @@ import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 import ru.contextguide.yandexservices.utils.LimitOffset;
 
 import java.util.List;
+import java.util.Objects;
 
 public class GetRequest implements JsonSerializableObject {
     private final AdsSelectionCriteria selectionCriteria;
@@ -99,5 +100,30 @@ public class GetRequest implements JsonSerializableObject {
 
     public void setPage(LimitOffset page) {
         this.page = page;
+    }
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GetRequest that = (GetRequest) o;
+        return Objects.equals(selectionCriteria, that.selectionCriteria) &&
+                Objects.equals(fieldNames, that.fieldNames) &&
+                Objects.equals(textAdFieldNames, that.textAdFieldNames) &&
+                Objects.equals(mobileAppAdFieldNames, that.mobileAppAdFieldNames) &&
+                Objects.equals(dynamicTextAdFieldNames, that.dynamicTextAdFieldNames) &&
+                Objects.equals(textImageAdFieldNames, that.textImageAdFieldNames) &&
+                Objects.equals(mobileAppImageAdFieldNames, that.mobileAppImageAdFieldNames) &&
+                Objects.equals(page, that.page);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(selectionCriteria, fieldNames, textAdFieldNames, mobileAppAdFieldNames, dynamicTextAdFieldNames, textImageAdFieldNames, mobileAppImageAdFieldNames, page);
     }
 }

@@ -13,6 +13,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Запрос на получения кампаний
@@ -109,5 +110,28 @@ public class GetRequest implements JsonSerializableObject {
      */
     public void setPage(@Nullable LimitOffset page) {
         this.page = page;
+    }
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GetRequest that = (GetRequest) o;
+        return Objects.equals(selectionCriteria, that.selectionCriteria) &&
+                Objects.equals(fieldNames, that.fieldNames) &&
+                Objects.equals(textCampaignFieldNames, that.textCampaignFieldNames) &&
+                Objects.equals(mobileAppCampaignFieldNames, that.mobileAppCampaignFieldNames) &&
+                Objects.equals(dynamicTextCampaignFieldNames, that.dynamicTextCampaignFieldNames) &&
+                Objects.equals(page, that.page);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(selectionCriteria, fieldNames, textCampaignFieldNames, mobileAppCampaignFieldNames, dynamicTextCampaignFieldNames, page);
     }
 }

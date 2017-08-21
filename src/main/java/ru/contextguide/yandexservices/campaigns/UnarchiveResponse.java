@@ -6,6 +6,7 @@ import ru.contextguide.yandexservices.utils.ActionResult;
 import ru.contextguide.yandexservices.utils.ApiResponse;
 
 import java.util.List;
+import java.util.Objects;
 
 @JsonRootName("result")
 public class UnarchiveResponse implements ApiResponse {
@@ -17,5 +18,23 @@ public class UnarchiveResponse implements ApiResponse {
 
     public void setUnarchiveResults(List<ActionResult> unarchiveResults) {
         this.unarchiveResults = ImmutableList.copyOf(unarchiveResults);
+    }
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UnarchiveResponse that = (UnarchiveResponse) o;
+        return Objects.equals(unarchiveResults, that.unarchiveResults);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(unarchiveResults);
     }
 }

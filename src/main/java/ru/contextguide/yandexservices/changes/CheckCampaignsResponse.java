@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import ru.contextguide.yandexservices.utils.ApiResponse;
 
 import java.util.List;
+import java.util.Objects;
 
 @JsonRootName("result")
 public class CheckCampaignsResponse implements ApiResponse {
@@ -32,5 +33,24 @@ public class CheckCampaignsResponse implements ApiResponse {
 
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CheckCampaignsResponse that = (CheckCampaignsResponse) o;
+        return Objects.equals(campaigns, that.campaigns) &&
+                Objects.equals(timestamp, that.timestamp);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(campaigns, timestamp);
     }
 }

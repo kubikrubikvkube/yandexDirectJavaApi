@@ -6,6 +6,7 @@ import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Objects;
 
 public class CheckRequest implements JsonSerializableObject {
     @Nullable private final List<Long> campaignIds;
@@ -69,5 +70,27 @@ public class CheckRequest implements JsonSerializableObject {
      */
     public String getTimestamp() {
         return timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CheckRequest that = (CheckRequest) o;
+        return Objects.equals(campaignIds, that.campaignIds) &&
+                Objects.equals(adGroupIds, that.adGroupIds) &&
+                Objects.equals(adIds, that.adIds) &&
+                Objects.equals(fieldNames, that.fieldNames) &&
+                Objects.equals(timestamp, that.timestamp);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(campaignIds, adGroupIds, adIds, fieldNames, timestamp);
     }
 }

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import ru.contextguide.campaign.campaign.YesNoEnum;
 import ru.contextguide.yandexservices.utils.ApiResponse;
 
+import java.util.Objects;
+
 @JsonRootName("result")
 public class CheckDictionariesResponse implements ApiResponse {
     private YesNoEnum timeZonesChanged;
@@ -45,5 +47,25 @@ public class CheckDictionariesResponse implements ApiResponse {
 
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CheckDictionariesResponse that = (CheckDictionariesResponse) o;
+        return timeZonesChanged == that.timeZonesChanged &&
+                regionsChanged == that.regionsChanged &&
+                Objects.equals(timestamp, that.timestamp);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(timeZonesChanged, regionsChanged, timestamp);
     }
 }

@@ -1,5 +1,7 @@
 package ru.contextguide.yandexservices.utils;
 
+import java.util.Objects;
+
 /**
  * Результат
  */
@@ -39,5 +41,25 @@ public class ActionResult implements ApiResponse {
 
     public void setErrors(ExceptionNotification errors) {
         this.errors = errors;
+    }
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ActionResult that = (ActionResult) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(warnings, that.warnings) &&
+                Objects.equals(errors, that.errors);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, warnings, errors);
     }
 }
