@@ -3,15 +3,20 @@ package ru.contextguide.yandexservices;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.contextguide.adgroup.AdGroupAddItem;
 import ru.contextguide.campaign.campaign.CampaignAddItem;
+import ru.contextguide.campaign.campaign.CampaignGetItem;
 import ru.contextguide.campaign.campaign.TextCampaignAddItem;
 import ru.contextguide.campaign.textCampaign.*;
 import ru.contextguide.yandexservices.adgroups.AdGroups;
+import ru.contextguide.yandexservices.adgroups.AdGroupsDefaultImpl;
 import ru.contextguide.yandexservices.campaigns.*;
+import ru.contextguide.yandexservices.campaigns.DeleteResponse;
 import ru.contextguide.yandexservices.exceptions.DeserializationException;
 import ru.contextguide.yandexservices.exceptions.SerializationException;
-import ru.contextguide.yandexservices.utils.IdsCriteria;
+import ru.contextguide.yandexservices.utils.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,22 +28,33 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 public class MockObjects {
-    private final AdGroups adGroups;
-    private final Campaigns campaigns;
+    private static final Logger log = LoggerFactory.getLogger(MockObjects.class);
+    private static final JsonParser jsonParser = new DefaultJsonParser();
+    private static final ServiceConnectionManager sce = new ServiceConnectionManagerDefaultImpl();
+    private static final Campaigns campaigns = new CampaignsDefaultImpl(jsonParser, sce);
+    private static final AdGroups adGroups = new AdGroupsDefaultImpl(jsonParser, sce);
 
-    public MockObjects(AdGroups adGroups, Campaigns campaigns) {
-        this.adGroups = adGroups;
-        this.campaigns = campaigns;
+    static {
+        log.info("MockObjects initialization started.");
+        log.info("JsonParser: " + jsonParser);
+        log.info("ServiceConnectionManager: " + sce);
+        log.info("Campaigns: " + campaigns);
+        log.info("AdGroups: " + adGroups);
+        log.info("MockObjects initializated.");
     }
 
-    public Long createCampaignAddItem() throws DeserializationException, IOException, SerializationException {
-        CampaignAddItem mockCampaign = this.campaignAddItem();
-        AddRequest addRequest = new AddRequest(mockCampaign);
-        AddResponse addResponse = campaigns.add(addRequest);
-        return addResponse.getAddResults().get(0).getId();
+    private MockObjects() {
     }
 
-    public void deleteCampaign(Long mockCampaignId) throws DeserializationException, IOException, SerializationException {
+    public static Long createCampaignAddItem() throws Exception {
+        CampaignAddItem mockCampaign = createDefaultCampaignAddItem();
+        CampaignsAddRequest addRequest = new CampaignsAddRequest(mockCampaign);
+        CampaignsAddResponse addResponse = campaigns.add(addRequest);
+        CampaignGetItem campaignGetItem = addResponse.getAddResults().get(0);
+        return campaignGetItem.getId();
+    }
+
+    public static void deleteCampaign(Long mockCampaignId) throws DeserializationException, IOException, SerializationException {
         IdsCriteria idsCriteria = new IdsCriteria(mockCampaignId);
         DeleteRequest deleteRequest = new DeleteRequest(idsCriteria);
         DeleteResponse deleteResponse = campaigns.delete(deleteRequest);
@@ -46,13 +62,7 @@ public class MockObjects {
         assertThat("1 campaign should be deleted", deleteResponse.getDeleteResults(), hasSize(1));
     }
 
-    public long createAdGroupAddItem(Long campaignId) throws DeserializationException, SerializationException, IOException {
-        ru.contextguide.yandexservices.adgroups.AddRequest addRequest = new ru.contextguide.yandexservices.adgroups.AddRequest(this.adgroupAddItem(campaignId));
-        ru.contextguide.yandexservices.adgroups.AddResponse addResponse = adGroups.add(addRequest);
-        return addResponse.getAddResults().get(0).getId();
-    }
-
-    public CampaignAddItem campaignAddItem() {
+    private static CampaignAddItem createDefaultCampaignAddItem() {
         DateTime tomorrowDate = DateTime.now().plusDays(1);
         DateTimeFormatter dtf = DateTimeFormat.forPattern("YYYY-MM-dd");
         String tomorrowString = dtf.print(tomorrowDate);
@@ -63,7 +73,7 @@ public class MockObjects {
         return new CampaignAddItem("SomeCampaign", tomorrowString, textCampaignItem, null, null);
     }
 
-    public AdGroupAddItem adgroupAddItem(Long campaignId) {
+    private AdGroupAddItem adgroupAddItem(Long campaignId) {
         List<Long> regionIds = new ArrayList<>(1);
         regionIds.add(0L); // All regions
         return new AdGroupAddItem("SomeAdGroup", campaignId, regionIds);

@@ -9,14 +9,14 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class AddRequest implements JsonSerializableObject {
+public class CampaignsAddRequest implements JsonSerializableObject {
     @NotNull private final List<CampaignAddItem> campaigns;
 
-    public AddRequest(List<CampaignAddItem> campaigns) {
+    public CampaignsAddRequest(List<CampaignAddItem> campaigns) {
         this.campaigns = new ArrayList<>(campaigns);
     }
 
-    public AddRequest(CampaignAddItem campaign) {
+    public CampaignsAddRequest(CampaignAddItem campaign) {
         this.campaigns = new ArrayList<>(1);
         this.campaigns.add(campaign);
     }
@@ -42,7 +42,7 @@ public class AddRequest implements JsonSerializableObject {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AddRequest that = (AddRequest) o;
+        CampaignsAddRequest that = (CampaignsAddRequest) o;
         return Objects.equals(campaigns, that.campaigns);
     }
 

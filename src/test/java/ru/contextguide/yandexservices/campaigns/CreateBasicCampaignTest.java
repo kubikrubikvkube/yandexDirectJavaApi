@@ -43,9 +43,9 @@ public class CreateBasicCampaignTest {
         simpleCampaignAddItem = new CampaignAddItem("simpleCampaign", tomorrowDateAsString, textCampaignItem, null, null);
         log.info("Simple campaign add item: " + simpleCampaignAddItem);
 
-        AddRequest addRequest = new AddRequest(simpleCampaignAddItem);
+        CampaignsAddRequest addRequest = new CampaignsAddRequest(simpleCampaignAddItem);
         log.info("Add request: " + addRequest);
-        AddResponse addResponse = campaigns.add(addRequest);
+        CampaignsAddResponse addResponse = campaigns.add(addRequest);
         log.info("Add response: " + addResponse);
         assertNotNull(addResponse, "Response should be received");
         assertThat("Should be 1 add result", addResponse.getAddResults(), hasSize(1));

@@ -29,9 +29,8 @@ public class AdGroupsImplTest {
 
     @BeforeEach
     public void setUp() throws Exception {
-        mockObjects = new MockObjects(adGroups, campaigns);
-        mockCampaignId = mockObjects.createCampaignAddItem();
-        mockAdgroupId = mockObjects.createAdGroupAddItem(mockCampaignId);
+        mockCampaignId = MockObjects.createCampaignAddItem();
+        //mockAdgroupId = MockObjects.createAdGroupAddItem(mockCampaignId);
     }
 
     @AfterEach

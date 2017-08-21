@@ -24,10 +24,10 @@ public class AdGroupsDefaultImpl implements AdGroups {
     }
 
     @Override
-    public AddResponse add(AddRequest addRequest) throws SerializationException, DeserializationException, IOException {
+    public AdgroupsAddResponse add(AddRequest addRequest) throws SerializationException, DeserializationException, IOException {
         log.info("Requesting from API: " + addRequest.toJson());
         String rawResponse = sce.sendRequest(AdGroupsMethod.ADD, API_URL, addRequest);
-        return jsonParser.deserialize(rawResponse, AddResponse.class);
+        return jsonParser.deserialize(rawResponse, AdgroupsAddResponse.class);
     }
 
     @Override

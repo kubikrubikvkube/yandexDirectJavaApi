@@ -19,7 +19,7 @@ public interface AdGroups {
      * Не более 1000 групп в одном вызове метода.
      * Не допускается добавление группы в архивную кампанию.
      */
-    AddResponse add(AddRequest request) throws SerializationException, DeserializationException, IOException;
+    AdgroupsAddResponse add(AddRequest request) throws SerializationException, DeserializationException, IOException;
 
     /**
      * Удаляет группы объявлений.

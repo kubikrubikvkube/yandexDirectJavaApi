@@ -30,18 +30,16 @@ public class CampaignsImplTest {
     private final ServiceConnectionManager sce = new ServiceConnectionManagerDefaultImpl();
     private final Campaigns campaigns = new CampaignsDefaultImpl(jsonParser, sce);
     private final AdGroups adGroups = new AdGroupsDefaultImpl(jsonParser, sce);
-    private MockObjects mockObjects;
     private Long mockCampaignId;
 
     @BeforeEach
     public void setUp() throws Exception {
-        mockObjects = new MockObjects(adGroups, campaigns);
-        mockCampaignId = mockObjects.createCampaignAddItem();
+        mockCampaignId = MockObjects.createCampaignAddItem();
     }
 
     @AfterEach
     public void tearDown() throws Exception {
-        mockObjects.deleteCampaign(mockCampaignId);
+        MockObjects.deleteCampaign(mockCampaignId);
     }
 
     @Test

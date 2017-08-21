@@ -38,14 +38,13 @@ public class AdsImplTest {
 
     @BeforeEach
     public void setUp() throws Exception {
-        mockObjects = new MockObjects(adGroups, campaigns);
-        mockCampaignId = mockObjects.createCampaignAddItem();
-        mockAdGroupId = mockObjects.createAdGroupAddItem(mockCampaignId);
+        mockCampaignId = MockObjects.createCampaignAddItem();
+        //mockAdGroupId = MockObjects.createAdGroupAddItem(mockCampaignId);
     }
 
     @AfterEach
     public void tearDown() throws Exception {
-        mockObjects.deleteCampaign(mockCampaignId);
+        MockObjects.deleteCampaign(mockCampaignId);
     }
 
     @Test

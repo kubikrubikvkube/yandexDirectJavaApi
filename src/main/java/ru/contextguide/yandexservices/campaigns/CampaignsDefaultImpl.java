@@ -53,9 +53,9 @@ public class CampaignsDefaultImpl implements Campaigns {
     }
 
     @Override
-    public AddResponse add(AddRequest request) throws DeserializationException, IOException, SerializationException {
+    public CampaignsAddResponse add(CampaignsAddRequest request) throws DeserializationException, IOException, SerializationException {
         String result = sce.sendRequest(CampaignsMethod.ADD, API_URL, request);
-        return defaultJsonParser.deserialize(result, AddResponse.class);
+        return defaultJsonParser.deserialize(result, CampaignsAddResponse.class);
 
     }
 

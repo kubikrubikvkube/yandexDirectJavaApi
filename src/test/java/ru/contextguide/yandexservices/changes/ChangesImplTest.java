@@ -25,18 +25,17 @@ public class ChangesImplTest {
     Campaigns campaigns;
     Changes changes;
     JsonParser jsonParser;
-    private MockObjects mockObjects;
+
     private Long mockCampaignId;
 
     @Before
     public void setUp() throws Exception {
-        mockObjects = new MockObjects(adGroups, campaigns);
-        mockCampaignId = mockObjects.createCampaignAddItem();
+        mockCampaignId = MockObjects.createCampaignAddItem();
     }
 
     @After
     public void tearDown() throws Exception {
-        mockObjects.deleteCampaign(mockCampaignId);
+        MockObjects.deleteCampaign(mockCampaignId);
     }
 
     @Test

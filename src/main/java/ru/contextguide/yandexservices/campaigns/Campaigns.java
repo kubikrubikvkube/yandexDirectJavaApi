@@ -17,7 +17,7 @@ public interface Campaigns {
 
     ResumeResponse resume(ResumeRequest request) throws DeserializationException, IOException, SerializationException;
 
-    AddResponse add(AddRequest request) throws DeserializationException, IOException, SerializationException;
+    CampaignsAddResponse add(CampaignsAddRequest request) throws DeserializationException, IOException, SerializationException;
 
     ArchiveResponse archive(ArchiveRequest request) throws DeserializationException, IOException, SerializationException;
 
