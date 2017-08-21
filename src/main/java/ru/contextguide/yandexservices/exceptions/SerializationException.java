@@ -3,7 +3,7 @@ package ru.contextguide.yandexservices.exceptions;
 /**
  * Исключение, полученное при сериализации
  */
-public class SerializationException extends YandexDirectException {
+public class SerializationException extends YDRuntimeException {
     public SerializationException() {
         super();
     }

@@ -3,7 +3,7 @@ package ru.contextguide.yandexservices.exceptions;
 /**
  * Исключение при создании запроса к сервису.
  */
-public class ApiRequestException extends YandexDirectException {
+public class ApiRequestException extends YDException {
 
     public ApiRequestException() {
         super();
@@ -21,7 +21,5 @@ public class ApiRequestException extends YandexDirectException {
         super(cause);
     }
 
-    protected ApiRequestException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
+
 }

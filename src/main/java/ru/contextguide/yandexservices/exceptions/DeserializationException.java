@@ -3,7 +3,7 @@ package ru.contextguide.yandexservices.exceptions;
 /**
  * Исключение, полученное при десериализации
  */
-public class DeserializationException extends YandexDirectException {
+public class DeserializationException extends YDRuntimeException {
     public DeserializationException() {
         super();
     }
