@@ -6,16 +6,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.contextguide.adgroup.AdGroupFieldEnum;
-import ru.contextguide.adgroup.AdGroupGetItem;
-import ru.contextguide.adgroup.AdGroupUpdateItem;
-import ru.contextguide.adgroup.AdGroupsSelectionCriteria;
+import ru.contextguide.adgroup.*;
 import ru.contextguide.yandexservices.MockObjects;
 import ru.contextguide.yandexservices.campaigns.Campaigns;
 import ru.contextguide.yandexservices.campaigns.CampaignsDefaultImpl;
 import ru.contextguide.yandexservices.utils.*;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -44,6 +42,44 @@ class AdGroupsImplTest {
     @AfterEach
     void tearDown() throws Exception {
         MockObjects.deleteCampaign(mockCampaignId);
+    }
+
+    @Test
+    void add() throws Exception {
+        log.info("Creating new AdGroup");
+        String name = "NewAddedAdGroup";
+        log.info("New adGroup name will be: " + name);
+        List<Long> allRegions = Collections.singletonList(0L);
+        log.info("AdGroup regions: " + allRegions);
+        AdGroupAddItem addItem = new AdGroupAddItem(name, mockCampaignId, allRegions);
+        log.info("AddItem: " + addItem);
+        AddRequest addRequest = new AddRequest(addItem);
+        log.info("AddRequest: " + addRequest);
+        AdgroupsAddResponse addResponse = adGroups.add(addRequest);
+        log.info("AddResponse: " + addResponse);
+        List<AdGroupGetItem> addResults = addResponse.getAddResults();
+        assertThat("Should be 1 added adGroup", addResults, hasSize(1));
+        AdGroupGetItem newAddGroup = addResults.get(0);
+        assertNotNull(newAddGroup, "New added AdGroup shouldn't be null");
+        Long newAddGroupId = newAddGroup.getId();
+        assertNotNull(newAddGroupId);
+        log.info("New addgroup id: " + newAddGroupId);
+
+        AdGroupsSelectionCriteria selectionCriteria = new AdGroupsSelectionCriteria(null, newAddGroupId);
+        GetRequest getRequest = new GetRequest(selectionCriteria, Arrays.asList(AdGroupFieldEnum.values()));
+        GetResponse getResponse = adGroups.get(getRequest);
+        assertNotNull(getResponse);
+        List<AdGroupGetItem> adGroups = getResponse.getAdGroups();
+        assertThat("Should be 1 added adgroup", adGroups, hasSize(1));
+        AdGroupGetItem adGroup = adGroups.get(0);
+        assertNotNull(adGroup);
+        assertEquals(newAddGroupId, adGroup.getId(), "Id should remain the same");
+        assertEquals(name, addItem.getName(), "Name should be correct");
+
+    }
+
+    void delete() throws Exception {
+
     }
 
     @Test
