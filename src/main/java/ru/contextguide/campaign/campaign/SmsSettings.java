@@ -1,9 +1,12 @@
 package ru.contextguide.campaign.campaign;
 
 
-import java.util.List;
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
-public class SmsSettings {
+import java.util.List;
+import java.util.Objects;
+
+public class SmsSettings implements JsonSerializableObject {
     /**
      * Время, начиная с которого разрешено отправлять SMS о событиях, связанных с кампанией.
      * Указывается в формате HH:MM, минуты задают кратно 15 (0, 15, 30, 45). Значение по умолчанию 9:00.
@@ -44,4 +47,24 @@ public class SmsSettings {
     }
 
 
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SmsSettings that = (SmsSettings) o;
+        return Objects.equals(timeFrom, that.timeFrom) &&
+                Objects.equals(timeTo, that.timeTo) &&
+                Objects.equals(events, that.events);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(timeFrom, timeTo, events);
+    }
 }

@@ -3,11 +3,13 @@ package ru.contextguide.adgroup;
 import ru.contextguide.adgroup.dynamicTextAdGroup.DynamicTextAdGroupGet;
 import ru.contextguide.adgroup.dynamicTextAdGroup.DynamicTextFeedAdGroupGet;
 import ru.contextguide.adgroup.mobileAppAdGroup.MobileAppAdGroupGet;
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
 import java.util.List;
+import java.util.Objects;
 
 
-public class AdGroupGetItem {
+public class AdGroupGetItem implements JsonSerializableObject {
     private Long id;
     private String name;
     private Long campaignId;
@@ -160,5 +162,35 @@ public class AdGroupGetItem {
 
     public void setDynamicTextFeedAdGroupGet(ru.contextguide.adgroup.dynamicTextAdGroup.DynamicTextFeedAdGroupGet dynamicTextFeedAdGroupGet) {
         this.dynamicTextFeedAdGroupGet = dynamicTextFeedAdGroupGet;
+    }
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AdGroupGetItem that = (AdGroupGetItem) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(campaignId, that.campaignId) &&
+                Objects.equals(regionIds, that.regionIds) &&
+                Objects.equals(negativeKeywords, that.negativeKeywords) &&
+                Objects.equals(trackingParams, that.trackingParams) &&
+                status == that.status &&
+                type == that.type &&
+                subtype == that.subtype &&
+                Objects.equals(mobileAppAdGroup, that.mobileAppAdGroup) &&
+                Objects.equals(dynamicTextAdGroup, that.dynamicTextAdGroup) &&
+                Objects.equals(dynamicTextFeedAdGroupGet, that.dynamicTextFeedAdGroupGet);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, campaignId, regionIds, negativeKeywords, trackingParams, status, type, subtype, mobileAppAdGroup, dynamicTextAdGroup, dynamicTextFeedAdGroupGet);
     }
 }

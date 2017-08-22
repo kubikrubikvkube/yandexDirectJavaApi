@@ -8,6 +8,7 @@ import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Параметры текстово-графического объявления.
@@ -170,5 +171,32 @@ public class TextAdAdd implements JsonSerializableObject {
             throw new ApiRequestException("Link should not have more than 1024 characters");
         }
         return href;
+    }
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TextAdAdd textAdAdd = (TextAdAdd) o;
+        return Objects.equals(title, textAdAdd.title) &&
+                Objects.equals(text, textAdAdd.text) &&
+                mobile == textAdAdd.mobile &&
+                Objects.equals(href, textAdAdd.href) &&
+                Objects.equals(vCardId, textAdAdd.vCardId) &&
+                Objects.equals(adImageHash, textAdAdd.adImageHash) &&
+                Objects.equals(sitelinkSetId, textAdAdd.sitelinkSetId) &&
+                Objects.equals(displayUrlPath, textAdAdd.displayUrlPath) &&
+                Objects.equals(adExtensionIds, textAdAdd.adExtensionIds);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, text, mobile, href, vCardId, adImageHash, sitelinkSetId, displayUrlPath, adExtensionIds);
     }
 }

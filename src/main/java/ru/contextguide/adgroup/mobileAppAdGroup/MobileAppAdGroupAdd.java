@@ -6,6 +6,7 @@ import ru.contextguide.adgroup.DeviceTypeEnum;
 import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
 import java.util.List;
+import java.util.Objects;
 
 public class MobileAppAdGroupAdd implements JsonSerializableObject {
     /**
@@ -36,4 +37,40 @@ public class MobileAppAdGroupAdd implements JsonSerializableObject {
         this.targetOperatingSystemVersion = targetOperatingSystemVersion;
     }
 
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+    public String getStoreUrl() {
+        return storeUrl;
+    }
+
+    public List<DeviceTypeEnum> getTargetDeviceType() {
+        return targetDeviceType;
+    }
+
+    public CarrierEnum getTargetCarrier() {
+        return targetCarrier;
+    }
+
+    public String getTargetOperatingSystemVersion() {
+        return targetOperatingSystemVersion;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MobileAppAdGroupAdd that = (MobileAppAdGroupAdd) o;
+        return Objects.equals(storeUrl, that.storeUrl) &&
+                Objects.equals(targetDeviceType, that.targetDeviceType) &&
+                targetCarrier == that.targetCarrier &&
+                Objects.equals(targetOperatingSystemVersion, that.targetOperatingSystemVersion);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(storeUrl, targetDeviceType, targetCarrier, targetOperatingSystemVersion);
+    }
 }

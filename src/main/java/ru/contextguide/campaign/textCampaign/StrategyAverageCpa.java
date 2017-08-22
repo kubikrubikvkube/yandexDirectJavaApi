@@ -1,11 +1,15 @@
 package ru.contextguide.campaign.textCampaign;
 
 
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
+
+import java.util.Objects;
+
 /**
  * Параметры стратегии Средняя цена конверсии.
  */
 
-public class StrategyAverageCpa {
+public class StrategyAverageCpa implements JsonSerializableObject {
     private Long averageCpa;
     private Long goalId;
     private Long weeklySpendLimit;
@@ -68,5 +72,27 @@ public class StrategyAverageCpa {
      */
     public void setBidCeiling(Long bidCeiling) {
         this.bidCeiling = bidCeiling;
+    }
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StrategyAverageCpa that = (StrategyAverageCpa) o;
+        return Objects.equals(averageCpa, that.averageCpa) &&
+                Objects.equals(goalId, that.goalId) &&
+                Objects.equals(weeklySpendLimit, that.weeklySpendLimit) &&
+                Objects.equals(bidCeiling, that.bidCeiling);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(averageCpa, goalId, weeklySpendLimit, bidCeiling);
     }
 }

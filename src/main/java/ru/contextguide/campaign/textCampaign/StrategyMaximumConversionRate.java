@@ -1,11 +1,15 @@
 package ru.contextguide.campaign.textCampaign;
 
 
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
+
+import java.util.Objects;
+
 /**
  * Параметры стратегии Недельный бюджет (максимальная конверсия).
  */
 
-public class StrategyMaximumConversionRate {
+public class StrategyMaximumConversionRate implements JsonSerializableObject {
 
     private Long weeklySpendLimit;
     private Long goalId;
@@ -54,5 +58,26 @@ public class StrategyMaximumConversionRate {
      */
     public void setBidCeiling(Long bidCeiling) {
         this.bidCeiling = bidCeiling;
+    }
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StrategyMaximumConversionRate that = (StrategyMaximumConversionRate) o;
+        return Objects.equals(weeklySpendLimit, that.weeklySpendLimit) &&
+                Objects.equals(goalId, that.goalId) &&
+                Objects.equals(bidCeiling, that.bidCeiling);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(weeklySpendLimit, goalId, bidCeiling);
     }
 }

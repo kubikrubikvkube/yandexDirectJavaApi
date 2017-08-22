@@ -1,11 +1,15 @@
 package ru.contextguide.campaign.textCampaign;
 
 
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
+
+import java.util.Objects;
+
 /**
  * Настройки показов по дополнительным релевантным фразам
  */
 
-public class RelevantKeywordsSetting {
+public class RelevantKeywordsSetting implements JsonSerializableObject {
 
     private int budgetPercent;
     private RelevantKeywordsModeEnum relevantKeywordsModeEnum;
@@ -59,4 +63,24 @@ public class RelevantKeywordsSetting {
         this.optimizeGoalId = optimizeGoalId;
     }
 
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RelevantKeywordsSetting that = (RelevantKeywordsSetting) o;
+        return budgetPercent == that.budgetPercent &&
+                relevantKeywordsModeEnum == that.relevantKeywordsModeEnum &&
+                Objects.equals(optimizeGoalId, that.optimizeGoalId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(budgetPercent, relevantKeywordsModeEnum, optimizeGoalId);
+    }
 }

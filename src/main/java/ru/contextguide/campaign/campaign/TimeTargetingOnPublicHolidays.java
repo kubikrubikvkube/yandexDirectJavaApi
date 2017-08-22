@@ -1,6 +1,10 @@
 package ru.contextguide.campaign.campaign;
 
-public class TimeTargetingOnPublicHolidays {
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
+
+import java.util.Objects;
+
+public class TimeTargetingOnPublicHolidays implements JsonSerializableObject {
 
     /**
      * Останавливать ли объявления в праздничные нерабочие дни: YES — останавливать, NO — не останавливать.
@@ -61,4 +65,25 @@ public class TimeTargetingOnPublicHolidays {
         this.suspendOnHolidays = suspendOnHolidays;
     }
 
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TimeTargetingOnPublicHolidays that = (TimeTargetingOnPublicHolidays) o;
+        return bidPercent == that.bidPercent &&
+                startHour == that.startHour &&
+                endHour == that.endHour &&
+                suspendOnHolidays == that.suspendOnHolidays;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(suspendOnHolidays, bidPercent, startHour, endHour);
+    }
 }

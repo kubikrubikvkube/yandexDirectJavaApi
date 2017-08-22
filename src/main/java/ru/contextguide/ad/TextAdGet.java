@@ -8,6 +8,7 @@ import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Objects;
 
 public class TextAdGet implements JsonSerializableObject {
     private final String title;
@@ -167,5 +168,32 @@ public class TextAdGet implements JsonSerializableObject {
             throw new ApiRequestException("Link should not have more than 1024 characters");
         }
         return href;
+    }
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TextAdGet textAdGet = (TextAdGet) o;
+        return Objects.equals(title, textAdGet.title) &&
+                Objects.equals(text, textAdGet.text) &&
+                mobile == textAdGet.mobile &&
+                Objects.equals(href, textAdGet.href) &&
+                Objects.equals(vCardId, textAdGet.vCardId) &&
+                Objects.equals(adImageHash, textAdGet.adImageHash) &&
+                Objects.equals(sitelinkSetId, textAdGet.sitelinkSetId) &&
+                Objects.equals(displayUrlPath, textAdGet.displayUrlPath) &&
+                Objects.equals(adExtensionIds, textAdGet.adExtensionIds);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, text, mobile, href, vCardId, adImageHash, sitelinkSetId, displayUrlPath, adExtensionIds);
     }
 }

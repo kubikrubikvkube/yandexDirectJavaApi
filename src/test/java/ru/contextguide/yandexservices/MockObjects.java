@@ -87,9 +87,9 @@ public class MockObjects {
         log.debug(mockCampaignId + " campaign deleted.");
     }
 
-    public static Long createAdGroup() throws Exception {
+    public static Long createAdGroup(Long campaignId) throws Exception {
         log.debug("Creating ad group");
-        AdGroupAddItem adGroupAddItem = new AdGroupAddItem("TestAdGroup", createCampaignAddItem(), Collections.singletonList(0L));
+        AdGroupAddItem adGroupAddItem = new AdGroupAddItem("TestAdGroup", campaignId, Collections.singletonList(0L));
         log.debug("AdGroupAddItem: " + adGroupAddItem);
         AddRequest addRequest = new AddRequest(adGroupAddItem);
         log.debug("AddRequest: " + addRequest);
@@ -107,7 +107,7 @@ public class MockObjects {
         DateTime tomorrowDate = DateTime.now().plusDays(1);
         DateTimeFormatter dtf = DateTimeFormat.forPattern("YYYY-MM-dd");
         String tomorrowString = dtf.print(tomorrowDate);
-        log.info("Tomorrow date: " + tomorrowString);
+        log.debug("Tomorrow date: " + tomorrowString);
         TextCampaignSearchStrategyAdd searchStrategy = new TextCampaignSearchStrategyAdd(TextCampaignSearchStrategyTypeEnum.HIGHEST_POSITION);
         log.debug("Search strategy: " + searchStrategy);
         TextCampaignNetworkStrategyAdd networkStrategy = new TextCampaignNetworkStrategyAdd(TextCampaignNetworkStrategyTypeEnum.MAXIMUM_COVERAGE);

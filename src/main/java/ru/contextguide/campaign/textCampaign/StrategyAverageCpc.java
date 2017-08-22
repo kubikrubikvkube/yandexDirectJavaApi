@@ -1,11 +1,15 @@
 package ru.contextguide.campaign.textCampaign;
 
 
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
+
+import java.util.Objects;
+
 /**
  * Параметры стратегии Средняя цена клика.
  */
 
-public class StrategyAverageCpc {
+public class StrategyAverageCpc implements JsonSerializableObject {
 
     private Long averageCpc;
 
@@ -43,4 +47,23 @@ public class StrategyAverageCpc {
         this.weeklySpendLimit = weeklySpendLimit;
     }
 
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StrategyAverageCpc that = (StrategyAverageCpc) o;
+        return Objects.equals(averageCpc, that.averageCpc) &&
+                Objects.equals(weeklySpendLimit, that.weeklySpendLimit);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(averageCpc, weeklySpendLimit);
+    }
 }

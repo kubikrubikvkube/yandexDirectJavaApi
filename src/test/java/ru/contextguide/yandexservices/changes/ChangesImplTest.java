@@ -19,7 +19,6 @@ import static org.junit.Assert.*;
 
 public class ChangesImplTest {
     private final String exampleTimestampString = "2015-05-24T23:59:59Z";
-    private final Long exampleTimestampMillis = 1432511999000L;
 
     AdGroups adGroups;
     Campaigns campaigns;
@@ -67,6 +66,7 @@ public class ChangesImplTest {
 
     @Test
     public void checkCampaignMillis() throws Exception {
+        Long exampleTimestampMillis = 1432511999000L;
         CheckCampaignsRequest requestMillis = new CheckCampaignsRequest(exampleTimestampMillis);
         CheckCampaignsResponse millisResponse = changes.checkCampaigns(requestMillis);
         assertNotNull("Response should not be null", millisResponse);

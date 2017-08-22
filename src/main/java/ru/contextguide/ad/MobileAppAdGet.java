@@ -1,4 +1,13 @@
 package ru.contextguide.ad;
 
-public class MobileAppAdGet {
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
+
+public class MobileAppAdGet implements JsonSerializableObject {
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+
 }

@@ -1,4 +1,13 @@
 package ru.contextguide.ad;
 
-public class TextImageAdGet {
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
+
+public class TextImageAdGet implements JsonSerializableObject {
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+
 }

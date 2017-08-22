@@ -1,10 +1,14 @@
 package ru.contextguide.campaign.textCampaign;
 
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
+
+import java.util.Objects;
+
 /**
  * Стратегия показа на поиске.
  */
 
-public class TextCampaignSearchStrategyAdd {
+public class TextCampaignSearchStrategyAdd implements JsonSerializableObject {
 
     private final TextCampaignSearchStrategyTypeEnum biddingStrategyType;
     private Long id;
@@ -142,5 +146,31 @@ public class TextCampaignSearchStrategyAdd {
      */
     public void setWeeklyClickPackage(StrategyWeeklyClickPackage weeklyClickPackage) {
         this.weeklyClickPackage = weeklyClickPackage;
+    }
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TextCampaignSearchStrategyAdd that = (TextCampaignSearchStrategyAdd) o;
+        return biddingStrategyType == that.biddingStrategyType &&
+                Objects.equals(id, that.id) &&
+                Objects.equals(wbMaximumClicks, that.wbMaximumClicks) &&
+                Objects.equals(wbMaximumConversionRate, that.wbMaximumConversionRate) &&
+                Objects.equals(averageCpc, that.averageCpc) &&
+                Objects.equals(averageCpa, that.averageCpa) &&
+                Objects.equals(averageRoi, that.averageRoi) &&
+                Objects.equals(weeklyClickPackage, that.weeklyClickPackage);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(biddingStrategyType, id, wbMaximumClicks, wbMaximumConversionRate, averageCpc, averageCpa, averageRoi, weeklyClickPackage);
     }
 }

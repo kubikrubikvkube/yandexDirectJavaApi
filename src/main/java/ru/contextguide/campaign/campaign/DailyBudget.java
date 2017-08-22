@@ -1,12 +1,16 @@
 package ru.contextguide.campaign.campaign;
 
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
+
+import java.util.Objects;
+
 /**
  * Дневной бюджет кампании в валюте рекламодателя, умноженный на 1 000 000.
  * <p>
  * Минимальный дневной бюджет для каждой валюты представлен в справочнике валют. Справочник валют можно получить с помощью метода
  */
 
-public class DailyBudget {
+public class DailyBudget implements JsonSerializableObject {
     /**
      * Дневной бюджет кампании в валюте рекламодателя, умноженный на 1 000 000.
      * Минимальный дневной бюджет для каждой валюты представлен в справочнике валют. Справочник валют можно получить с помощью метода Dictionaries.get.
@@ -45,5 +49,25 @@ public class DailyBudget {
          * Распределять дневной бюджет равномерно на весь день.
          */
         DISTRIBUTED
+    }
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DailyBudget that = (DailyBudget) o;
+        return Objects.equals(amount, that.amount) &&
+                dailyBudgetModeEnum == that.dailyBudgetModeEnum;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(amount, dailyBudgetModeEnum);
     }
 }

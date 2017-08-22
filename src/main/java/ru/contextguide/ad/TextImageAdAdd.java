@@ -7,4 +7,11 @@ import ru.contextguide.yandexservices.utils.JsonSerializableObject;
  */
 public class TextImageAdAdd implements JsonSerializableObject {
 //TODO
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+
 }

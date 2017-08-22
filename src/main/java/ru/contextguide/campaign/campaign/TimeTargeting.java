@@ -1,6 +1,10 @@
 package ru.contextguide.campaign.campaign;
 
-public class TimeTargeting {
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
+
+import java.util.Objects;
+
+public class TimeTargeting implements JsonSerializableObject {
     /**
      * Настройки временного таргетинга и почасовой корректировки ставок.
      */
@@ -42,5 +46,26 @@ public class TimeTargeting {
 
     public void setTimeTargetingOnPublicHolidays(TimeTargetingOnPublicHolidays timeTargetingOnPublicHolidays) {
         this.timeTargetingOnPublicHolidays = timeTargetingOnPublicHolidays;
+    }
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TimeTargeting that = (TimeTargeting) o;
+        return Objects.equals(schedule, that.schedule) &&
+                considerWorkingWeekends == that.considerWorkingWeekends &&
+                Objects.equals(timeTargetingOnPublicHolidays, that.timeTargetingOnPublicHolidays);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(schedule, considerWorkingWeekends, timeTargetingOnPublicHolidays);
     }
 }

@@ -2,13 +2,14 @@ package ru.contextguide.campaign.textCampaign;
 
 
 import com.google.common.base.Objects;
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
 
 /**
  * Параметры стратегии Средняя рентабельность инвестиций.
  */
 
-public class StrategyAverageRoi {
+public class StrategyAverageRoi implements JsonSerializableObject {
 
 
     private int reserveReturn;
@@ -145,4 +146,10 @@ public class StrategyAverageRoi {
     public int hashCode() {
         return Objects.hashCode(reserveReturn, roiCoef, goalId, weeklySpendLimit, bidCeiling, profitability);
     }
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
 }

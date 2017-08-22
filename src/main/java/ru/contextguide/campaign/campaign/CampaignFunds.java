@@ -1,6 +1,10 @@
 package ru.contextguide.campaign.campaign;
 
-public class CampaignFunds {
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
+
+import java.util.Objects;
+
+public class CampaignFunds implements JsonSerializableObject {
     private Long balance;
     private Long sumAvailableForTransfer;
     private Long balanceBonus;
@@ -38,4 +42,25 @@ public class CampaignFunds {
         this.sum = sum;
     }
 
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CampaignFunds that = (CampaignFunds) o;
+        return Objects.equals(balance, that.balance) &&
+                Objects.equals(sumAvailableForTransfer, that.sumAvailableForTransfer) &&
+                Objects.equals(balanceBonus, that.balanceBonus) &&
+                Objects.equals(sum, that.sum);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(balance, sumAvailableForTransfer, balanceBonus, sum);
+    }
 }

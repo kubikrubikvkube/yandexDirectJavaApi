@@ -1,7 +1,11 @@
 package ru.contextguide.campaign.textCampaign;
 
 
-public class StrategyNetworkDefault {
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
+
+import java.util.Objects;
+
+public class StrategyNetworkDefault implements JsonSerializableObject {
 
     private int bidPercent;
     private int limitPercent;
@@ -34,4 +38,22 @@ public class StrategyNetworkDefault {
         this.limitPercent = limitPercent;
     }
 
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StrategyNetworkDefault that = (StrategyNetworkDefault) o;
+        return bidPercent == that.bidPercent &&
+                limitPercent == that.limitPercent;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bidPercent, limitPercent);
+    }
 }

@@ -1,7 +1,11 @@
 package ru.contextguide.campaign.campaign;
 
 
-public class Statistics {
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
+
+import java.util.Objects;
+
+public class Statistics implements JsonSerializableObject {
     /**
      * Количество кликов за время существования кампании.
      */
@@ -31,5 +35,24 @@ public class Statistics {
         this.impressions = impressions;
     }
 
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Statistics that = (Statistics) o;
+        return Objects.equals(clicks, that.clicks) &&
+                Objects.equals(impressions, that.impressions);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(clicks, impressions);
+    }
 }
 

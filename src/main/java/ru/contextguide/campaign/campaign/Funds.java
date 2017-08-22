@@ -1,7 +1,11 @@
 package ru.contextguide.campaign.campaign;
 
 
-public class Funds {
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
+
+import java.util.Objects;
+
+public class Funds implements JsonSerializableObject {
     private CampaignFundsEnum mode;
 
     private CampaignFunds campaignFunds;
@@ -25,5 +29,23 @@ public class Funds {
         this.campaignFunds = campaignFunds;
     }
 
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Funds funds = (Funds) o;
+        return mode == funds.mode &&
+                Objects.equals(campaignFunds, funds.campaignFunds);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mode, campaignFunds);
+    }
 }

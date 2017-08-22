@@ -174,4 +174,10 @@ public class TextCampaignNetworkStrategyAdd implements JsonSerializableObject {
     public int hashCode() {
         return Objects.hashCode(biddingStrategyType, networkDefault, wbMaximumClicks, wbMaximumConversionRate, averageCpc, averageCpa, averageRoi, weeklyClickPackage);
     }
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
 }

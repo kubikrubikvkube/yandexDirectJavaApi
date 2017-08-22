@@ -114,7 +114,7 @@ public class AdsImplTest {
 
     @Test
     public void add() throws Exception {
-        Long adGroupId = MockObjects.createAdGroup();
+        Long adGroupId = MockObjects.createAdGroup(mockCampaignId);
         TextAdAdd textAdAdd = new TextAdAdd("SomeTitle", "Text", YesNoEnum.NO, "http://www.example.com", null);
         AdAddItem adAddItem = new AdAddItem(adGroupId, textAdAdd);
         AddRequest addRequest = new AddRequest(adAddItem);

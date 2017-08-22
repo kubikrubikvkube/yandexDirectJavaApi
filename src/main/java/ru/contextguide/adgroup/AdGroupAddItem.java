@@ -9,6 +9,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Objects;
 
 public final class AdGroupAddItem implements JsonSerializableObject {
 
@@ -105,5 +106,28 @@ public final class AdGroupAddItem implements JsonSerializableObject {
         this.dynamicTextAdGroup = dynamicTextAdGroup;
     }
 
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AdGroupAddItem that = (AdGroupAddItem) o;
+        return Objects.equals(name, that.name) &&
+                Objects.equals(campaignId, that.campaignId) &&
+                Objects.equals(regionIds, that.regionIds) &&
+                Objects.equals(negativeKeywords, that.negativeKeywords) &&
+                Objects.equals(trackingParams, that.trackingParams) &&
+                Objects.equals(mobileAppAdGroup, that.mobileAppAdGroup) &&
+                Objects.equals(dynamicTextAdGroup, that.dynamicTextAdGroup);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, campaignId, regionIds, negativeKeywords, trackingParams, mobileAppAdGroup, dynamicTextAdGroup);
+    }
 }

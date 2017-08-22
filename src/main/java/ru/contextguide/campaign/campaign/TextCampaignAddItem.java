@@ -3,12 +3,14 @@ package ru.contextguide.campaign.campaign;
 
 import ru.contextguide.campaign.textCampaign.RelevantKeywordsSetting;
 import ru.contextguide.campaign.textCampaign.TextCampaignStrategyAdd;
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Objects;
 
-public class TextCampaignAddItem {
+public class TextCampaignAddItem implements JsonSerializableObject {
     @NotNull private final TextCampaignStrategyAdd biddingStrategy;
     @NotNull private List<TextCampaignSettingGet> settings;
     @Nullable private List<Integer> counterIds;
@@ -58,5 +60,27 @@ public class TextCampaignAddItem {
      */
     public TextCampaignStrategyAdd getBiddingStrategy() {
         return biddingStrategy;
+    }
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TextCampaignAddItem that = (TextCampaignAddItem) o;
+        return Objects.equals(biddingStrategy, that.biddingStrategy) &&
+                Objects.equals(settings, that.settings) &&
+                Objects.equals(counterIds, that.counterIds) &&
+                Objects.equals(relevantKeywords, that.relevantKeywords);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(biddingStrategy, settings, counterIds, relevantKeywords);
     }
 }

@@ -1,7 +1,11 @@
 package ru.contextguide.campaign.campaign;
 
 
-public class EmailSettings {
+import ru.contextguide.yandexservices.utils.JsonSerializableObject;
+
+import java.util.Objects;
+
+public class EmailSettings implements JsonSerializableObject {
     /**
      * Периодичность проверки позиции объявления — 15, 30 или 60 минут. Значение по умолчанию — 60.
      * Уведомление отправляется, если объявление переместилось на более низкую позицию, чем та, которую обеспечивала ставка на момент установки.
@@ -76,4 +80,26 @@ public class EmailSettings {
         this.sendAccountNews = sendAccountNews;
     }
 
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EmailSettings that = (EmailSettings) o;
+        return checkPositionInterval == that.checkPositionInterval &&
+                warningBalance == that.warningBalance &&
+                Objects.equals(email, that.email) &&
+                sendWarnings == that.sendWarnings &&
+                sendAccountNews == that.sendAccountNews;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(checkPositionInterval, email, warningBalance, sendWarnings, sendAccountNews);
+    }
 }

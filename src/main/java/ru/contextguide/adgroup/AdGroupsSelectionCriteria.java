@@ -89,4 +89,10 @@ public class AdGroupsSelectionCriteria implements JsonSerializableObject {
     public void setAppIconStatuses(@Nonnull List<AdGroupAppIconStatusSelectionEnum> appIconStatuses) {
         this.appIconStatuses = ImmutableList.copyOf(appIconStatuses);
     }
+
+    @Override
+    public String toString() {
+        return this.toJson();
+    }
+
 }
