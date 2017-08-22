@@ -4,6 +4,7 @@ package ru.contextguide.yandexservices.adgroups;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.contextguide.adgroup.AdGroupFieldEnum;
 import ru.contextguide.adgroup.AdGroupGetItem;
@@ -12,21 +13,18 @@ import ru.contextguide.adgroup.AdGroupsSelectionCriteria;
 import ru.contextguide.yandexservices.MockObjects;
 import ru.contextguide.yandexservices.campaigns.Campaigns;
 import ru.contextguide.yandexservices.campaigns.CampaignsDefaultImpl;
-import ru.contextguide.yandexservices.utils.DefaultJsonParser;
-import ru.contextguide.yandexservices.utils.JsonParser;
-import ru.contextguide.yandexservices.utils.ServiceConnectionManager;
-import ru.contextguide.yandexservices.utils.ServiceConnectionManagerDefaultImpl;
+import ru.contextguide.yandexservices.utils.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
+import static java.util.Arrays.asList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AdGroupsImplTest {
-    private static final org.slf4j.Logger log = LoggerFactory.getLogger(AdGroupsImplTest.class);
+class AdGroupsImplTest {
+    private static final Logger log = LoggerFactory.getLogger(AdGroupsImplTest.class);
     private final JsonParser jsonParser = new DefaultJsonParser();
     private final ServiceConnectionManager sce = new ServiceConnectionManagerDefaultImpl();
     private final AdGroups adGroups = new AdGroupsDefaultImpl(jsonParser, sce);
@@ -35,7 +33,7 @@ public class AdGroupsImplTest {
     private Long mockAdgroupId;
 
     @BeforeEach
-    public void setUp() throws Exception {
+    void setUp() throws Exception {
         log.info("AdGroupsImplTest started");
         mockCampaignId = MockObjects.createCampaignAddItem();
         log.info("MockCampaignId: " + mockCampaignId);
@@ -44,17 +42,16 @@ public class AdGroupsImplTest {
     }
 
     @AfterEach
-    public void tearDown() throws Exception {
+    void tearDown() throws Exception {
         MockObjects.deleteCampaign(mockCampaignId);
     }
 
     @Test
-    public void get() throws Exception {
-        log.info("Testing ability to get AdGroup from YD");
+    void get() throws Exception {
+        log.info("Testing ability to get AdGroup from Yandex Direct");
         AdGroupsSelectionCriteria selectionCriteria = new AdGroupsSelectionCriteria(mockCampaignId, null);
         log.info("AdGroupsSelectionCriteria: " + selectionCriteria);
-        List<AdGroupFieldEnum> adGroupFieldEnums = new ArrayList<>();
-        Collections.addAll(adGroupFieldEnums, AdGroupFieldEnum.values());
+        List<AdGroupFieldEnum> adGroupFieldEnums = asList(AdGroupFieldEnum.values());
         log.info("Fetching all fields from adgroup: " + adGroupFieldEnums);
         GetRequest getRequest = new GetRequest(selectionCriteria, adGroupFieldEnums);
         log.info("GetRequest: " + getRequest);
@@ -73,27 +70,49 @@ public class AdGroupsImplTest {
 
 
     @Test
-    public void update() throws Exception {
+    void update() throws Exception {
+        log.info("Updated adgroup name");
         final String newName = "AnotherName!";
+
         AdGroupsSelectionCriteria originalSelectionCriteria = new AdGroupsSelectionCriteria(mockCampaignId, null);
-        List<AdGroupFieldEnum> allFields = new ArrayList<>();
-        Collections.addAll(allFields, AdGroupFieldEnum.values());
+        log.debug("Original selection criteria: " + originalSelectionCriteria);
+        List<AdGroupFieldEnum> allFields = Arrays.asList(AdGroupFieldEnum.values());
+        log.info("Fields from selection criteria: " + allFields);
         GetRequest originalRequest = new GetRequest(originalSelectionCriteria, allFields);
+        log.info("Original request: " + originalRequest);
         GetResponse originalResponse = adGroups.get(originalRequest);
+        log.info("Original response: " + originalResponse);
         assertThat("Should be 1 adgroup", originalResponse.getAdGroups(), hasSize(1));
         final String originalName = originalResponse.getAdGroups().get(0).getName();
-
+        log.info("Original adgroup name is: " + originalName);
+        log.info("New name will be: " + newName);
         AdGroupUpdateItem updateItem = new AdGroupUpdateItem(mockAdgroupId);
         updateItem.setName(newName);
+        log.info("UpdateItem: " + updateItem);
         UpdateRequest updateRequest = new UpdateRequest(updateItem);
-
+        log.info("UpdateRequest: " + updateRequest);
         UpdateResponse updateResponse = adGroups.update(updateRequest);
         assertNotNull(updateResponse);
-
+        log.info("UpdateResponse: " + updateResponse);
+        assertThat("1 adgroup should be modified", updateResponse.getUpdateResults(), hasSize(1));
+        ActionResult actionResult = updateResponse.getUpdateResults().get(0);
+        assertNull(actionResult.getErrors());
+        assertNull(actionResult.getWarnings());
+        Long resultId = actionResult.getId();
+        log.info("ActionResult id is: " + resultId);
         GetResponse updatedResponse = adGroups.get(originalRequest);
-        assertThat("Should be 1 adgroup", updatedResponse.getAdGroups(), hasSize(1));
-        final String changedName = updatedResponse.getAdGroups().get(0).getName();
+        log.info("UpdatedResponse: " + updatedResponse);
+
+        List<AdGroupGetItem> newFetchedAdGroupds = updatedResponse.getAdGroups();
+        log.info("newFetchedAdGroupds: " + newFetchedAdGroupds);
+        assertThat("1 group should be changed", newFetchedAdGroupds, hasSize(1));
+        AdGroupGetItem updatedAdGroup = updatedResponse.getAdGroups().get(0);
+        assertNotNull(updatedAdGroup.getName(), "New name should not be null");
+        String changedName = updatedResponse.getAdGroups().get(0).getName();
+        log.info("New name is: " + changedName);
+        log.info("Old name is: " + originalName);
         assertNotEquals(originalName, changedName);
+        log.info("AdGroup name succesfully changed");
     }
 
 }
