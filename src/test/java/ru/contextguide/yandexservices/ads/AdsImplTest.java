@@ -11,9 +11,6 @@ import ru.contextguide.ad.AdFieldEnum;
 import ru.contextguide.ad.TextAdAdd;
 import ru.contextguide.campaign.campaign.YesNoEnum;
 import ru.contextguide.yandexservices.MockObjects;
-import ru.contextguide.yandexservices.adgroups.AdGroups;
-import ru.contextguide.yandexservices.campaigns.Campaigns;
-import ru.contextguide.yandexservices.campaigns.CampaignsDefaultImpl;
 import ru.contextguide.yandexservices.utils.*;
 
 import java.util.ArrayList;
@@ -28,11 +25,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AdsImplTest {
     private static final Logger log = LoggerFactory.getLogger(AdsImplTest.class);
-    AdGroups adGroups;
-    JsonParser jsonParser = new DefaultJsonParser();
-    ServiceConnectionManager sce = new ServiceConnectionManagerDefaultImpl();
-    Campaigns campaigns = new CampaignsDefaultImpl(jsonParser, sce);
-    Ads ads = new AdsDefaultImpl(jsonParser, sce);
+    private final JsonParser jsonParser = new DefaultJsonParser();
+    private final ServiceConnectionManager sce = new ServiceConnectionManagerDefaultImpl();
+    private final Ads ads = new AdsDefaultImpl(jsonParser, sce);
     private Long mockCampaignId;
     private Long mockAdId;
 

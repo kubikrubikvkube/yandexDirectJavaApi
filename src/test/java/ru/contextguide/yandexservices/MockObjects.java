@@ -7,9 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.contextguide.adgroup.AdGroupAddItem;
 import ru.contextguide.adgroup.AdGroupGetItem;
-import ru.contextguide.campaign.campaign.CampaignAddItem;
-import ru.contextguide.campaign.campaign.CampaignGetItem;
-import ru.contextguide.campaign.campaign.TextCampaignAddItem;
+import ru.contextguide.campaign.campaign.*;
 import ru.contextguide.campaign.textCampaign.*;
 import ru.contextguide.yandexservices.adgroups.AdGroups;
 import ru.contextguide.yandexservices.adgroups.AdGroupsDefaultImpl;
@@ -29,6 +27,7 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 
 public class MockObjects {
@@ -74,6 +73,17 @@ public class MockObjects {
         assertNotNull(deleteResponse);
         log.debug("DeleteResponse received: " + deleteResponse);
         assertThat("1 campaign should be deleted", deleteResponse.getDeleteResults(), hasSize(1));
+        log.debug("Re-checking that campaign is deleted");
+        CampaignsSelectionCriteria campaignsSelectionCriteria = new CampaignsSelectionCriteria();
+        campaignsSelectionCriteria.add(mockCampaignId);
+        log.debug("CampaignSelectionCriteria: " + campaignsSelectionCriteria);
+        List<CampaignFieldEnum> fields = Collections.singletonList(CampaignFieldEnum.Id);
+        log.debug("Campaign fields to retrieve: " + fields);
+        GetRequest getRequest = new GetRequest(campaignsSelectionCriteria, fields);
+        log.debug("GetRequest: " + getRequest);
+        GetResponse getResponse = campaigns.get(getRequest);
+        log.debug("GetResponse: " + getResponse);
+        assertNull(getResponse.getCampaigns(), "Get response should be null - campaign not found, was deleted");
         log.debug(mockCampaignId + " campaign deleted.");
     }
 
