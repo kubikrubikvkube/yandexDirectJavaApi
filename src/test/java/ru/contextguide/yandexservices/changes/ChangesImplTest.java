@@ -4,26 +4,27 @@ package ru.contextguide.yandexservices.changes;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.contextguide.yandexservices.MockObjects;
-import ru.contextguide.yandexservices.adgroups.AdGroups;
-import ru.contextguide.yandexservices.campaigns.Campaigns;
+import ru.contextguide.yandexservices.utils.DefaultJsonParser;
 import ru.contextguide.yandexservices.utils.JsonParser;
+import ru.contextguide.yandexservices.utils.ServiceConnectionManager;
+import ru.contextguide.yandexservices.utils.ServiceConnectionManagerDefaultImpl;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.*;
 
 public class ChangesImplTest {
+    private static final Logger log = LoggerFactory.getLogger(ChangesImplTest.class);
     private final String exampleTimestampString = "2015-05-24T23:59:59Z";
-
-    AdGroups adGroups;
-    Campaigns campaigns;
-    Changes changes;
-    JsonParser jsonParser;
+    private final JsonParser jsonParser = new DefaultJsonParser();
+    private final ServiceConnectionManager sce = new ServiceConnectionManagerDefaultImpl();
+    private final Changes changes = new ChangesDefaultImpl(jsonParser, sce);
 
     private Long mockCampaignId;
 
@@ -55,34 +56,58 @@ public class ChangesImplTest {
     }
 
     @Test
-    public void checkCampaignsString() throws Exception {
-        CheckCampaignsRequest requestString = new CheckCampaignsRequest(exampleTimestampString);
-        CheckCampaignsResponse stringResponse = changes.checkCampaigns(requestString);
-        assertNotNull("Response should not be null", stringResponse);
-        assertNotNull("Campaigns should not be null", stringResponse.getCampaigns());
-        assertNotNull("Timestamp should not be null", stringResponse.getTimestamp());
-        assertThat("Should be at list 1 changed campaign since 2015", stringResponse.getCampaigns().size(), greaterThan(0));
+    public void checkCampaigns() throws Exception {
+        log.info("Checking that campaigns changed since 2015");
+        CheckCampaignsRequest checkCampaignsRequest = new CheckCampaignsRequest(exampleTimestampString);
+        log.info("CheckCampaignsRequest: " + checkCampaignsRequest);
+        CheckCampaignsResponse checkCampaignResponse = changes.checkCampaigns(checkCampaignsRequest);
+        log.info("CheckCampaignResponse: " + checkCampaignResponse);
+        assertNotNull("Response should not be null", checkCampaignResponse);
+        assertNotNull("Campaigns should not be null", checkCampaignResponse.getCampaigns());
+        List<CampaignChangesItem> campaignChangesItems = checkCampaignResponse.getCampaigns();
+        assertThat("Should be 1 or more campaigns that changed since 2015", campaignChangesItems, hasSize(greaterThanOrEqualTo(1)));
+        log.info("CampaignChangesItem size: " + campaignChangesItems.size());
+        for (CampaignChangesItem item : campaignChangesItems) {
+            assertNotNull("CampaignChangedItem should not be null", item);
+        }
+        assertNotNull("Timestamp should not be null", checkCampaignResponse.getTimestamp());
+        log.info("CheckCampaignResponse timestamp: " + checkCampaignResponse.getTimestamp());
     }
 
-    @Test
-    public void checkCampaignMillis() throws Exception {
-        Long exampleTimestampMillis = 1432511999000L;
-        CheckCampaignsRequest requestMillis = new CheckCampaignsRequest(exampleTimestampMillis);
-        CheckCampaignsResponse millisResponse = changes.checkCampaigns(requestMillis);
-        assertNotNull("Response should not be null", millisResponse);
-        assertNotNull("Campaigns should not be null", millisResponse.getCampaigns());
-        assertNotNull("Timestamp should not be null", millisResponse.getTimestamp());
-        assertThat("Should be at list 1 changed campaign since 2015", millisResponse.getCampaigns().size(), greaterThan(0));
-    }
 
     @Test
     public void check() throws Exception {
-        List<FieldNamesEnum> fieldNames = new ArrayList<>();
-        Collections.addAll(fieldNames, FieldNamesEnum.values());
+
+        //Сообщает о наличии изменений в кампаниях, группах и объявлениях клиента начиная с указанной даты.
+        log.info("Checking that campaign changed since 2015");
+        List<FieldNamesEnum> fieldNames = Arrays.asList(FieldNamesEnum.values());
+        log.info("fieldNames: " + fieldNames);
         CheckRequest request = new CheckRequest(mockCampaignId, null, null, fieldNames, exampleTimestampString);
+        log.info("CheckRequest: " + request);
         CheckResponse response = changes.check(request);
-        assertThat("Yandex service did not recognized that just 1 campaing modified", response.getModified().getCampaignIds(), hasSize(1));
-        assertNotNull("Timestamp is not send by server or did not recognized", response.getTimestamp());
+        log.info("CheckResponse: " + response);
+        CheckResponseModified checkResponseModified = response.getModified();
+        assertNotNull(checkResponseModified);
+        assertThat("Checking 1 campaign", checkResponseModified.getCampaignIds(), hasSize(1));
+        assertNull("Checking campaign, not adgroup", checkResponseModified.getAdGroupIds());
+        assertNull("Checking campaign, not ad", checkResponseModified.getAdIds());
+        assertNull("This is draft not running campaign, stat should not be changed", checkResponseModified.getCampaignsStat());
+        String timestamp = response.getTimestamp();
+        assertNotNull("Timestamp should be sent from server", timestamp);
+        Long changedCampaignId = checkResponseModified.getCampaignIds().get(0);
+        assertEquals("Campaign ids should be equal", changedCampaignId, mockCampaignId);
+
+        Thread.sleep(15000);
+        CheckRequest secondRequest = new CheckRequest(mockCampaignId, null, null, fieldNames, timestamp);
+        log.info("SecondRequest: " + secondRequest);
+        CheckResponse secondResponse = changes.check(secondRequest);
+        log.info("SecondResponse: " + secondResponse);
+        assertNotNull("Timestamp should be send by server", secondResponse.getTimestamp());
+        CheckResponseModified secondResponseModified = secondResponse.getModified();
+        assertNull("Campaigns not modified", secondResponseModified.getCampaignIds());
+        assertNull("AdGroups not modified", secondResponseModified.getAdGroupIds());
+        assertNull("Ads not modified", secondResponseModified.getAdIds());
+        assertNull("CampaignStat not modified", secondResponseModified.getCampaignsStat());
     }
 
 }
