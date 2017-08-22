@@ -39,17 +39,17 @@ public class CampaignsSelectionCriteria implements JsonSerializableObject {
     }
 
     /**
-     * Отбирать кампании с указанными идентификаторами. Не более 1000 элементов в массиве.
-     */
-    public void setIds(List<Long> ids) {
-        this.ids = ImmutableList.copyOf(ids);
-    }
-
-    /**
      * Отбирать кампании с указанным идентификатором.
      */
     public void setIds(@Nonnull Long ids) {
         this.ids = ImmutableList.of(ids);
+    }
+
+    /**
+     * Отбирать кампании с указанными идентификаторами. Не более 1000 элементов в массиве.
+     */
+    public void setIds(List<Long> ids) {
+        this.ids = ImmutableList.copyOf(ids);
     }
 
     /**

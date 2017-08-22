@@ -6,12 +6,15 @@ import org.joda.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.contextguide.adgroup.AdGroupAddItem;
+import ru.contextguide.adgroup.AdGroupGetItem;
 import ru.contextguide.campaign.campaign.CampaignAddItem;
 import ru.contextguide.campaign.campaign.CampaignGetItem;
 import ru.contextguide.campaign.campaign.TextCampaignAddItem;
 import ru.contextguide.campaign.textCampaign.*;
 import ru.contextguide.yandexservices.adgroups.AdGroups;
 import ru.contextguide.yandexservices.adgroups.AdGroupsDefaultImpl;
+import ru.contextguide.yandexservices.adgroups.AddRequest;
+import ru.contextguide.yandexservices.adgroups.AdgroupsAddResponse;
 import ru.contextguide.yandexservices.campaigns.*;
 import ru.contextguide.yandexservices.campaigns.DeleteResponse;
 import ru.contextguide.yandexservices.exceptions.DeserializationException;
@@ -20,6 +23,7 @@ import ru.contextguide.yandexservices.utils.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -71,6 +75,21 @@ public class MockObjects {
         log.debug("DeleteResponse received: " + deleteResponse);
         assertThat("1 campaign should be deleted", deleteResponse.getDeleteResults(), hasSize(1));
         log.debug(mockCampaignId + " campaign deleted.");
+    }
+
+    public static Long createAdGroup() throws Exception {
+        log.debug("Creating ad group");
+        AdGroupAddItem adGroupAddItem = new AdGroupAddItem("TestAdGroup", createCampaignAddItem(), Collections.singletonList(0L));
+        log.debug("AdGroupAddItem: " + adGroupAddItem);
+        AddRequest addRequest = new AddRequest(adGroupAddItem);
+        log.debug("AddRequest: " + addRequest);
+        AdgroupsAddResponse addResponse = adGroups.add(addRequest);
+        log.debug("AddResponse: " + addResponse);
+        assertThat("Should be 1 created adgroup", addResponse.getAddResults().size() == 1);
+        AdGroupGetItem adGroupGetItem = addResponse.getAddResults().get(0);
+        log.debug("AdGroupGetItem: " + adGroupGetItem);
+        assertNotNull(adGroupGetItem.getId(), "AdGroupGetItem should have id");
+        return adGroupGetItem.getId();
     }
 
     private static CampaignAddItem createDefaultCampaignAddItem() {

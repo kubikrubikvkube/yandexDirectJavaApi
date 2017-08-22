@@ -13,8 +13,8 @@ import ru.contextguide.campaign.campaign.YesNoEnum;
 import ru.contextguide.yandexservices.MockObjects;
 import ru.contextguide.yandexservices.adgroups.AdGroups;
 import ru.contextguide.yandexservices.campaigns.Campaigns;
-import ru.contextguide.yandexservices.utils.ActionResult;
-import ru.contextguide.yandexservices.utils.IdsCriteria;
+import ru.contextguide.yandexservices.campaigns.CampaignsDefaultImpl;
+import ru.contextguide.yandexservices.utils.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,11 +29,11 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AdsImplTest {
     private static final Logger log = LoggerFactory.getLogger(AdsImplTest.class);
     AdGroups adGroups;
-    Campaigns campaigns;
-    Ads ads;
-    private MockObjects mockObjects;
+    JsonParser jsonParser = new DefaultJsonParser();
+    ServiceConnectionManager sce = new ServiceConnectionManagerDefaultImpl();
+    Campaigns campaigns = new CampaignsDefaultImpl(jsonParser, sce);
+    Ads ads = new AdsDefaultImpl(jsonParser, sce);
     private Long mockCampaignId;
-    private Long mockAdGroupId;
     private Long mockAdId;
 
     @BeforeEach
@@ -119,8 +119,9 @@ public class AdsImplTest {
 
     @Test
     public void add() throws Exception {
+        Long adGroupId = MockObjects.createAdGroup();
         TextAdAdd textAdAdd = new TextAdAdd("SomeTitle", "Text", YesNoEnum.NO, "http://www.example.com", null);
-        AdAddItem adAddItem = new AdAddItem(mockAdGroupId, textAdAdd);
+        AdAddItem adAddItem = new AdAddItem(adGroupId, textAdAdd);
         AddRequest addRequest = new AddRequest(adAddItem);
         AddResponse addResponse = ads.add(addRequest);
         assertNotNull(addResponse);
