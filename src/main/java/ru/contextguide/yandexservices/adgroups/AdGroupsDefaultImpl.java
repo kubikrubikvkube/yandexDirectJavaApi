@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import ru.contextguide.yandexservices.exceptions.DeserializationException;
 import ru.contextguide.yandexservices.exceptions.SerializationException;
 import ru.contextguide.yandexservices.utils.DeleteResponse;
-import ru.contextguide.yandexservices.utils.IdsCriteria;
 import ru.contextguide.yandexservices.utils.JsonParser;
 import ru.contextguide.yandexservices.utils.ServiceConnectionManager;
 
@@ -31,9 +30,9 @@ public class AdGroupsDefaultImpl implements AdGroups {
     }
 
     @Override
-    public DeleteResponse delete(IdsCriteria criteria) throws SerializationException, DeserializationException, IOException {
-        log.info("Requesting from API: " + criteria.toJson());
-        String rawResponse = sce.sendRequest(AdGroupsMethod.DELETE, API_URL, criteria);
+    public DeleteResponse delete(DeleteRequest deleteRequest) throws SerializationException, DeserializationException, IOException {
+        log.info("Requesting from API: " + deleteRequest.toJson());
+        String rawResponse = sce.sendRequest(AdGroupsMethod.DELETE, API_URL, deleteRequest);
         return jsonParser.deserialize(rawResponse, DeleteResponse.class);
     }
 

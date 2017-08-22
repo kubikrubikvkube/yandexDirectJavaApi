@@ -27,6 +27,7 @@ class AdGroupsImplTest {
     private final ServiceConnectionManager sce = new ServiceConnectionManagerDefaultImpl();
     private final AdGroups adGroups = new AdGroupsDefaultImpl(jsonParser, sce);
     private final Campaigns campaigns = new CampaignsDefaultImpl(jsonParser, sce);
+    private final List<Long> allRegions = Collections.singletonList(0L);
     private Long mockCampaignId;
     private Long mockAdgroupId;
 
@@ -49,7 +50,6 @@ class AdGroupsImplTest {
         log.info("Creating new AdGroup");
         String name = "NewAddedAdGroup";
         log.info("New adGroup name will be: " + name);
-        List<Long> allRegions = Collections.singletonList(0L);
         log.info("AdGroup regions: " + allRegions);
         AdGroupAddItem addItem = new AdGroupAddItem(name, mockCampaignId, allRegions);
         log.info("AddItem: " + addItem);
@@ -78,8 +78,45 @@ class AdGroupsImplTest {
 
     }
 
+    @Test
     void delete() throws Exception {
+        log.info("Creating adGroup to delete it later");
+        AdGroupAddItem addItem = new AdGroupAddItem("deleteTestCase", mockCampaignId, allRegions);
+        log.info("AddItem: " + addItem);
+        AddRequest addRequest = new AddRequest(addItem);
+        log.info("AddRequest: " + addRequest);
+        AdgroupsAddResponse adgroupsAddResponse = adGroups.add(addRequest);
+        log.info("AdGroupsAddResponse: " + adgroupsAddResponse);
+        assertThat("Should be 1 add response", adgroupsAddResponse.getAddResults(), hasSize(1));
+        AdGroupGetItem addResponse = adgroupsAddResponse.getAddResults().get(0);
+        assertNotNull(addResponse);
+        log.info("AdGroupGetItem: " + addResponse);
+        Long adGroupId = addResponse.getId();
+        assertNotNull(adGroupId);
+        log.info("AdGroupId: " + adGroupId);
+        log.info("AdGroup created. Not preparing to it's deletion.");
+        IdsCriteria idsCriteria = new IdsCriteria(adGroupId);
+        log.info("IdsCriteria: " + idsCriteria);
+        DeleteRequest deleteRequest = new DeleteRequest(idsCriteria);
+        log.info("DeleteRequest: " + deleteRequest);
+        DeleteResponse deleteResponse = adGroups.delete(deleteRequest);
+        log.info("DeleteResponse: " + deleteResponse);
+        assertThat("1 adgroup should be deleted", deleteResponse.getDeleteResults(), hasSize(1));
+        ActionResult deleteResult = deleteResponse.getDeleteResults().get(0);
+        log.info("Deletion result: " + deleteResult);
+        assertNotNull(deleteResult.getId());
+        assertNull(deleteResult.getWarnings());
+        assertNull(deleteResult.getErrors());
+        Long deletedAdgroupId = addResponse.getId();
+        log.info("Deleted adgroup id: " + deletedAdgroupId);
+        log.info("Expected adgroup id to be deleted: " + adGroupId);
+        assertEquals(deletedAdgroupId, adGroupId, "Id should be equals");
 
+        AdGroupsSelectionCriteria adGroupsSelectionCriteria = new AdGroupsSelectionCriteria(null, deletedAdgroupId);
+        GetRequest getRequest = new GetRequest(adGroupsSelectionCriteria, Arrays.asList(AdGroupFieldEnum.values()));
+        GetResponse getResponse = adGroups.get(getRequest);
+        assertNotNull(getResponse, "We should get non-null response from YD");
+        assertNull(getResponse.getAdGroups(), "YD should not find any adgroup with given id because we deleted it");
     }
 
     @Test

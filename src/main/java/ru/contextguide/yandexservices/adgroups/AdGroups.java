@@ -3,7 +3,6 @@ package ru.contextguide.yandexservices.adgroups;
 import ru.contextguide.yandexservices.exceptions.DeserializationException;
 import ru.contextguide.yandexservices.exceptions.SerializationException;
 import ru.contextguide.yandexservices.utils.DeleteResponse;
-import ru.contextguide.yandexservices.utils.IdsCriteria;
 
 import java.io.IOException;
 
@@ -28,7 +27,7 @@ public interface AdGroups {
      * Удалить можно только пустую группу, не содержащую объявлений, фраз и ретаргетингов.
      * Не допускается удаление группы из архивной кампании.
      */
-    DeleteResponse delete(IdsCriteria criteria) throws SerializationException, DeserializationException, IOException;
+    DeleteResponse delete(DeleteRequest deleteRequest) throws SerializationException, DeserializationException, IOException;
 
     /**
      * Возвращает параметры групп, отвечающих заданным критериям.

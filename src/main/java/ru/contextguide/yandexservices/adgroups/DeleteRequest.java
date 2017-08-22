@@ -1,20 +1,19 @@
 package ru.contextguide.yandexservices.adgroups;
 
-import com.google.common.collect.ImmutableList;
+import ru.contextguide.yandexservices.utils.IdsCriteria;
 import ru.contextguide.yandexservices.utils.JsonSerializableObject;
 
-import java.util.List;
 import java.util.Objects;
 
 public class DeleteRequest implements JsonSerializableObject {
-    private final List<Long> ids;
+    private final IdsCriteria selectionCriteria;
 
-    public DeleteRequest(List<Long> ids) {
-        this.ids = ImmutableList.copyOf(ids);
+    public DeleteRequest(IdsCriteria selectionCriteria) {
+        this.selectionCriteria = selectionCriteria;
     }
 
-    public List<Long> getIds() {
-        return ids;
+    public IdsCriteria getSelectionCriteria() {
+        return selectionCriteria;
     }
 
     @Override
@@ -27,11 +26,11 @@ public class DeleteRequest implements JsonSerializableObject {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DeleteRequest that = (DeleteRequest) o;
-        return Objects.equals(ids, that.ids);
+        return Objects.equals(selectionCriteria, that.selectionCriteria);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ids);
+        return Objects.hash(selectionCriteria);
     }
 }
