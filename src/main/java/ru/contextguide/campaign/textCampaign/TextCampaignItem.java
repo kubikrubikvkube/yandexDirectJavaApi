@@ -8,7 +8,8 @@ import java.util.Objects;
 
 public class TextCampaignItem implements JsonSerializableObject {
 
-    @NotNull private final TextCampaignStrategyAdd biddingStrategy;
+    @NotNull
+    private final TextCampaignStrategyAdd biddingStrategy;
     private Long id;
     private Long limitedBy;
     private CounterIds counterIds;

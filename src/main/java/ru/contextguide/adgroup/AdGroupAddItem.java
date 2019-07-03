@@ -16,10 +16,14 @@ public final class AdGroupAddItem implements JsonSerializableObject {
     private final String name;
     private final Long campaignId;
     private final List<Long> regionIds;
-    @Nullable private List<String> negativeKeywords;
-    @Nullable private String trackingParams;
-    @Nullable private MobileAppAdGroupAdd mobileAppAdGroup;
-    @Nullable private DynamicTextAdGroup dynamicTextAdGroup;
+    @Nullable
+    private List<String> negativeKeywords;
+    @Nullable
+    private String trackingParams;
+    @Nullable
+    private MobileAppAdGroupAdd mobileAppAdGroup;
+    @Nullable
+    private DynamicTextAdGroup dynamicTextAdGroup;
 
     public AdGroupAddItem(@NotNull String name, @NotNull Long campaignId, @NotNull List<Long> regionIds) {
         this.name = name;

@@ -37,25 +37,10 @@ public class DailyBudget implements JsonSerializableObject {
         this.dailyBudgetModeEnum = dailyBudgetModeEnum;
     }
 
-    /**
-     * Способ распределения бюджета рекламной кампании
-     */
-    public enum DailyBudgetModeEnum {
-        /**
-         * Дневной бюджет может исчерпаться, а показы завершиться ранее окончания дня.
-         */
-        STANDARD,
-        /**
-         * Распределять дневной бюджет равномерно на весь день.
-         */
-        DISTRIBUTED
-    }
-
     @Override
     public String toString() {
         return this.toJson();
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -69,5 +54,19 @@ public class DailyBudget implements JsonSerializableObject {
     @Override
     public int hashCode() {
         return Objects.hash(amount, dailyBudgetModeEnum);
+    }
+
+    /**
+     * Способ распределения бюджета рекламной кампании
+     */
+    public enum DailyBudgetModeEnum {
+        /**
+         * Дневной бюджет может исчерпаться, а показы завершиться ранее окончания дня.
+         */
+        STANDARD,
+        /**
+         * Распределять дневной бюджет равномерно на весь день.
+         */
+        DISTRIBUTED
     }
 }

@@ -1,7 +1,7 @@
 package ru.contextguide.yandexservices;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.sun.org.slf4j.internal.Logger;
+import com.sun.org.slf4j.internal.LoggerFactory;
 import ru.contextguide.yandexservices.adgroups.AdGroups;
 import ru.contextguide.yandexservices.adgroups.AdGroupsDefaultImpl;
 import ru.contextguide.yandexservices.ads.Ads;

@@ -8,8 +8,8 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.sun.org.slf4j.internal.Logger;
+import com.sun.org.slf4j.internal.LoggerFactory;
 import ru.contextguide.yandexservices.exceptions.DeserializationException;
 import ru.contextguide.yandexservices.exceptions.SerializationException;
 
