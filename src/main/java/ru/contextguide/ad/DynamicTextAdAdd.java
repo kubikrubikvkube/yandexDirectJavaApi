@@ -14,5 +14,4 @@ public class DynamicTextAdAdd implements JsonSerializableObject {
     }
 
 
-
 }

@@ -1,7 +1,7 @@
 package ru.contextguide.yandexservices.ads;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.sun.org.slf4j.internal.Logger;
+import com.sun.org.slf4j.internal.LoggerFactory;
 import ru.contextguide.yandexservices.exceptions.DeserializationException;
 import ru.contextguide.yandexservices.exceptions.SerializationException;
 import ru.contextguide.yandexservices.utils.JsonParser;
@@ -22,14 +22,14 @@ public class AdsDefaultImpl implements Ads {
 
     @Override
     public AddResponse add(AddRequest request) throws SerializationException, DeserializationException, IOException {
-        log.info("Requesting from API: " + request.toJson());
+        log.debug("Requesting from API: " + request.toJson());
         String rawResponse = sce.sendRequest(AdsMethod.ADD, API_URL, request);
         return jsonParser.deserialize(rawResponse, AddResponse.class);
     }
 
     @Override
     public GetResponse get(GetRequest request) throws SerializationException, DeserializationException, IOException {
-        log.info("Requesting from API: " + request.toJson());
+        log.debug("Requesting from API: " + request.toJson());
         String rawResponse = sce.sendRequest(AdsMethod.GET, API_URL, request);
         return jsonParser.deserialize(rawResponse, GetResponse.class);
     }

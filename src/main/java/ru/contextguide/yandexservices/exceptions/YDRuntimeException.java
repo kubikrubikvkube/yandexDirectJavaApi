@@ -1,7 +1,7 @@
 package ru.contextguide.yandexservices.exceptions;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.sun.org.slf4j.internal.Logger;
+import com.sun.org.slf4j.internal.LoggerFactory;
 
 class YDRuntimeException extends RuntimeException {
     private static final Logger log = LoggerFactory.getLogger(YDRuntimeException.class);

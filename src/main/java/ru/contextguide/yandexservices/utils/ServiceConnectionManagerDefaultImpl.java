@@ -1,9 +1,9 @@
 package ru.contextguide.yandexservices.utils;
 
 
+import com.sun.org.slf4j.internal.Logger;
+import com.sun.org.slf4j.internal.LoggerFactory;
 import org.apache.http.client.methods.HttpPost;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import ru.contextguide.yandexservices.ServiceMethod;
 
 import java.io.IOException;

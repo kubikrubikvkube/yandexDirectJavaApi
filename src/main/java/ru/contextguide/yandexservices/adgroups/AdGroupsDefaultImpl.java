@@ -1,7 +1,7 @@
 package ru.contextguide.yandexservices.adgroups;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.sun.org.slf4j.internal.Logger;
+import com.sun.org.slf4j.internal.LoggerFactory;
 import ru.contextguide.yandexservices.exceptions.DeserializationException;
 import ru.contextguide.yandexservices.exceptions.SerializationException;
 import ru.contextguide.yandexservices.utils.DeleteResponse;
@@ -24,28 +24,28 @@ public class AdGroupsDefaultImpl implements AdGroups {
 
     @Override
     public AdgroupsAddResponse add(AddRequest addRequest) throws SerializationException, DeserializationException, IOException {
-        log.info("Requesting from API: " + addRequest.toJson());
+        log.debug("Requesting from API: " + addRequest.toJson());
         String rawResponse = sce.sendRequest(AdGroupsMethod.ADD, API_URL, addRequest);
         return jsonParser.deserialize(rawResponse, AdgroupsAddResponse.class);
     }
 
     @Override
     public DeleteResponse delete(DeleteRequest deleteRequest) throws SerializationException, DeserializationException, IOException {
-        log.info("Requesting from API: " + deleteRequest.toJson());
+        log.debug("Requesting from API: " + deleteRequest.toJson());
         String rawResponse = sce.sendRequest(AdGroupsMethod.DELETE, API_URL, deleteRequest);
         return jsonParser.deserialize(rawResponse, DeleteResponse.class);
     }
 
     @Override
     public GetResponse get(GetRequest request) throws SerializationException, DeserializationException, IOException {
-        log.info("Requesting from API: " + request.toJson());
+        log.debug("Requesting from API: " + request.toJson());
         String rawResponse = sce.sendRequest(AdGroupsMethod.GET, API_URL, request);
         return jsonParser.deserialize(rawResponse, GetResponse.class);
     }
 
     @Override
     public UpdateResponse update(UpdateRequest request) throws SerializationException, DeserializationException, IOException {
-        log.info("Requesting from API: " + request.toJson());
+        log.debug("Requesting from API: " + request.toJson());
         String rawResponse = sce.sendRequest(AdGroupsMethod.UPDATE, API_URL, request);
         return jsonParser.deserialize(rawResponse, UpdateResponse.class);
     }

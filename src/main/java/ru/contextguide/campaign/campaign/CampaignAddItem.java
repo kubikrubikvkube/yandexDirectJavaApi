@@ -16,10 +16,14 @@ public class CampaignAddItem implements JsonSerializableObject {
     private String endDate;
     private TimeTargeting timeTargeting;
     private String timeZone;
-    @Nullable private NegativeKeywords negativeKeywords;
-    @Nullable private BlockedIps blockedIps;
-    @Nullable private ExcludedSites excludedSites;
-    @Nullable private DailyBudget dailyBudget;
+    @Nullable
+    private NegativeKeywords negativeKeywords;
+    @Nullable
+    private BlockedIps blockedIps;
+    @Nullable
+    private ExcludedSites excludedSites;
+    @Nullable
+    private DailyBudget dailyBudget;
     private Notification notification;
     private CampaignTypeGetEnum type;
     private StatusEnum status;
