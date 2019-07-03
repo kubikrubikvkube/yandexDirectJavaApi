@@ -10,7 +10,8 @@ import java.util.Objects;
 
 
 public class CampaignsAddRequest implements JsonSerializableObject {
-    @NotNull private final List<CampaignAddItem> campaigns;
+    @NotNull
+    private final List<CampaignAddItem> campaigns;
 
     public CampaignsAddRequest(List<CampaignAddItem> campaigns) {
         this.campaigns = new ArrayList<>(campaigns);

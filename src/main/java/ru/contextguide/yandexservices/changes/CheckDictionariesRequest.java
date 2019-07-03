@@ -10,7 +10,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class CheckDictionariesRequest implements JsonSerializableObject {
-    @Nullable private final String timestamp;
+    @Nullable
+    private final String timestamp;
 
     public CheckDictionariesRequest(@Nullable @NotNull String timestamp) {
         if (timestamp == null) {

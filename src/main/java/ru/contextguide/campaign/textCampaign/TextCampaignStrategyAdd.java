@@ -8,8 +8,10 @@ import java.util.Objects;
 
 
 public class TextCampaignStrategyAdd implements JsonSerializableObject {
-    @NotNull private final TextCampaignSearchStrategyAdd search;
-    @NotNull private final TextCampaignNetworkStrategyAdd network;
+    @NotNull
+    private final TextCampaignSearchStrategyAdd search;
+    @NotNull
+    private final TextCampaignNetworkStrategyAdd network;
 
 
     public TextCampaignStrategyAdd(@NotNull TextCampaignSearchStrategyAdd search, @NotNull TextCampaignNetworkStrategyAdd network) {

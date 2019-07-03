@@ -9,11 +9,16 @@ import java.util.List;
 import java.util.Objects;
 
 public class CheckRequest implements JsonSerializableObject {
-    @Nullable private final List<Long> campaignIds;
-    @Nullable private final List<Long> adGroupIds;
-    @Nullable private final List<Long> adIds;
-    @NotNull private final List<FieldNamesEnum> fieldNames;
-    @NotNull private final String timestamp;
+    @Nullable
+    private final List<Long> campaignIds;
+    @Nullable
+    private final List<Long> adGroupIds;
+    @Nullable
+    private final List<Long> adIds;
+    @NotNull
+    private final List<FieldNamesEnum> fieldNames;
+    @NotNull
+    private final String timestamp;
 
     public CheckRequest(@Nullable List<Long> campaignIds, @Nullable List<Long> adGroupIds, @Nullable List<Long> adIds, @NotNull List<FieldNamesEnum> fieldNames, @NotNull String timestamp) {
         this.campaignIds = (campaignIds != null) ? ImmutableList.copyOf(campaignIds) : null;

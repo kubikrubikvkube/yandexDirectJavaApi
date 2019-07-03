@@ -11,10 +11,14 @@ import java.util.List;
 import java.util.Objects;
 
 public class TextCampaignAddItem implements JsonSerializableObject {
-    @NotNull private final TextCampaignStrategyAdd biddingStrategy;
-    @NotNull private List<TextCampaignSettingGet> settings;
-    @Nullable private List<Integer> counterIds;
-    @Nullable private RelevantKeywordsSetting relevantKeywords;
+    @NotNull
+    private final TextCampaignStrategyAdd biddingStrategy;
+    @NotNull
+    private List<TextCampaignSettingGet> settings;
+    @Nullable
+    private List<Integer> counterIds;
+    @Nullable
+    private RelevantKeywordsSetting relevantKeywords;
 
     public TextCampaignAddItem(@NotNull TextCampaignStrategyAdd biddingStrategy) {
         this.biddingStrategy = biddingStrategy;
